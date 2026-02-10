@@ -1,0 +1,11 @@
+{
+  "name": "@openpress/feature-contact-form",
+  "version": "0.0.1",
+  "private": true,
+  "description": "OpenPress Feature - Contact Form with validation and submission handling",
+  "main": "./src/index.ts",
+  "scripts": {
+    "build": "bun run build:feature",
+    "test": "bun test"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "@openpress/theme-tailwind-plus",
+  "version": "0.0.1",
+  "private": true,
+  "description": "OpenPress Theme - Modern Tailwind Plus Design System",
+  "main": "./src/index.ts",
+  "scripts": {
+    "build": "bun run build:theme",
+    "test": "bun test"
+  }
+}

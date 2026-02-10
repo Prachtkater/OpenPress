@@ -1,0 +1,31 @@
+{
+  "name": "@openpress/core",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "OpenPress Core - Nuxt Module, Composition System, Editor Engine",
+  "exports": {
+    ".": {
+      "import": "./src/module.ts"
+    }
+  },
+  "main": "./src/module.ts",
+  "scripts": {
+    "build": "nuxt-module-build build",
+    "dev": "nuxi dev playground",
+    "test": "bun test"
+  },
+  "dependencies": {
+    "@nuxt/kit": "^3.10.0",
+    "@openpress/schemas": "workspace:*",
+    "zod": "^3.24.0"
+  },
+  "peerDependencies": {
+    "nuxt": "^3.10.0"
+  },
+  "devDependencies": {
+    "@nuxt/test-utils": "^3.14.0",
+    "nuxt": "^3.15.0",
+    "ulid": "^2.3.0"
+  }
+}

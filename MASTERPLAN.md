@@ -1,0 +1,61 @@
+# MASTERPLAN: OpenPress
+
+## 1. Vision & Core Principles
+OpenPress ist ein Nuxt-natives, visuelles CMS, das In-Context-Editing mit Git-basiertem Storage vereint.
+- **Visual-First**: Editing findet direkt auf der gerenderten Seite statt.
+- **Git-Native**: Alle Inhalte werden als JSON im Repository gespeichert. Jede Änderung ist ein Commit.
+- **Modularer Core**: Ein schlanker Core bietet alles für eine Website; Erweiterungen erfolgen über Opt-in Module.
+- **Feature/Theme Separation**: Logik (Features) und Visuals (Themes) sind strikt getrennt.
+
+## 2. Technische Architektur
+- **Runtime**: Bun
+- **Framework**: Nuxt 3 (als Modul unter `/_edit`)
+- **Typesafety**: Zod für Schema-Validierung, TypeScript für das gesamte Projekt.
+- **Editor-Engine**: Tiptap für Inline-Rich-Text, Custom Vue-Wrapper für Block-Composition.
+- **IDs**: ULID für persistente, sortierbare Block-IDs.
+
+## 3. Core vs. Module (Opt-in)
+### Core (Inklusive)
+- Visual Page Editor (Glow-Frame UI)
+- Section/Slot/Block Composition System
+- Git-backed JSON Storage Engine
+- Basic Content Blocks (Rich Text, Image, Video, Button, Link)
+- Layout & Navigation Editing
+- Media Library & Basic SEO
+
+### Opt-in Module (@openpress/*)
+- `i18n`: Mehrsprachigkeit
+- `drafts`: Entwurfs-Workflow
+- `roles`: RBAC Berechtigungen
+- `ai`: KI-Unterstützung im Editor
+- `analytics`: Dashboard-Integration
+
+## 4. Umsetzungsstrategie (Phasen)
+
+### Phase 0: Akribische Planung & POCs
+- **POC 1: JSON Storage Engine**: Validierung von Read/Write/Commit Zyklen via Bun.
+- **POC 2: The Glow Frame**: Prototyp der In-Context Overlay-UI innerhalb von Nuxt.
+- **POC 3: Type-safe Bridge**: Zod-to-JSON-to-Vue Mapping für Block-Properties.
+
+### Phase 1: Der Core
+- Repository Initialisierung (Bun).
+- Nuxt Module Setup (`src/module.ts`).
+- Implementierung der `OpSection` und `OpSlot` Basis-Komponenten.
+- In-place Editing Engine (Tiptap Integration).
+
+### Phase 2: Modul-System & Integration
+- Definition des Feature-Manifest-Systems.
+- Erste Module: `@openpress/i18n` und `@openpress/drafts`.
+- Anbindung an das Nuxt-Ecosystem (Wrapper für bestehende Module).
+
+## 5. Ordnerstruktur
+- `src/`
+  - `module.ts`: Der Einstiegspunkt.
+  - `runtime/`:
+    - `components/`: Op-Komponenten.
+    - `composables/`: useOpenPress, etc.
+    - `server/`: API-Routes für Git-Interaktion.
+    - `pages/`: Die `/_edit` UI.
+- `playground/`: Test-Umgebung für die Entwicklung.
+- `content/`: JSON-Inhalte (während der Entwicklung).
+- `schemas/`: Zod Definitionen.

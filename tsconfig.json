@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "types": ["bun-types"],
+    "paths": {
+      "@openpress/schemas": ["./schemas/src"],
+      "@openpress/core": ["./packages/core/src"],
+      "@openpress/ui": ["./packages/ui/src"],
+      "@openpress/poc-storage": ["./packages/poc-storage/src"]
+    }
+  },
+  "include": ["packages/*/src/**/*.ts", "schemas/src/**/*.ts"],
+  "exclude": ["node_modules", "dist", ".nuxt", ".output"]
+}

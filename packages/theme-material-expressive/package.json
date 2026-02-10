@@ -1,0 +1,11 @@
+{
+  "name": "@openpress/theme-material-expressive",
+  "version": "0.0.1",
+  "private": true,
+  "description": "OpenPress Theme - Google Material Expressive Design System",
+  "main": "./src/index.ts",
+  "scripts": {
+    "build": "bun run build:theme",
+    "test": "bun test"
+  }
+}

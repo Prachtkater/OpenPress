@@ -1,0 +1,13 @@
+{
+  "name": "@openpress/schemas",
+  "version": "0.0.1",
+  "private": true,
+  "description": "OpenPress Schemas - Zod definitions for blocks, pages, and content types",
+  "main": "./src/index.ts",
+  "scripts": {
+    "test": "bun test"
+  },
+  "dependencies": {
+    "zod": "^3.24.0"
+  }
+}

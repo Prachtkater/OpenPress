@@ -1,0 +1,10 @@
+{
+  "name": "@openpress/playground",
+  "version": "0.0.1",
+  "private": true,
+  "description": "OpenPress Development Playground - Test environment for all packages",
+  "scripts": {
+    "dev": "nuxi dev",
+    "build": "nuxi build"
+  }
+}

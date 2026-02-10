@@ -1,0 +1,15 @@
+{
+  "name": "@openpress/poc-storage",
+  "version": "0.0.1",
+  "private": true,
+  "description": "POC 1 - Git-backed JSON Storage Engine validation",
+  "main": "./src/index.ts",
+  "scripts": {
+    "dev": "bun run src/index.ts",
+    "test": "bun test"
+  },
+  "dependencies": {
+    "@openpress/schemas": "workspace:*",
+    "ulid": "^2.3.0"
+  }
+}

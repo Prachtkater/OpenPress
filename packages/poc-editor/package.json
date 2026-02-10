@@ -1,0 +1,11 @@
+{
+  "name": "@openpress/poc-editor",
+  "version": "0.0.1",
+  "private": true,
+  "description": "POC 2 - Glow-Frame In-Context Overlay UI Prototype",
+  "main": "./src/index.ts",
+  "scripts": {
+    "dev": "nuxi dev",
+    "test": "bun test"
+  }
+}

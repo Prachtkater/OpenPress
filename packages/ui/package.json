@@ -1,0 +1,15 @@
+{
+  "name": "@openpress/ui",
+  "version": "0.0.1",
+  "private": true,
+  "description": "OpenPress UI - Glow-Frame Editor UI Components",
+  "main": "./src/index.ts",
+  "scripts": {
+    "build": "bun run build:lib",
+    "test": "bun test"
+  },
+  "dependencies": {
+    "@openpress/schemas": "workspace:*",
+    "zod": "^3.24.0"
+  }
+}

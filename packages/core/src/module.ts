@@ -7,7 +7,6 @@ import {
   addPlugin,
 } from '@nuxt/kit'
 import type { NuxtPage } from '@nuxt/schema'
-import type { ViteDevServer } from 'vite'
 import { resolveContentType } from './hmr/resolve-content-type'
 import { createChangeDebouncer } from './hmr/debounce-changes'
 import type { ContentChangePayload } from './hmr/types'
@@ -111,9 +110,10 @@ export default defineNuxtModule<OpenPressOptions>({
       })
 
       // Capture Vite dev server reference for WebSocket access
-      let viteServer: ViteDevServer | undefined
+      // Using inline type to avoid hard dependency on 'vite' package
+      let viteServer: { ws: { send: (payload: Record<string, unknown>) => void } } | undefined
 
-      nuxt.hook('vite:serverCreated', (server: ViteDevServer) => {
+      nuxt.hook('vite:serverCreated', (server: typeof viteServer) => {
         viteServer = server
       })
 

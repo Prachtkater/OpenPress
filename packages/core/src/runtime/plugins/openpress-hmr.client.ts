@@ -11,7 +11,9 @@ export default defineNuxtPlugin(() => {
 
   const { handleChange } = useContentRefresh()
 
-  import.meta.hot.on('openpress:content-change', (payload: ContentChangePayload) => {
+  // Vite custom events pass data as the first argument at runtime,
+  // but the base HMR types don't reflect this. The cast is safe here.
+  import.meta.hot.on('openpress:content-change', ((payload: ContentChangePayload) => {
     handleChange(payload)
-  })
+  }) as () => void)
 })

@@ -1,0 +1,31 @@
+{
+  "id": "01JAAAAAAAAAAAAAAAAAAAAAA1",
+  "slug": "index",
+  "title": "Startseite",
+  "sections": [
+    {
+      "id": "01JAAAAAAAAAAAAAAAAAAAAAA2",
+      "type": "hero",
+      "blocks": [
+        {
+          "id": "01JAAAAAAAAAAAAAAAAAAAAAA3",
+          "type": "heading",
+          "data": {
+            "text": "Willkommen bei OpenPress",
+            "level": 1
+          }
+        },
+        {
+          "id": "01JAAAAAAAAAAAAAAAAAAAAAA4",
+          "type": "paragraph",
+          "data": {
+            "text": "Ein Nuxt-natives Visual CMS mit Git-backed Storage."
+          }
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "description": "OpenPress Playground Startseite"
+  }
+}

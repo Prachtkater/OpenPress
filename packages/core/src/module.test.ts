@@ -247,6 +247,165 @@ describe('@openpress/core module', () => {
     })
   })
 
+  describe('HMR integration (dev mode)', () => {
+    it('does not register HMR hooks in production mode', async () => {
+      const nuxt = createMockNuxt({ dev: false })
+      await mod.setup(mod.defaults, nuxt as any)
+
+      expect(nuxt._hooks['builder:watch']).toBeUndefined()
+      expect(nuxt._hooks['vite:serverCreated']).toBeUndefined()
+      expect(nuxt._hooks['close']).toBeUndefined()
+    })
+
+    it('registers HMR hooks in dev mode', async () => {
+      const nuxt = createMockNuxt({ dev: true })
+      await mod.setup(mod.defaults, nuxt as any)
+
+      expect(nuxt._hooks['builder:watch']).toBeDefined()
+      expect(nuxt._hooks['vite:serverCreated']).toBeDefined()
+      expect(nuxt._hooks['close']).toBeDefined()
+    })
+
+    it('adds content directory to watch scope in dev mode', async () => {
+      const nuxt = createMockNuxt({ dev: true })
+      await mod.setup(mod.defaults, nuxt as any)
+
+      expect(nuxt.options.watch.some((p: string) => p.includes('content'))).toBe(true)
+    })
+
+    it('registers HMR client plugin in dev mode', async () => {
+      const nuxt = createMockNuxt({ dev: true })
+      await mod.setup(mod.defaults, nuxt as any)
+
+      const hmrPlugin = addPluginCalls.find(
+        (c: any) => c.src.includes('openpress-hmr.client')
+      )
+      expect(hmrPlugin).toBeDefined()
+      expect((hmrPlugin as any).mode).toBe('client')
+    })
+
+    it('does not register HMR client plugin in production', async () => {
+      const nuxt = createMockNuxt({ dev: false })
+      await mod.setup(mod.defaults, nuxt as any)
+
+      const hmrPlugin = addPluginCalls.find(
+        (c: any) => c.src.includes('openpress-hmr.client')
+      )
+      expect(hmrPlugin).toBeUndefined()
+    })
+
+    it('sends WebSocket events for JSON content changes', async () => {
+      const nuxt = createMockNuxt({ dev: true })
+      await mod.setup(mod.defaults, nuxt as any)
+
+      // Simulate Vite server with mock WebSocket
+      const sentMessages: unknown[] = []
+      const mockViteServer = {
+        ws: {
+          send: (msg: unknown) => { sentMessages.push(msg) },
+        },
+      }
+      await nuxt.callHook('vite:serverCreated', mockViteServer)
+
+      // Simulate a file change
+      await nuxt.callHook('builder:watch', 'change', 'content/pages/about.json')
+
+      // Wait for debounce (default 100ms)
+      await new Promise((r) => setTimeout(r, 150))
+
+      expect(sentMessages.length).toBe(1)
+      const msg = sentMessages[0] as any
+      expect(msg.type).toBe('custom')
+      expect(msg.event).toBe('openpress:content-change')
+      expect(msg.data.contentType).toEqual({ type: 'page', slug: 'about' })
+      expect(msg.data.event).toBe('change')
+    })
+
+    it('ignores non-JSON file changes', async () => {
+      const nuxt = createMockNuxt({ dev: true })
+      await mod.setup(mod.defaults, nuxt as any)
+
+      const sentMessages: unknown[] = []
+      const mockViteServer = {
+        ws: { send: (msg: unknown) => { sentMessages.push(msg) } },
+      }
+      await nuxt.callHook('vite:serverCreated', mockViteServer)
+
+      await nuxt.callHook('builder:watch', 'change', 'content/pages/about.vue')
+      await new Promise((r) => setTimeout(r, 150))
+
+      expect(sentMessages.length).toBe(0)
+    })
+
+    it('ignores JSON files outside content directory', async () => {
+      const nuxt = createMockNuxt({ dev: true })
+      await mod.setup(mod.defaults, nuxt as any)
+
+      const sentMessages: unknown[] = []
+      const mockViteServer = {
+        ws: { send: (msg: unknown) => { sentMessages.push(msg) } },
+      }
+      await nuxt.callHook('vite:serverCreated', mockViteServer)
+
+      await nuxt.callHook('builder:watch', 'change', 'src/config.json')
+      await new Promise((r) => setTimeout(r, 150))
+
+      expect(sentMessages.length).toBe(0)
+    })
+
+    it('debounces rapid changes to the same file', async () => {
+      const nuxt = createMockNuxt({ dev: true })
+      await mod.setup(mod.defaults, nuxt as any)
+
+      const sentMessages: unknown[] = []
+      const mockViteServer = {
+        ws: { send: (msg: unknown) => { sentMessages.push(msg) } },
+      }
+      await nuxt.callHook('vite:serverCreated', mockViteServer)
+
+      // Rapid changes to same file
+      await nuxt.callHook('builder:watch', 'change', 'content/pages/about.json')
+      await nuxt.callHook('builder:watch', 'change', 'content/pages/about.json')
+      await nuxt.callHook('builder:watch', 'change', 'content/pages/about.json')
+
+      await new Promise((r) => setTimeout(r, 150))
+
+      // Should send only 1 message (deduplicated by path)
+      expect(sentMessages.length).toBe(1)
+    })
+
+    it('batches changes to different files within debounce window', async () => {
+      const nuxt = createMockNuxt({ dev: true })
+      await mod.setup(mod.defaults, nuxt as any)
+
+      const sentMessages: unknown[] = []
+      const mockViteServer = {
+        ws: { send: (msg: unknown) => { sentMessages.push(msg) } },
+      }
+      await nuxt.callHook('vite:serverCreated', mockViteServer)
+
+      await nuxt.callHook('builder:watch', 'change', 'content/pages/about.json')
+      await nuxt.callHook('builder:watch', 'change', 'content/site.json')
+      await nuxt.callHook('builder:watch', 'change', 'content/navigation.json')
+
+      await new Promise((r) => setTimeout(r, 150))
+
+      // All 3 distinct files get their own message
+      expect(sentMessages.length).toBe(3)
+    })
+
+    it('does not send messages before Vite server is ready', async () => {
+      const nuxt = createMockNuxt({ dev: true })
+      await mod.setup(mod.defaults, nuxt as any)
+
+      // Trigger change without registering Vite server
+      await nuxt.callHook('builder:watch', 'change', 'content/pages/about.json')
+      await new Promise((r) => setTimeout(r, 150))
+
+      // No crash, just silently ignored
+    })
+  })
+
   describe('runtime file structure', () => {
     it('has all required component files', async () => {
       const { existsSync } = await import('node:fs')
@@ -263,6 +422,7 @@ describe('@openpress/core module', () => {
       expect(existsSync(join(base, 'useOpenPress.ts'))).toBe(true)
       expect(existsSync(join(base, 'useEditor.ts'))).toBe(true)
       expect(existsSync(join(base, 'usePage.ts'))).toBe(true)
+      expect(existsSync(join(base, 'useContentRefresh.ts'))).toBe(true)
     })
 
     it('has all required page files', async () => {
@@ -276,6 +436,16 @@ describe('@openpress/core module', () => {
       const { existsSync } = await import('node:fs')
       const base = resolve(import.meta.dir, 'runtime/plugins')
       expect(existsSync(join(base, 'openpress.client.ts'))).toBe(true)
+      expect(existsSync(join(base, 'openpress-hmr.client.ts'))).toBe(true)
+    })
+
+    it('has HMR utility files', async () => {
+      const { existsSync } = await import('node:fs')
+      const base = resolve(import.meta.dir, 'hmr')
+      expect(existsSync(join(base, 'types.ts'))).toBe(true)
+      expect(existsSync(join(base, 'resolve-content-type.ts'))).toBe(true)
+      expect(existsSync(join(base, 'debounce-changes.ts'))).toBe(true)
+      expect(existsSync(join(base, 'index.ts'))).toBe(true)
     })
 
     it('has all required server API handler files', async () => {

@@ -6,5 +6,10 @@
   "scripts": {
     "dev": "nuxi dev",
     "build": "nuxi build"
+  },
+  "devDependencies": {
+    "nuxt": "^3.15.0",
+    "@openpress/core": "workspace:*",
+    "@openpress/schemas": "workspace:*"
   }
 }

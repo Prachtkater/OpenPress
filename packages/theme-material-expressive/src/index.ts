@@ -47,6 +47,7 @@ export {
   m3Shape,
   m3Motion,
   m3StateLayer,
+  m3Accessibility,
 } from './tokens'
 
 export type {
@@ -54,4 +55,5 @@ export type {
   M3Elevation,
   M3Shape,
   M3Motion,
+  M3Accessibility,
 } from './tokens'

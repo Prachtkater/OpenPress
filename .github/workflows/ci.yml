@@ -1,0 +1,83 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  typecheck:
+    name: Typecheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: oven-sh/setup-bun@3d267786b128fe76c2f16a390aa2448b815359f3 # v2
+        with:
+          bun-version: "1.3.9"
+      - run: bun install --frozen-lockfile
+      - run: bun x tsc --noEmit
+
+  test:
+    name: Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: oven-sh/setup-bun@3d267786b128fe76c2f16a390aa2448b815359f3 # v2
+        with:
+          bun-version: "1.3.9"
+      - name: Configure git for tests
+        run: |
+          git config --global user.name "CI"
+          git config --global user.email "ci@openpress.dev"
+          git config --global init.defaultBranch main
+      - run: bun install --frozen-lockfile
+      - name: Run tests
+        run: bun test --bail
+
+  validate-config:
+    name: Validate CodeRabbit Config
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - name: Validate .coderabbit.yaml exists
+        run: test -f .coderabbit.yaml || (echo "::error::.coderabbit.yaml missing" && exit 1)
+      - name: Install PyYAML
+        run: python3 -m pip install --no-cache-dir pyyaml
+      - name: Validate YAML syntax
+        run: python3 -c "import yaml; yaml.safe_load(open('.coderabbit.yaml'))"
+
+  validate-manifests:
+    name: Validate Feature Manifests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: oven-sh/setup-bun@3d267786b128fe76c2f16a390aa2448b815359f3 # v2
+        with:
+          bun-version: "1.3.9"
+      - run: bun install --frozen-lockfile
+      - name: Validate all openpress.feature.json files
+        run: |
+          EXIT_CODE=0
+          for manifest in packages/feature-*/openpress.feature.json; do
+            if [ -f "$manifest" ]; then
+              echo "Validating $manifest..."
+              bun -e "
+                const { FeatureManifestSchema } = require('@openpress/schemas');
+                const fs = require('fs');
+                const data = JSON.parse(fs.readFileSync('$manifest', 'utf-8'));
+                const result = FeatureManifestSchema.safeParse(data);
+                if (!result.success) {
+                  console.error('Invalid:', result.error.issues);
+                  process.exit(1);
+                }
+                console.log('  OK:', data.name, '(' + (data.blocks?.length || 0) + ' blocks)');
+              " || EXIT_CODE=1
+            fi
+          done
+          exit $EXIT_CODE

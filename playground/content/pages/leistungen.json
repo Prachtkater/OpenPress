@@ -1,5 +1,5 @@
 {
-  "id": "01JKQNP000000000000000LEIS",
+  "id": "01KH6Y31K6V1HM3BR4PGZR3WXF",
   "slug": "leistungen",
   "title": {
     "en": "Services – Ecological Garden Design & Planning",
@@ -13,12 +13,12 @@
   },
   "sections": [
     {
-      "id": "01JKQNP0000000000000S0201",
+      "id": "01KH6Y31K69NG47KCBQRET3GWD",
       "type": "hero",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B020101",
+            "id": "01KH6Y31K72A1ZD4M1TS09V031",
             "type": "heading",
             "props": {
               "text": "Unsere Leistungen",
@@ -26,7 +26,7 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B020102",
+            "id": "01KH6Y31K70PBY0SX0AVDYT0DB",
             "type": "paragraph",
             "props": {
               "text": "Von der Standortanalyse über die Pflanzplanung bis zur langfristigen Pflege – wir bieten alle Leistungen rund um die naturnahe Gartengestaltung. Jedes Projekt ist so einzigartig wie der Ort, an dem es entsteht."
@@ -36,12 +36,12 @@
       }
     },
     {
-      "id": "01JKQNP0000000000000S0202",
+      "id": "01KH6Y31K7DC05DHQRQJEBXKDD",
       "type": "content",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B020201",
+            "id": "01KH6Y31K7CYQ31BF6HEJYQBH6",
             "type": "heading",
             "props": {
               "text": "Naturnahe Gartenplanung",
@@ -49,21 +49,21 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B020202",
+            "id": "01KH6Y31K9CXA2A54H7JYYB0YM",
             "type": "paragraph",
             "props": {
               "text": "Jeder Naturgarten beginnt mit einer sorgfältigen Analyse. Wir untersuchen Bodenbeschaffenheit, Lichtverhältnisse, vorhandene Vegetation und das lokale Mikroklima. Daraus entwickeln wir ein ganzheitliches Gestaltungskonzept, das Ihre Wünsche mit den ökologischen Gegebenheiten in Einklang bringt."
             }
           },
           {
-            "id": "01JKQNP00000000000B020203",
+            "id": "01KH6Y31K94VSVBAXHJ0ZNQGX0",
             "type": "paragraph",
             "props": {
               "text": "Unsere Planungsleistungen umfassen Bestandsaufnahme und Standortanalyse, Entwurfsplanung mit 3D-Visualisierung, Pflanzpläne mit detaillierten Artenlisten, Kostenermittlung und Zeitplanung sowie Begleitung der Umsetzung durch Fachbetriebe."
             }
           },
           {
-            "id": "01JKQNP00000000000B020204",
+            "id": "01KH6Y31K979YN3K3BZVQ2T5VT",
             "type": "paragraph",
             "props": {
               "text": "Ob kleiner Reihenhausgarten oder weitläufiges Parkgelände – wir planen für jede Größe und jedes Budget. Unsere Entwürfe berücksichtigen die natürliche Entwicklung der Pflanzen über Jahre hinweg, sodass Ihr Garten mit der Zeit immer schöner wird."
@@ -73,12 +73,12 @@
       }
     },
     {
-      "id": "01JKQNP0000000000000S0203",
+      "id": "01KH6Y31K9XH5M6BZG8G34ACFJ",
       "type": "content",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B020301",
+            "id": "01KH6Y31K9XQ2RNV4YWACXN5VZ",
             "type": "heading",
             "props": {
               "text": "Heimische Bepflanzung & Pflanzkonzepte",
@@ -86,14 +86,14 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B020302",
+            "id": "01KH6Y31K9PAFR6KG1MWQB71PD",
             "type": "paragraph",
             "props": {
               "text": "Das Herzstück jedes Naturgartens ist die Bepflanzung. Wir arbeiten ausschließlich mit heimischen und standortgerechten Pflanzen, die sich im Berliner Klima bewährt haben. Unsere Pflanzkonzepte orientieren sich an natürlichen Pflanzengemeinschaften und schaffen stabile, selbstregulierende Systeme."
             }
           },
           {
-            "id": "01JKQNP00000000000B020303",
+            "id": "01KH6Y31K9SZBTQ0K3QR2TDE32",
             "type": "list",
             "props": {
               "items": [
@@ -107,7 +107,7 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B020304",
+            "id": "01KH6Y31K9PC75FJHS7VS03G0M",
             "type": "paragraph",
             "props": {
               "text": "Alle Pflanzen beziehen wir von zertifizierten Wildpflanzengärtnereien aus der Region. So stellen wir sicher, dass die genetische Herkunft stimmt und die Pflanzen an die lokalen Bedingungen angepasst sind."
@@ -117,12 +117,12 @@
       }
     },
     {
-      "id": "01JKQNP0000000000000S0204",
+      "id": "01KH6Y31K96912M662FKNJVRJH",
       "type": "content",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B020401",
+            "id": "01KH6Y31K91XB5Y1DGCANSA7QE",
             "type": "heading",
             "props": {
               "text": "Naturteiche & Wasserlandschaften",
@@ -130,21 +130,21 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B020402",
+            "id": "01KH6Y31K9V3B9VQ5C3DEK4AF1",
             "type": "paragraph",
             "props": {
               "text": "Wasser bringt Leben in jeden Garten. Unsere Naturteiche kommen ohne Chemie und technische Filter aus – die Reinigung übernehmen Pflanzen und Mikroorganismen. Das Ergebnis: kristallklares Wasser, das Libellen, Frösche und Molche magisch anzieht."
             }
           },
           {
-            "id": "01JKQNP00000000000B020403",
+            "id": "01KH6Y31K9A3NPD4Z5JMSXQZ9F",
             "type": "paragraph",
             "props": {
               "text": "Wir planen und bauen Schwimmteiche zum Baden ohne Chlor, Zierteiche mit heimischen Wasserpflanzen und Seerosen, naturnahe Bachläufe und Quellsteine, Regenwasser-Versickerungsmulden als ökologisches Wassermanagement sowie Feuchtbiotope für Amphibien und Wasserinsekten."
             }
           },
           {
-            "id": "01JKQNP00000000000B020404",
+            "id": "01KH6Y31K9GMQB6X0YQ2D47NHF",
             "type": "paragraph",
             "props": {
               "text": "Jedes Wasserlement wird individuell auf Ihr Grundstück abgestimmt. Wir berücksichtigen Geländeform, Grundwasserstand und Sonneneinstrahlung, um ein stabiles aquatisches Ökosystem zu schaffen, das kaum Pflege benötigt."
@@ -154,12 +154,12 @@
       }
     },
     {
-      "id": "01JKQNP0000000000000S0205",
+      "id": "01KH6Y31K9RR6PK1MYFVTNDZ4C",
       "type": "content",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B020501",
+            "id": "01KH6Y31K93H8MJEZEH2S63JBZ",
             "type": "heading",
             "props": {
               "text": "Ökologische Gartenpflege & Beratung",
@@ -167,21 +167,21 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B020502",
+            "id": "01KH6Y31K9AMCEQC50MVC89R9C",
             "type": "paragraph",
             "props": {
               "text": "Ein Naturgarten entwickelt sich ständig weiter – und genau darin liegt sein Reiz. Unsere ökologische Gartenpflege unterstützt diese natürliche Dynamik, lenkt sie behutsam und bewahrt die gestalterische Intention."
             }
           },
           {
-            "id": "01JKQNP00000000000B020503",
+            "id": "01KH6Y31K9THFDKT1GMSTZB70R",
             "type": "paragraph",
             "props": {
               "text": "Unser Pflegekonzept umfasst saisonale Pflegedurchgänge, die den natürlichen Rhythmus respektieren. Wir verzichten konsequent auf Pestizide, synthetische Dünger und motorbetriebene Laubbläser. Stattdessen arbeiten wir mit Kompost, Mulch und biologischer Schädlingsregulation."
             }
           },
           {
-            "id": "01JKQNP00000000000B020504",
+            "id": "01KH6Y31K9350TGHTZM4THDTZR",
             "type": "list",
             "props": {
               "items": [
@@ -198,12 +198,12 @@
       }
     },
     {
-      "id": "01JKQNP0000000000000S0206",
+      "id": "01KH6Y31K9GV1AFAN3JQ71RG0N",
       "type": "cta",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B020601",
+            "id": "01KH6Y31K9M8VE06JD8HZWQF0K",
             "type": "heading",
             "props": {
               "text": "Welche Leistung passt zu Ihrem Projekt?",
@@ -211,14 +211,14 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B020602",
+            "id": "01KH6Y31K9Y3H8W69G5E1JGPSJ",
             "type": "paragraph",
             "props": {
               "text": "Lassen Sie uns gemeinsam herausfinden, wie wir Ihren Garten in eine naturnahe Oase verwandeln können. Jedes Erstgespräch ist kostenlos und unverbindlich."
             }
           },
           {
-            "id": "01JKQNP00000000000B020603",
+            "id": "01KH6Y31K9Y0142WV0RVBQZBN1",
             "type": "button",
             "props": {
               "text": "Beratungstermin anfragen",

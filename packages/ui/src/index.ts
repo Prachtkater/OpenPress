@@ -9,6 +9,7 @@ export {
   OP_NAV_KEY,
   OP_MODE_KEY,
   OP_THEME_KEY,
+  OP_LOCALE_KEY,
   OP_SECTION_KEY,
   OP_SLOT_KEY,
 } from './runtime/keys'
@@ -21,7 +22,7 @@ export { registerTheme, resolveTheme, loadTheme, clearThemeRegistry } from './ru
 export { resolveComponentClasses } from './runtime/theme/resolve-classes'
 
 // Theme Defaults
-export { defaultTheme, sectionTheme, slotTheme } from './runtime/theme/defaults'
+export { defaultTheme, providerTheme, sectionTheme, slotTheme } from './runtime/theme/defaults'
 
 // Block Resolution
 export {
@@ -35,11 +36,22 @@ export {
 } from './runtime/blocks/resolve'
 
 // Composables
+export { useOpProvider, type UseOpProviderReturn } from './runtime/composables/useOpProvider'
 export { useOpenPress, type UseOpenPressReturn } from './runtime/composables/useOpenPress'
 export { useOpMode, type UseOpModeReturn } from './runtime/composables/useOpMode'
 export { useOpSection, type UseOpSectionReturn } from './runtime/composables/useOpSection'
 export { useOpSlot, type UseOpSlotReturn } from './runtime/composables/useOpSlot'
 export { useOpThemeClasses, useOpBlockClasses } from './runtime/composables/useOpThemeClasses'
+
+// Config Schema
+export {
+  OpConfigSchema,
+  SUPPORTED_THEMES,
+  SUPPORTED_LOCALES,
+  type OpConfig,
+  type SupportedTheme,
+  type SupportedLocale,
+} from './runtime/config'
 
 // Component Setup Functions
 export { setupOpProvider, type OpProviderProps, type OpProviderState } from './runtime/components/OpProvider'

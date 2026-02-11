@@ -44,7 +44,7 @@ function createTestPage(): Page {
   return {
     id: '01ARZ3NDEKTSV4RRFFQ69G5FA0',
     slug: 'test-page',
-    title: 'Test Page',
+    title: { en: 'Test Page' },
     meta: {},
     sections: [createTestSection()],
     updatedAt: '2025-02-10T12:00:00.000Z',

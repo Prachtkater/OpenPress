@@ -8,4 +8,4 @@ export const SectionSchema = z.object({
   slots: z.record(SlotSchema),
 });
 
-export type Section = z.infer<typeof SectionSchema>;
+export type Section = z.output<typeof SectionSchema>;

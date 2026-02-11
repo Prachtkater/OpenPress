@@ -1,8 +1,9 @@
 import { FeatureManifestSchema, type FeatureManifest } from '@openpress/schemas'
 import { join } from 'node:path'
-import { existsSync, readFileSync } from 'node:fs'
+import { existsSync, readFileSync, readdirSync } from 'node:fs'
 
 const MANIFEST_FILENAME = 'openpress.feature.json'
+const OPENPRESS_FEATURE_PREFIX = '@openpress/feature-'
 
 export interface DiscoveredFeature {
   /** Parsed and validated manifest */
@@ -28,16 +29,32 @@ export interface DiscoveryResult {
 }
 
 /**
+ * Checks if a module name follows the @openpress/feature-* naming convention.
+ */
+export function isOpenPressFeature(moduleName: string): boolean {
+  return moduleName.startsWith(OPENPRESS_FEATURE_PREFIX)
+}
+
+/**
  * Resolves the root directory of an installed npm package.
- * Checks the node_modules directory of the given rootDir.
+ * Checks node_modules first, then falls back to workspace packages directory.
  * Returns null if the package cannot be found.
  */
 export function resolvePackageDir(moduleName: string, rootDir: string): string | null {
-  const candidate = join(rootDir, 'node_modules', moduleName)
-  const pkgJson = join(candidate, 'package.json')
+  // 1. Check node_modules (handles both installed deps and workspace symlinks)
+  const nmCandidate = join(rootDir, 'node_modules', moduleName)
+  if (existsSync(join(nmCandidate, 'package.json'))) {
+    return nmCandidate
+  }
 
-  if (existsSync(pkgJson)) {
-    return candidate
+  // 2. Fallback: check workspace packages directory (monorepo dev)
+  //    Maps @openpress/feature-foo → packages/feature-foo
+  if (moduleName.startsWith('@openpress/')) {
+    const shortName = moduleName.replace('@openpress/', '')
+    const wsCandidate = join(rootDir, 'packages', shortName)
+    if (existsSync(join(wsCandidate, 'package.json'))) {
+      return wsCandidate
+    }
   }
 
   return null
@@ -67,7 +84,39 @@ export async function readManifest(manifestPath: string): Promise<FeatureManifes
 }
 
 /**
+ * Scans workspace packages directory for @openpress/feature-* packages
+ * that have an openpress.feature.json manifest.
+ *
+ * This auto-discovers features without requiring them to be listed
+ * in the Nuxt modules config — useful for workspace development.
+ */
+export function scanWorkspaceFeatures(rootDir: string): string[] {
+  const packagesDir = join(rootDir, 'packages')
+  if (!existsSync(packagesDir)) return []
+
+  const featureNames: string[] = []
+
+  try {
+    const entries = readdirSync(packagesDir, { withFileTypes: true })
+    for (const entry of entries) {
+      if (!entry.isDirectory()) continue
+      if (!entry.name.startsWith('feature-')) continue
+
+      const manifestPath = join(packagesDir, entry.name, MANIFEST_FILENAME)
+      if (existsSync(manifestPath)) {
+        featureNames.push(`@openpress/${entry.name}`)
+      }
+    }
+  } catch {
+    // packages directory not readable — skip silently
+  }
+
+  return featureNames
+}
+
+/**
  * Scans a list of Nuxt module names for openpress.feature.json manifests.
+ * Also auto-discovers workspace features not listed in modules config.
  *
  * For each module, resolves its installed package directory and checks
  * for the presence of an openpress.feature.json file. Valid manifests
@@ -80,8 +129,17 @@ export async function discoverFeatures(
 ): Promise<DiscoveryResult> {
   const features: DiscoveredFeature[] = []
   const errors: DiscoveryError[] = []
+  const seen = new Set<string>()
 
-  for (const moduleName of moduleNames) {
+  // Merge explicit module names with auto-discovered workspace features
+  const workspaceFeatures = scanWorkspaceFeatures(rootDir)
+  const allModuleNames = [...moduleNames, ...workspaceFeatures]
+
+  for (const moduleName of allModuleNames) {
+    // Deduplicate: a feature listed in modules AND found in workspace
+    if (seen.has(moduleName)) continue
+    seen.add(moduleName)
+
     const packageDir = resolvePackageDir(moduleName, rootDir)
 
     if (!packageDir) {

@@ -12,11 +12,14 @@ export function localized<T extends z.ZodTypeAny>(schema: T) {
   }).catchall(schema.optional());
 }
 
+/** Default locale used throughout the application */
+export const DEFAULT_LOCALE = "en";
+
 /**
  * A localized string is a record of locale -> string
  */
-export const LocalizedStringSchema = localized(z.string());
-export type LocalizedString = z.infer<typeof LocalizedStringSchema>;
+export const LocalizedStringSchema = localized(z.string().min(1));
+export type LocalizedString = z.output<typeof LocalizedStringSchema>;
 
 export const GermanErrorMessages = {
   required: "Dieses Feld ist erforderlich",

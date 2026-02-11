@@ -160,7 +160,41 @@ export const m3StateLayer = {
   dragged: '0.16',
 } as const
 
+// ─── Accessibility Tokens (WCAG 2.1 AA) ─────────────────────
+// M3 meets WCAG AA by default (4.5:1 for normal text, 3:1 for large text).
+// These utilities enforce minimum touch targets and focus indicators.
+
+export const m3Accessibility = {
+  /** Minimum touch target size per M3 spec (48x48dp) */
+  touchTarget: 'min-w-[48px] min-h-[48px]',
+
+  /** Focus ring following M3 focus indicator spec */
+  focusRing: 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--md-sys-color-primary)] focus-visible:ring-offset-2',
+
+  /** High-contrast focus ring for critical interactive elements */
+  focusRingStrong: 'focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-[var(--md-sys-color-primary)] focus-visible:ring-offset-2',
+
+  /** Reduced motion preference — disables transitions/animations */
+  reducedMotion: 'motion-reduce:transition-none motion-reduce:animate-none',
+
+  /** Screen reader only utility */
+  srOnly: 'sr-only',
+
+  /** Not screen reader only (reset sr-only) */
+  notSrOnly: 'not-sr-only',
+
+  /** Skip navigation link styles */
+  skipLink: 'sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-[var(--md-sys-color-surface)] focus:text-[var(--md-sys-color-primary)]',
+
+  /** Disabled state following M3 spec (38% opacity) */
+  disabled: 'disabled:opacity-[0.38] disabled:pointer-events-none',
+
+  /** Aria expanded indicator */
+  ariaExpanded: 'aria-expanded:rotate-180 transition-transform',
+} as const
+
 export type M3Typography = typeof m3Typography
 export type M3Elevation = typeof m3Elevation
 export type M3Shape = typeof m3Shape
 export type M3Motion = typeof m3Motion
+export type M3Accessibility = typeof m3Accessibility

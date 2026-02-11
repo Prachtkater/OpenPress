@@ -19,7 +19,7 @@ export const FeatureBlockSchema = z.object({
   defaultProps: z.record(z.unknown()).optional(),
 });
 
-export type FeatureBlock = z.infer<typeof FeatureBlockSchema>;
+export type FeatureBlock = z.output<typeof FeatureBlockSchema>;
 
 /**
  * Schema for an editor panel contributed by a feature.
@@ -35,7 +35,23 @@ export const FeatureEditorPanelSchema = z.object({
   icon: z.string().optional(),
 });
 
-export type FeatureEditorPanel = z.infer<typeof FeatureEditorPanelSchema>;
+export type FeatureEditorPanel = z.output<typeof FeatureEditorPanelSchema>;
+
+/**
+ * Schema for an editor route contributed by a feature.
+ */
+export const FeatureEditorRouteSchema = z.object({
+  /** Route path (e.g. "/_edit/bookings") */
+  path: z.string().min(1),
+  /** Label shown in the editor navigation */
+  label: z.string().min(1),
+  /** Path to the Vue component */
+  component: z.string().min(1),
+  /** Optional icon */
+  icon: z.string().optional(),
+});
+
+export type FeatureEditorRoute = z.output<typeof FeatureEditorRouteSchema>;
 
 /**
  * Schema for the openpress.feature.json manifest file.
@@ -57,16 +73,7 @@ export const FeatureManifestSchema = z.object({
   /** Editor panels this feature contributes */
   editorPanels: z.array(FeatureEditorPanelSchema).default([]),
   /** Additional editor routes (e.g. "/_edit/bookings") */
-  editorRoutes: z
-    .array(
-      z.object({
-        path: z.string().min(1),
-        label: z.string().min(1),
-        component: z.string().min(1),
-        icon: z.string().optional(),
-      })
-    )
-    .default([]),
+  editorRoutes: z.array(FeatureEditorRouteSchema).default([]),
 });
 
-export type FeatureManifest = z.infer<typeof FeatureManifestSchema>;
+export type FeatureManifest = z.output<typeof FeatureManifestSchema>;

@@ -1,5 +1,5 @@
 {
-  "id": "01JKQNP00000000000000BERAT",
+  "id": "01KH6Y31KQ624B0ZM8YV690JQB",
   "slug": "naturgartenberatung",
   "title": {
     "en": "Natural Garden Consulting – Expert Advice for Natural Gardening",
@@ -13,12 +13,12 @@
   },
   "sections": [
     {
-      "id": "01JKQNP0000000000000S0501",
+      "id": "01KH6Y31KQ6FSYVC9ZZB5TGCAP",
       "type": "hero",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B050101",
+            "id": "01KH6Y31KQEDPEES70XTYWJ1KG",
             "type": "heading",
             "props": {
               "text": "Naturgartenberatung",
@@ -26,7 +26,7 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B050102",
+            "id": "01KH6Y31KQFBMTXR0NQ48F5WM4",
             "type": "paragraph",
             "props": {
               "text": "Sie möchten Ihren Garten naturnah umgestalten, wissen aber nicht, wo Sie anfangen sollen? Ich berate Sie individuell – ob bei der Pflanzenauswahl, der ökologischen Umstellung oder der Pflege Ihres bestehenden Naturgartens."
@@ -36,12 +36,12 @@
       }
     },
     {
-      "id": "01JKQNP0000000000000S0502",
+      "id": "01KH6Y31KQQS059WED9XG42P6J",
       "type": "content",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B050201",
+            "id": "01KH6Y31KQ2SABRG3Q8A8QERYA",
             "type": "heading",
             "props": {
               "text": "Gartenberatung vor Ort",
@@ -49,14 +49,14 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B050202",
+            "id": "01KH6Y31KQFQRQ3PBDFPECB2N7",
             "type": "paragraph",
             "props": {
               "text": "Bei einem Vor-Ort-Termin in Ihrem Garten analysiere ich die aktuelle Situation und gebe Ihnen konkrete Empfehlungen für die naturnahe Umgestaltung. Sie erhalten praktische Tipps, die Sie sofort umsetzen können – Schritt für Schritt, in Ihrem eigenen Tempo."
             }
           },
           {
-            "id": "01JKQNP00000000000B050203",
+            "id": "01KH6Y31KRKG9S0A54YY57F2EV",
             "type": "list",
             "props": {
               "items": [
@@ -73,12 +73,12 @@
       }
     },
     {
-      "id": "01JKQNP0000000000000S0503",
+      "id": "01KH6Y31KRQNPWPJ65WFF13PSS",
       "type": "content",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B050301",
+            "id": "01KH6Y31KR9Y61VHX6P64MA0VM",
             "type": "heading",
             "props": {
               "text": "Umstellungsberatung",
@@ -86,14 +86,14 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B050302",
+            "id": "01KH6Y31KR7CM3N467W3F8CGDJ",
             "type": "paragraph",
             "props": {
               "text": "Die Umstellung von einem konventionellen auf einen naturnahen Garten muss nicht radikal sein. Ich zeige Ihnen, wie Sie Stück für Stück mehr Natur in Ihren Garten bringen – ohne auf Ästhetik und Funktionalität zu verzichten."
             }
           },
           {
-            "id": "01JKQNP00000000000B050303",
+            "id": "01KH6Y31KRFW51VS3NAN4VNYYN",
             "type": "paragraph",
             "props": {
               "text": "Von der Umwandlung des Rasens in eine blühende Wiese bis zur Integration von Totholz und Steinhaufen als Lebensraum für Insekten und Eidechsen – jede Maßnahme ist ein Gewinn für die Natur und eine Bereicherung für Ihren Garten."
@@ -103,12 +103,12 @@
       }
     },
     {
-      "id": "01JKQNP0000000000000S0504",
+      "id": "01KH6Y31KRSWFK3S3Z7C8Y80T8",
       "type": "content",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B050401",
+            "id": "01KH6Y31KRHJ49QPKVWPEGHKTP",
             "type": "heading",
             "props": {
               "text": "Workshops & Kurse",
@@ -116,14 +116,14 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B050402",
+            "id": "01KH6Y31KRF53QV7VZBSCJWW3E",
             "type": "paragraph",
             "props": {
               "text": "In meinen Workshops lernen Sie die Grundlagen des naturnahen Gärtnerns direkt in der Praxis. Die Kurse finden in meinem Schaugarten in Berlin-Pankow statt und richten sich an Hobbygärtner aller Erfahrungsstufen."
             }
           },
           {
-            "id": "01JKQNP00000000000B050403",
+            "id": "01KH6Y31KREXW1X3S7BQT5ERWV",
             "type": "list",
             "props": {
               "items": [
@@ -139,12 +139,12 @@
       }
     },
     {
-      "id": "01JKQNP0000000000000S0505",
+      "id": "01KH6Y31KRJBGYWG82PNMXVQS5",
       "type": "cta",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B050501",
+            "id": "01KH6Y31KRZC9X7SNSYTPEAN16",
             "type": "heading",
             "props": {
               "text": "Lassen Sie sich beraten",
@@ -152,14 +152,14 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B050502",
+            "id": "01KH6Y31KRXTKNWDCNES6R6QCF",
             "type": "paragraph",
             "props": {
               "text": "Das Erstgespräch ist kostenlos und unverbindlich. Erzählen Sie mir von Ihrem Garten und Ihren Vorstellungen – gemeinsam finden wir den besten Weg zur naturnahen Gestaltung."
             }
           },
           {
-            "id": "01JKQNP00000000000B050503",
+            "id": "01KH6Y31KRVN0GZ464TZJG7GKB",
             "type": "button",
             "props": {
               "text": "Kostenloses Erstgespräch anfragen",

@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
 
-language: de-DE
-tone_instructions: "Konstruktiv und pragmatisch. Fokus auf Verbesserungen, nicht auf Kritik."
+language: en-US
+tone_instructions: "Constructive and pragmatic. Focus on improvements, not criticism."
 early_access: false
 
 reviews:
@@ -43,32 +43,32 @@ reviews:
   path_instructions:
     - path: "packages/core/**"
       instructions: >
-        Core Nuxt Module - achte auf Nuxt-Konventionen, TypeScript-Strenge,
-        korrekte Module-Hooks und Runtime-Server-Kompatibilitaet.
+        Core Nuxt Module - pay attention to Nuxt conventions, TypeScript strictness,
+        correct module hooks and runtime-server compatibility.
     - path: "packages/schemas/**"
       instructions: >
-        Schema-Definitionen - achte auf Zod Best Practices, z.output<> statt z.infer<>,
-        ZodType<T, any, any> fuer generische Parameter, und Type-Safety.
+        Schema definitions - follow Zod best practices, use z.output<> over z.infer<>,
+        ZodType<T, any, any> for generic parameters, and ensure type safety.
     - path: "packages/poc-*/**"
       instructions: >
-        POC Pakete - Fokus auf Machbarkeit und Konzeptvalidierung.
-        Code-Qualitaet ist sekundaer, Funktionalitaet primaer.
+        POC packages - focus on feasibility and concept validation.
+        Code quality is secondary, functionality is primary.
     - path: "packages/theme-*/**"
       instructions: >
-        Themes - strikte Trennung von Logik und Visuals pruefen.
-        Themes duerfen keine Business-Logik enthalten.
+        Themes - verify strict separation of logic and visuals.
+        Themes must not contain business logic.
     - path: "packages/feature-*/**"
       instructions: >
-        Features - Feature-Manifest Konventionen einhalten.
-        Jedes Feature muss ein manifest.ts exportieren.
+        Features - adhere to feature manifest conventions.
+        Every feature must export a manifest.ts.
     - path: "packages/ui/**"
       instructions: >
-        UI-Komponenten - Glow-Frame Konventionen, Theme-Engine Kompatibilitaet,
-        Slot-basierte Architektur pruefen.
+        UI components - Glow-Frame conventions, theme engine compatibility,
+        slot-based architecture verification.
     - path: "playground/**"
       instructions: >
-        Playground - Nuxt Dev-Umgebung fuer Demos und Tests.
-        Keine produktionsrelevanten Patterns hier erzwingen.
+        Playground - Nuxt development environment for demos and tests.
+        Don't enforce production-relevant patterns here.
 
   finishing_touches:
     docstrings:
@@ -110,11 +110,11 @@ knowledge_base:
 
 code_generation:
   docstrings:
-    language: de-DE
+    language: en-US
   unit_tests:
     path_instructions:
       - path: "packages/**"
         instructions: >
-          Tests mit Bun Test Runner (bun:test).
-          Verwende describe/it/expect Pattern.
-          Mock-Module mit mock.module() wenn noetig.
+          Tests with Bun test runner (bun:test).
+          Use describe/it/expect pattern.
+          Mock modules with mock.module() when necessary.

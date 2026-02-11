@@ -1,5 +1,5 @@
 {
-  "id": "01JKQNP000000000000000PLAN",
+  "id": "01KH6Y31KN3P63MJHDARRTXG8K",
   "slug": "naturgartenplanung",
   "title": {
     "en": "Natural Garden Planning – Individual Garden Concepts",
@@ -13,12 +13,12 @@
   },
   "sections": [
     {
-      "id": "01JKQNP0000000000000S0401",
+      "id": "01KH6Y31KNV6S51HPGYFGMEWQP",
       "type": "hero",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B040101",
+            "id": "01KH6Y31KNTVEHF08ES3E4JN57",
             "type": "heading",
             "props": {
               "text": "Naturgartenplanung",
@@ -26,7 +26,7 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B040102",
+            "id": "01KH6Y31KNX7JKT0JXQ72ZTS0W",
             "type": "paragraph",
             "props": {
               "text": "Jeder Naturgarten beginnt mit einem durchdachten Plan. Ich analysiere Ihren Standort, verstehe Ihre Wünsche und entwickle ein ganzheitliches Konzept, das Ästhetik und Ökologie in Einklang bringt."
@@ -36,12 +36,12 @@
       }
     },
     {
-      "id": "01JKQNP0000000000000S0402",
+      "id": "01KH6Y31KN9BBPZY3PF5K22JEA",
       "type": "content",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B040201",
+            "id": "01KH6Y31KNQEMWBG1T9T502FQ7",
             "type": "heading",
             "props": {
               "text": "Standortanalyse & Bestandsaufnahme",
@@ -49,14 +49,14 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B040202",
+            "id": "01KH6Y31KNMFJQJ3JQ6WGNWQ7V",
             "type": "paragraph",
             "props": {
               "text": "Der erste Schritt jeder Planung ist eine gründliche Analyse vor Ort. Ich untersuche Bodenbeschaffenheit, Lichtverhältnisse, vorhandene Vegetation, das lokale Mikroklima und die hydrologischen Gegebenheiten Ihres Grundstücks. Diese Daten bilden die Grundlage für ein Gartenkonzept, das perfekt auf Ihren Standort abgestimmt ist."
             }
           },
           {
-            "id": "01JKQNP00000000000B040203",
+            "id": "01KH6Y31KNBM4Z24HP7KV8K2CH",
             "type": "paragraph",
             "props": {
               "text": "Dabei berücksichtige ich auch die Umgebung: Nachbargärten, angrenzende Landschaften und bestehende ökologische Vernetzungen. So entsteht ein Garten, der sich nahtlos in seinen Kontext einfügt und zur Biotopvernetzung in Ihrer Nachbarschaft beiträgt."
@@ -66,12 +66,12 @@
       }
     },
     {
-      "id": "01JKQNP0000000000000S0403",
+      "id": "01KH6Y31KNHFRAD76SYN7CSW8R",
       "type": "content",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B040301",
+            "id": "01KH6Y31KN7ZXGH1GX5Z8AWNCV",
             "type": "heading",
             "props": {
               "text": "Entwurfsplanung & Pflanzkonzepte",
@@ -79,14 +79,14 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B040302",
+            "id": "01KH6Y31KNRR1M8W3PRDZ9ZM6E",
             "type": "paragraph",
             "props": {
               "text": "Auf Basis der Standortanalyse entwickle ich einen detaillierten Entwurf für Ihren Naturgarten. Der Plan umfasst Raumaufteilung, Wegeführung, Pflanzflächen, Wasserelemente und Aufenthaltsbereiche – alles aufeinander abgestimmt und ökologisch durchdacht."
             }
           },
           {
-            "id": "01JKQNP00000000000B040303",
+            "id": "01KH6Y31KNDNYP4FY4KFCT0GN5",
             "type": "list",
             "props": {
               "items": [
@@ -103,12 +103,12 @@
       }
     },
     {
-      "id": "01JKQNP0000000000000S0404",
+      "id": "01KH6Y31KN8P6WAVAYJMZ32FX9",
       "type": "content",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B040401",
+            "id": "01KH6Y31KNECR5PXXP1XJ7EY47",
             "type": "heading",
             "props": {
               "text": "Für jede Größe und jedes Budget",
@@ -116,14 +116,14 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B040402",
+            "id": "01KH6Y31KN65AJ0TWQ3PTXXEGX",
             "type": "paragraph",
             "props": {
               "text": "Ob kleiner Reihenhausgarten, Innenhof, Vorgarten oder weitläufiges Parkgelände – ich plane für jede Größe und jedes Budget. Meine Entwürfe berücksichtigen die natürliche Entwicklung der Pflanzen über Jahre hinweg, sodass Ihr Garten mit der Zeit immer schöner und artenreicher wird."
             }
           },
           {
-            "id": "01JKQNP00000000000B040403",
+            "id": "01KH6Y31KPZXWZKXFJCZ2AYMJZ",
             "type": "paragraph",
             "props": {
               "text": "Auch Teilprojekte sind möglich: eine Wildblumenwiese statt Rasen, ein Staudenbeet vor der Terrasse oder die ökologische Umgestaltung einer einzelnen Gartenecke. Jeder Quadratmeter naturnaher Garten zählt."
@@ -133,12 +133,12 @@
       }
     },
     {
-      "id": "01JKQNP0000000000000S0405",
+      "id": "01KH6Y31KPX040Q0WCGXRRJKCJ",
       "type": "cta",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B040501",
+            "id": "01KH6Y31KPQ6EAN1ZCQYPYCRKF",
             "type": "heading",
             "props": {
               "text": "Ihr Naturgarten beginnt hier",
@@ -146,14 +146,14 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B040502",
+            "id": "01KH6Y31KPFAVAKEC6ZRP54285",
             "type": "paragraph",
             "props": {
               "text": "Vereinbaren Sie ein kostenloses Erstgespräch. Ich besuche Sie vor Ort und wir entwickeln gemeinsam eine Vision für Ihren Traumgarten."
             }
           },
           {
-            "id": "01JKQNP00000000000B040503",
+            "id": "01KH6Y31KP2XM8EFQTM598Q64P",
             "type": "button",
             "props": {
               "text": "Erstgespräch vereinbaren",

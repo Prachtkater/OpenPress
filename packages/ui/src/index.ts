@@ -43,6 +43,16 @@ export { useOpSection, type UseOpSectionReturn } from './runtime/composables/use
 export { useOpSlot, type UseOpSlotReturn } from './runtime/composables/useOpSlot'
 export { useOpThemeClasses, useOpBlockClasses } from './runtime/composables/useOpThemeClasses'
 
+// Config Schema
+export {
+  OpConfigSchema,
+  SUPPORTED_THEMES,
+  SUPPORTED_LOCALES,
+  type OpConfig,
+  type SupportedTheme,
+  type SupportedLocale,
+} from './runtime/config'
+
 // Component Setup Functions
 export { setupOpProvider, type OpProviderProps, type OpProviderState } from './runtime/components/OpProvider'
 export { setupOpSection, type OpSectionProps, type OpSectionState, type OpSectionUI } from './runtime/components/OpSection'

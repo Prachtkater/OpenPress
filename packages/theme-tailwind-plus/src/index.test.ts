@@ -8,7 +8,7 @@ import {
   OP_THEME_KEY,
 } from '@openpress/ui'
 import type { OpThemeConfig } from '@openpress/ui'
-import { theme } from './index'
+import { theme, css } from './index'
 import { section } from './components/section'
 import { slot } from './components/slot'
 import { heading } from './components/blocks/heading'
@@ -16,6 +16,15 @@ import { paragraph } from './components/blocks/paragraph'
 import { image } from './components/blocks/image'
 import { button } from './components/blocks/button'
 import { video } from './components/blocks/video'
+import {
+  tpColors,
+  tpBreakpoints,
+  tpSpacing,
+  tpTypography,
+  tpElevation,
+  tpRadius,
+  tpTransition,
+} from './tokens'
 
 // ─── Theme Structure ────────────────────────────────────────────
 
@@ -34,12 +43,90 @@ describe('Tailwind Plus Theme Structure', () => {
     expect(keys).toContain('block:image')
     expect(keys).toContain('block:button')
     expect(keys).toContain('block:video')
+    expect(keys).toContain('block:contact-form')
   })
 
   test('alle Komponenten haben mindestens einen Slot', () => {
     for (const [key, comp] of Object.entries(theme.components)) {
       expect(Object.keys(comp.slots).length).toBeGreaterThan(0)
     }
+  })
+
+  test('exportiert css Pfad', () => {
+    expect(typeof css).toBe('string')
+    expect(css).toContain('tokens.css')
+  })
+})
+
+// ─── Design Tokens ──────────────────────────────────────────────
+
+describe('Tailwind Plus Design Tokens', () => {
+  test('tpColors enthält alle semantischen Farb-Rollen', () => {
+    expect(tpColors.primary).toContain('--op-color-primary')
+    expect(tpColors.onPrimary).toContain('--op-color-on-primary')
+    expect(tpColors.secondary).toContain('--op-color-secondary')
+    expect(tpColors.accent).toContain('--op-color-accent')
+    expect(tpColors.surface).toContain('--op-color-surface')
+    expect(tpColors.onSurface).toContain('--op-color-on-surface')
+  })
+
+  test('tpColors enthält Feedback-Farben', () => {
+    expect(tpColors.success).toContain('--op-color-success')
+    expect(tpColors.warning).toContain('--op-color-warning')
+    expect(tpColors.error).toContain('--op-color-error')
+    expect(tpColors.onError).toContain('--op-color-on-error')
+  })
+
+  test('tpColors enthält Border-Tokens', () => {
+    expect(tpColors.border).toContain('--op-color-border')
+    expect(tpColors.borderMuted).toContain('--op-color-border-muted')
+  })
+
+  test('tpBreakpoints enthält alle Standard-Breakpoints', () => {
+    expect(Object.keys(tpBreakpoints)).toHaveLength(5)
+    expect(tpBreakpoints.sm).toBe('640px')
+    expect(tpBreakpoints.md).toBe('768px')
+    expect(tpBreakpoints.lg).toBe('1024px')
+    expect(tpBreakpoints.xl).toBe('1280px')
+    expect(tpBreakpoints['2xl']).toBe('1536px')
+  })
+
+  test('tpSpacing enthält Section-Spacing Tokens', () => {
+    expect(tpSpacing.sectionY).toContain('py-16')
+    expect(tpSpacing.sectionY).toContain('lg:py-24')
+    expect(tpSpacing.containerMax).toContain('max-w-7xl')
+    expect(tpSpacing.containerNarrow).toContain('max-w-3xl')
+  })
+
+  test('tpTypography enthält responsive Type-Scale', () => {
+    expect(Object.keys(tpTypography)).toHaveLength(11)
+    expect(tpTypography.displayLarge).toContain('text-4xl')
+    expect(tpTypography.displayLarge).toContain('lg:text-6xl')
+    expect(tpTypography.bodyBase).toContain('text-base')
+    expect(tpTypography.bodyBase).toContain('leading-7')
+  })
+
+  test('tpElevation definiert 7 Elevation-Stufen', () => {
+    expect(Object.keys(tpElevation)).toHaveLength(7)
+    expect(tpElevation.none).toBe('')
+    expect(tpElevation.sm).toBe('shadow-sm')
+    expect(tpElevation['2xl']).toBe('shadow-2xl')
+  })
+
+  test('tpRadius definiert 9 Radius-Stufen', () => {
+    expect(Object.keys(tpRadius)).toHaveLength(9)
+    expect(tpRadius.none).toBe('rounded-none')
+    expect(tpRadius.lg).toBe('rounded-lg')
+    expect(tpRadius.full).toBe('rounded-full')
+  })
+
+  test('tpTransition enthält Übergangs-Presets', () => {
+    expect(Object.keys(tpTransition)).toHaveLength(5)
+    expect(tpTransition.fast).toContain('duration-150')
+    expect(tpTransition.base).toContain('duration-200')
+    expect(tpTransition.slow).toContain('duration-300')
+    expect(tpTransition.colors).toContain('transition-colors')
+    expect(tpTransition.transform).toContain('transition-transform')
   })
 })
 

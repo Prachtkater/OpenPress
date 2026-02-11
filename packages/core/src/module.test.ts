@@ -169,11 +169,11 @@ describe('@openpress/core module', () => {
       expect(pages[1].path).toBe('/admin/:slug(.*)*')
     })
 
-    it('registers all 13 server API handlers (12 core + 1 features)', async () => {
+    it('registers all 14 server API handlers (13 core + 1 features)', async () => {
       const nuxt = createMockNuxt()
       await mod.setup(mod.defaults, nuxt as any)
 
-      expect(addServerHandlerCalls.length).toBe(13)
+      expect(addServerHandlerCalls.length).toBe(14)
     })
 
     it('registers pages API routes', async () => {
@@ -209,6 +209,7 @@ describe('@openpress/core module', () => {
       expect(routes).toContain('/api/_openpress/git/commit')
       expect(routes).toContain('/api/_openpress/git/history')
       expect(routes).toContain('/api/_openpress/git/status')
+      expect(routes).toContain('/api/_openpress/git/undo')
     })
 
     it('sets public runtime config with editPath', async () => {
@@ -471,6 +472,7 @@ describe('@openpress/core module', () => {
         'git/commit.post.ts',
         'git/history.get.ts',
         'git/status.get.ts',
+        'git/undo.post.ts',
       ]
 
       for (const file of expectedFiles) {

@@ -45,18 +45,22 @@ export class StorageEngine {
 
   // --- Pages ---
 
-  async readPage(slug: string): Promise<Page> {
-    const filePath = this.pagePath(slug);
+  async readPage(slug: string, locale?: string): Promise<Page> {
+    const filePath = this.pagePath(slug, locale);
+    // Fallback to base locale if localized version doesn't exist
+    if (locale && !(await fileExists(filePath))) {
+      return readJSON(this.pagePath(slug), PageSchema);
+    }
     return readJSON(filePath, PageSchema);
   }
 
-  async writePage(slug: string, page: Page): Promise<void> {
-    const filePath = this.pagePath(slug);
+  async writePage(slug: string, page: Page, locale?: string): Promise<void> {
+    const filePath = this.pagePath(slug, locale);
     await writeJSON(filePath, page, PageSchema);
   }
 
-  async deletePage(slug: string): Promise<void> {
-    const filePath = this.pagePath(slug);
+  async deletePage(slug: string, locale?: string): Promise<void> {
+    const filePath = this.pagePath(slug, locale);
     await deleteFile(filePath);
   }
 
@@ -79,8 +83,8 @@ export class StorageEngine {
     return pages;
   }
 
-  async pageExists(slug: string): Promise<boolean> {
-    return fileExists(this.pagePath(slug));
+  async pageExists(slug: string, locale?: string): Promise<boolean> {
+    return fileExists(this.pagePath(slug, locale));
   }
 
   // --- Site Config ---
@@ -119,10 +123,16 @@ export class StorageEngine {
     return this.git.hasChanges();
   }
 
+  async rollback(hash: string, slug?: string): Promise<void> {
+    const path = slug ? this.pagePath(slug) : this.contentDir;
+    await this.git.rollback(hash, path);
+  }
+
   // --- Helpers ---
 
-  private pagePath(slug: string): string {
-    return join(this.pagesDir, `${slug}.json`);
+  private pagePath(slug: string, locale?: string): string {
+    const filename = locale ? `${slug}.${locale}.json` : `${slug}.json`;
+    return join(this.pagesDir, filename);
   }
 
   private siteConfigPath(): string {

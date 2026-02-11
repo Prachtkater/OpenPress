@@ -105,7 +105,7 @@ onMounted(() => {
   <div class="op-sitemap">
     <!-- Header -->
     <header class="op-sitemap__header">
-      <h1 class="op-sitemap__title">Site Map</h1>
+      <h1 class="op-sitemap__title">Pages</h1>
       <button
         class="op-sitemap__btn op-sitemap__btn--primary"
         @click="openNewPageForm"

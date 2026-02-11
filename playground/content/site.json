@@ -1,0 +1,10 @@
+{
+  "name": "OpenPress Demo",
+  "url": "http://localhost:3000",
+  "locale": "de-DE",
+  "theme": "tailwind-plus",
+  "meta": {
+    "title": "OpenPress - Visual CMS for Nuxt",
+    "description": "Ein Nuxt-natives Visual CMS mit In-Context-Editing und Git-backed Storage."
+  }
+}

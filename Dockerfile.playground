@@ -1,0 +1,34 @@
+# Dockerfile for OpenPress Playground
+FROM ovhcom/ai-training-bun:latest AS base
+WORKDIR /app
+
+# Install dependencies
+COPY package.json bun.lock ./
+COPY packages/core/package.json ./packages/core/
+COPY packages/ui/package.json ./packages/ui/
+COPY packages/schemas/package.json ./packages/schemas/
+COPY packages/poc-editor/package.json ./packages/poc-editor/
+COPY packages/poc-storage/package.json ./packages/poc-storage/
+COPY packages/theme-tailwind-plus/package.json ./packages/theme-tailwind-plus/
+COPY packages/theme-material-expressive/package.json ./packages/theme-material-expressive/
+COPY packages/feature-booking/package.json ./packages/feature-booking/
+COPY packages/feature-contact-form/package.json ./packages/feature-contact-form/
+
+RUN bun install
+
+# Copy source code
+COPY . .
+
+# Build the project
+RUN bun run build
+
+# Production image
+FROM node:20-slim AS runner
+WORKDIR /app
+
+COPY --from=base /app/playground/.output ./.output
+COPY --from=base /app/content ./content
+
+EXPOSE 3000
+
+CMD ["node", ".output/server/index.mjs"]

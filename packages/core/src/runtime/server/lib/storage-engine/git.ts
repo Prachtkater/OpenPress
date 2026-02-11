@@ -80,6 +80,17 @@ export class GitOps {
     });
   }
 
+  /** Rollback to a specific commit */
+  async rollback(hash: string, path?: string): Promise<void> {
+    if (path) {
+      // Restore a specific path from a specific commit
+      await this.exec(["checkout", hash, "--", path]);
+    } else {
+      // Hard reset to a specific commit
+      await this.exec(["reset", "--hard", hash]);
+    }
+  }
+
   /** Initialize a new git repo if not already initialized */
   async init(): Promise<void> {
     try {

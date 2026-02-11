@@ -1,0 +1,16 @@
+{
+  "name": "@openpress/feature-media",
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/module.ts"
+  },
+  "dependencies": {
+    "@nuxt/kit": "^3.15.0",
+    "sharp": "^0.33.5",
+    "ulid": "^2.3.0"
+  },
+  "devDependencies": {
+    "nuxt": "^4.0.0"
+  }
+}

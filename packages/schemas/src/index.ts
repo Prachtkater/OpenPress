@@ -23,3 +23,4 @@ export {
   type FeatureBlock,
   type FeatureEditorPanel,
 } from "./feature-manifest";
+export { GermanZodErrorMap, GermanErrorMessages } from "./i18n";

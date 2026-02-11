@@ -78,10 +78,11 @@ export default defineNuxtModule<OpenPressOptions>({
 
     // 5. Register server API routes
     const apiRoutes = [
-      { route: '/api/_openpress/pages', handler: './runtime/server/api/pages/index.get' },
-      { route: '/api/_openpress/pages/:slug', handler: './runtime/server/api/pages/[slug].get' },
-      { route: '/api/_openpress/pages/:slug', handler: './runtime/server/api/pages/[slug].put' },
-      { route: '/api/_openpress/pages/:slug', handler: './runtime/server/api/pages/[slug].delete' },
+      { route: '/api/_openpress/pages', handler: './runtime/server/api/pages/index.get', method: 'get' },
+      { route: '/api/_openpress/pages', handler: './runtime/server/api/pages/index.post', method: 'post' },
+      { route: '/api/_openpress/pages/:slug', handler: './runtime/server/api/pages/[slug].get', method: 'get' },
+      { route: '/api/_openpress/pages/:slug', handler: './runtime/server/api/pages/[slug].put', method: 'put' },
+      { route: '/api/_openpress/pages/:slug', handler: './runtime/server/api/pages/[slug].delete', method: 'delete' },
       { route: '/api/_openpress/site', handler: './runtime/server/api/site.get' },
       { route: '/api/_openpress/site', handler: './runtime/server/api/site.put' },
       { route: '/api/_openpress/navigation', handler: './runtime/server/api/navigation.get' },

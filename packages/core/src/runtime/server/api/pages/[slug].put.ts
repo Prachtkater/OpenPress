@@ -1,9 +1,12 @@
-import { defineEventHandler, getRouterParam, readBody, createError, setResponseStatus } from 'h3'
+import { defineEventHandler, getRouterParam, readBody, createError, setResponseStatus, getQuery } from 'h3'
 import { PageSchema } from '@openpress/schemas'
 import { useStorageEngine } from '../../utils/storage'
 
 export default defineEventHandler(async (event) => {
   const slug = getRouterParam(event, 'slug')
+  const query = getQuery(event)
+  const locale = query.locale as string | undefined
+
   if (!slug) {
     throw createError({ statusCode: 400, message: 'Slug required' })
   }
@@ -19,11 +22,12 @@ export default defineEventHandler(async (event) => {
   }
 
   const engine = await useStorageEngine()
-  await engine.writePage(slug, result.data)
+  await engine.writePage(slug, result.data, locale)
 
   const config = useRuntimeConfig()
   if (config.openpress.autoCommit) {
-    await engine.commit(`content: update page '${slug}'`)
+    const localeSuffix = locale ? ` [${locale}]` : ''
+    await engine.commit(`content: update page '${slug}'${localeSuffix}`)
   }
 
   setResponseStatus(event, 200)

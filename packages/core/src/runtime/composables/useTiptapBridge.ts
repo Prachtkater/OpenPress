@@ -1,5 +1,6 @@
 import { useState } from '#imports'
 import type { Editor, JSONContent } from '@tiptap/core'
+import { ref } from 'vue'
 
 export interface TiptapBridgeState {
   /** The block ID currently being edited inline */
@@ -40,14 +41,20 @@ export function useTiptapBridge() {
     () => [],
   )
 
+  /** The Tiptap editor instance of the currently active block */
+  const activeEditor = useState<Editor | null>('openpress:tiptap:activeEditor', () => null)
+
   /**
    * Activate inline editing for a specific block.
    */
-  function activateBlock(blockId: string, sectionId: string, slotName: string) {
+  function activateBlock(blockId: string, sectionId: string, slotName: string, editor?: Editor) {
     bridgeState.value = {
       activeBlockId: blockId,
       activeSectionId: sectionId,
       activeSlotName: slotName,
+    }
+    if (editor) {
+      activeEditor.value = editor
     }
   }
 
@@ -60,6 +67,7 @@ export function useTiptapBridge() {
       activeSectionId: null,
       activeSlotName: null,
     }
+    activeEditor.value = null
   }
 
   /**
@@ -120,6 +128,7 @@ export function useTiptapBridge() {
 
   return {
     bridgeState,
+    activeEditor,
     activateBlock,
     deactivateBlock,
     isBlockActive,
@@ -128,3 +137,4 @@ export function useTiptapBridge() {
     getInitialContent,
   }
 }
+

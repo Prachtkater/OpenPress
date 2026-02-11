@@ -1,0 +1,24 @@
+{
+  "main": [
+    {
+      "label": "Startseite",
+      "href": "/",
+      "target": "_self",
+      "children": []
+    },
+    {
+      "label": "Editor",
+      "href": "/_edit",
+      "target": "_self",
+      "children": []
+    }
+  ],
+  "footer": [
+    {
+      "label": "GitHub",
+      "href": "https://github.com/Prachtkater/OpenPress",
+      "target": "_blank",
+      "children": []
+    }
+  ]
+}

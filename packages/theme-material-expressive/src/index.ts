@@ -6,6 +6,7 @@ import { paragraph } from './components/blocks/paragraph'
 import { image } from './components/blocks/image'
 import { button } from './components/blocks/button'
 import { video } from './components/blocks/video'
+import { gallery } from './components/blocks/gallery'
 import { contactForm } from './components/blocks/contact-form'
 
 /**
@@ -30,6 +31,7 @@ export const theme: OpThemeConfig = {
     'block:image': image,
     'block:button': button,
     'block:video': video,
+    'block:gallery': gallery,
     'block:contact-form': contactForm,
   },
 }

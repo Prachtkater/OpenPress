@@ -1,0 +1,26 @@
+{
+  "name": "@openpress/feature-gallery",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "description": "OpenPress Feature - Sortable Image Gallery with Media Library integration",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts"
+    }
+  },
+  "main": "./src/index.ts",
+  "scripts": {
+    "test": "bun test"
+  },
+  "dependencies": {
+    "@nuxt/kit": "^3.10.0",
+    "@openpress/schemas": "workspace:*",
+    "@openpress/ui": "workspace:*",
+    "zod": "^3.24.0",
+    "vuedraggable": "^4.1.0"
+  },
+  "peerDependencies": {
+    "nuxt": "^3.10.0"
+  }
+}

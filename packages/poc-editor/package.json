@@ -4,6 +4,10 @@
   "private": true,
   "description": "POC 2 - Glow-Frame In-Context Overlay UI Prototype",
   "main": "./src/index.ts",
+  "devDependencies": {
+    "tailwindcss": "^4.0.0",
+    "@tailwindcss/vite": "^4.0.0"
+  },
   "scripts": {
     "dev": "nuxi dev",
     "test": "bun test"

@@ -1,0 +1,11 @@
+services:
+  openpress-playground:
+    build:
+      context: .
+      dockerfile: Dockerfile.playground
+    environment:
+      - NODE_ENV=production
+      - NUXT_PUBLIC_OPENPRESS_EDIT_PATH=/_edit
+    volumes:
+      - ./content:/app/content
+    restart: always

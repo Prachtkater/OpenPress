@@ -1,0 +1,20 @@
+{
+  "name": "@openpress/feature-gallery",
+  "label": "Image Gallery",
+  "version": "0.0.1",
+  "description": "Sortable image gallery with media library selection",
+  "blocks": [
+    {
+      "type": "op-gallery",
+      "label": "Gallery",
+      "description": "A sortable image gallery",
+      "icon": "mdi:view-grid",
+      "category": "Media",
+      "defaultProps": {
+        "images": [],
+        "columns": 3,
+        "gap": 4
+      }
+    }
+  ]
+}

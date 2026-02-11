@@ -3,6 +3,7 @@ import { ulid } from 'ulid'
 import type { PageListItem, Page } from '@openpress/schemas'
 import { buildPageTree } from './page-tree'
 import type { PageTreeNode } from './page-tree'
+import { transformToMindmap, flattenMindmap } from './mindmap'
 
 export { buildPageTree, type PageTreeNode }
 
@@ -170,6 +171,17 @@ export function usePageTree() {
     navigateTo(`/_edit/${slug}`)
   }
 
+  /**
+   * Get Mindmap data for SVG/D3 rendering.
+   */
+  function getMindmapData() {
+    const root = transformToMindmap(tree.value)
+    return {
+      hierarchy: root,
+      flat: flattenMindmap(root),
+    }
+  }
+
   return {
     isLoading,
     error,
@@ -183,5 +195,6 @@ export function usePageTree() {
     renamePage,
     toggleNode,
     openPage,
+    getMindmapData,
   }
 }

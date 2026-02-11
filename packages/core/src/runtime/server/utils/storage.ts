@@ -7,6 +7,7 @@ export async function useStorageEngine(): Promise<StorageEngine> {
   if (_engine) return _engine;
 
   const config = useRuntimeConfig();
+  console.log('OpenPress Config:', config.openpress); // Debugging
   const options: StorageEngineOptions = {
     contentDir: config.openpress.contentDir,
     repoRoot: config.openpress.repoRoot,

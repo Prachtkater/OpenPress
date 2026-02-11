@@ -1,31 +1,35 @@
 {
   "id": "01JAAAAAAAAAAAAAAAAAAAAAA1",
   "slug": "index",
-  "title": "Startseite",
+  "title": "Naturgarten Design & Planung",
+  "meta": {
+    "description": "Ihr Partner für ökologische Gartengestaltung in Berlin. Wir schaffen Lebensräume für Mensch und Natur."
+  },
   "sections": [
     {
-      "id": "01JAAAAAAAAAAAAAAAAAAAAAA2",
+      "id": "01J-HERO-01",
       "type": "hero",
-      "blocks": [
-        {
-          "id": "01JAAAAAAAAAAAAAAAAAAAAAA3",
-          "type": "heading",
-          "data": {
-            "text": "Willkommen bei OpenPress",
-            "level": 1
+      "slots": {
+        "default": [
+          {
+            "id": "01J-H1-01",
+            "type": "heading",
+            "props": {
+              "text": "Naturnah. Ästhetisch. Lebendig.",
+              "level": 1
+            }
+          },
+          {
+            "id": "01J-P-01",
+            "type": "paragraph",
+            "props": {
+              "text": "Gestalten Sie mit uns Ihren persönlichen Rückzugsort, der nicht nur schön aussieht, sondern auch Bienen, Schmetterlingen und Vögeln ein Zuhause bietet."
+            }
           }
-        },
-        {
-          "id": "01JAAAAAAAAAAAAAAAAAAAAAA4",
-          "type": "paragraph",
-          "data": {
-            "text": "Ein Nuxt-natives Visual CMS mit Git-backed Storage."
-          }
-        }
-      ]
+        ]
+      }
     }
   ],
-  "meta": {
-    "description": "OpenPress Playground Startseite"
-  }
+  "updatedAt": "2026-02-11T13:15:00.000Z",
+  "createdAt": "2026-02-11T13:15:00.000Z"
 }

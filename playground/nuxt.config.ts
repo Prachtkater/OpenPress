@@ -21,5 +21,7 @@ export default defineNuxtConfig({
     from: 'noreply@openpress.dev',
   },
 
-  devtools: { enabled: true },
+  future: {
+    compatibilityVersion: 4,
+  },
 })

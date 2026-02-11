@@ -39,15 +39,16 @@ function toMindmapRoot(tree: PageTreeNode[]): MindmapNode {
     }
   }
 
-  // Virtual root wrapping all top-level pages
+  // Single top-level page becomes the root
   if (tree.length === 1) {
     return convert(tree[0])
   }
 
+  // Virtual root wrapping all top-level pages — uses non-colliding slug
   return {
-    slug: 'home',
+    slug: '__root__',
     label: 'Home',
-    isPage: tree.some((n) => n.slug === 'home' || n.slug === 'index'),
+    isPage: false,
     children: tree.map(convert),
   }
 }

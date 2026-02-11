@@ -91,13 +91,14 @@ export default defineNuxtModule<OpenPressOptions>({
       { route: '/api/_openpress/git/commit', handler: './runtime/server/api/git/commit.post' },
       { route: '/api/_openpress/git/history', handler: './runtime/server/api/git/history.get' },
       { route: '/api/_openpress/git/status', handler: './runtime/server/api/git/status.get' },
-      { route: '/api/_openpress/git/undo', handler: './runtime/server/api/git/undo.post' },
+      { route: '/api/_openpress/git/undo', handler: './runtime/server/api/git/undo.post', method: 'post' },
     ]
 
-    for (const { route, handler } of apiRoutes) {
+    for (const { route, handler, method } of apiRoutes) {
       addServerHandler({
         route,
         handler: resolver.resolve(handler),
+        ...(method && { method }),
       })
     }
 

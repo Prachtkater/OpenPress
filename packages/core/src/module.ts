@@ -5,11 +5,14 @@ import {
   addComponentsDir,
   addImportsDir,
   addPlugin,
+  useLogger,
 } from '@nuxt/kit'
 import type { NuxtPage } from '@nuxt/schema'
 import { resolveContentType } from './hmr/resolve-content-type'
 import { createChangeDebouncer } from './hmr/debounce-changes'
 import type { ContentChangePayload } from './hmr/types'
+import { discoverFeatures, extractModuleNames, registerFeatures } from './features'
+import type { DiscoveredFeature } from './features'
 
 export interface OpenPressStorageOptions {
   repoRoot?: string
@@ -149,7 +152,38 @@ export default defineNuxtModule<OpenPressOptions>({
       })
     }
 
-    // 7. Runtime configuration
+    // 7. Feature Manifest Discovery
+    const logger = useLogger('openpress')
+    const moduleNames = extractModuleNames(nuxt.options.modules ?? [])
+    const discoveryResult = await discoverFeatures(moduleNames, nuxt.options.rootDir)
+
+    if (discoveryResult.errors.length > 0) {
+      for (const err of discoveryResult.errors) {
+        logger.warn(`Feature manifest error in ${err.moduleName}: ${err.message}`)
+      }
+    }
+
+    // Register discovered features in the runtime registry
+    registerFeatures(discoveryResult.features)
+
+    if (discoveryResult.features.length > 0) {
+      const names = discoveryResult.features.map((f) => f.manifest.label).join(', ')
+      logger.info(`Discovered ${discoveryResult.features.length} feature(s): ${names}`)
+    }
+
+    // Register feature API route for component picker
+    addServerHandler({
+      route: '/api/_openpress/features',
+      handler: resolver.resolve('./runtime/server/api/features.get'),
+    })
+
+    // Inject discovered features as virtual module data for the server
+    nuxt.options.runtimeConfig._openpressFeatures = discoveryResult.features.map((f) => ({
+      manifest: f.manifest,
+      packageDir: f.packageDir,
+    }))
+
+    // 8. Runtime configuration
     nuxt.options.runtimeConfig.public.openpress = {
       editPath: options.editPath,
     }
@@ -174,5 +208,9 @@ declare module '@nuxt/schema' {
       repoRoot: string
       autoCommit: boolean
     }
+    _openpressFeatures: Array<{
+      manifest: import('@openpress/schemas').FeatureManifest
+      packageDir: string
+    }>
   }
 }

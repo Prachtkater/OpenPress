@@ -7,5 +7,11 @@
   "scripts": {
     "build": "bun run build:theme",
     "test": "bun test"
+  },
+  "dependencies": {
+    "@openpress/ui": "workspace:*"
+  },
+  "devDependencies": {
+    "@openpress/schemas": "workspace:*"
   }
 }

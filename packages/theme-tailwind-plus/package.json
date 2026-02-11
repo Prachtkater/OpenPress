@@ -4,8 +4,13 @@
   "private": true,
   "description": "OpenPress Theme - Modern Tailwind Plus Design System",
   "main": "./src/index.ts",
+  "types": "./src/index.ts",
   "scripts": {
     "build": "bun run build:theme",
     "test": "bun test"
+  },
+  "dependencies": {
+    "@openpress/ui": "workspace:*",
+    "@openpress/schemas": "workspace:*"
   }
 }

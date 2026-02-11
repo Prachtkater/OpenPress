@@ -16,6 +16,8 @@
 - Design-Philosophie (M3): Striktes Befolgen der Tokens, Komponenten und UX-Prinzipien von m3.material.io.
 - Vision M3-Atomic: Separates UI-System Projekt. UnoCSS-basiertes Atomic CSS mit M3 Tokens. DX wie Nuxt UI. Basis für unser Material Theme.
 - Review-Stack: CodeRabbit (Testversion, integriert mit Claude Code).
+- Agenten-Budget: Extra Usage von 20€ autorisiert für die Nachtschicht.
+- Agenten-Auswahl: Sonnet für weniger coding-lastige Aufgaben (Doku, Planung), Opus/Sonnet für Deep Coding je nach Komplexität.
 - Referenz-Repositories (Inspiration):
   - davidmarkl/nuxt-monorepo (Prose Components, Tailwind Plus Inspiration)
   - prismicio/prismic-client (API & Client Pattern)

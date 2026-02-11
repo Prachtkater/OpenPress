@@ -10,17 +10,21 @@
 import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue'
 import { useOpenPress } from '../composables/useOpenPress'
 import { useEditor } from '../composables/useEditor'
+import { useTiptapBridge } from '../composables/useTiptapBridge'
 import { findOpElement } from '../utils/find-op-element'
 
 const { editMode } = useOpenPress()
 const {
   selectedElement,
   hoveredElement,
+  inlineEditing,
   selectElement,
   clearSelection,
   hoverElement,
   clearHover,
+  setInlineEditing,
 } = useEditor()
+const { deactivateBlock } = useTiptapBridge()
 
 const frameRef = ref<HTMLElement | null>(null)
 
@@ -69,6 +73,18 @@ function handleMouseMove(e: MouseEvent) {
 function handleClick(e: MouseEvent) {
   if (!editMode.value) return
 
+  // Don't intercept clicks when a Tiptap inline editor is active —
+  // let the editor handle its own focus/selection events
+  if (inlineEditing.value) {
+    const target = e.target as HTMLElement | null
+    if (target?.closest('[data-op-inline-edit]')) {
+      return
+    }
+    // Clicked outside the inline editor — deactivate it
+    deactivateBlock()
+    setInlineEditing(false)
+  }
+
   const found = findOpElement(e.target, frameRef.value)
   if (found) {
     e.preventDefault()
@@ -91,6 +107,12 @@ function handleKeyDown(e: KeyboardEvent) {
   if (!editMode.value) return
 
   if (e.key === 'Escape') {
+    // If inline editing is active, deactivate it first (don't clear selection)
+    if (inlineEditing.value) {
+      deactivateBlock()
+      setInlineEditing(false)
+      return
+    }
     clearSelection()
     selectGlow.value = null
   }
@@ -101,6 +123,8 @@ function handleKeyDown(e: KeyboardEvent) {
 function toggleEditMode() {
   editMode.value = !editMode.value
   if (!editMode.value) {
+    deactivateBlock()
+    setInlineEditing(false)
     clearSelection()
     clearHover()
     hoverGlow.value = null

@@ -18,6 +18,10 @@
   "dependencies": {
     "@nuxt/kit": "^3.10.0",
     "@openpress/schemas": "workspace:*",
+    "@tiptap/core": "^3.19.0",
+    "@tiptap/pm": "^3.19.0",
+    "@tiptap/starter-kit": "^3.19.0",
+    "@tiptap/vue-3": "^3.19.0",
     "zod": "^3.24.0"
   },
   "peerDependencies": {

@@ -15,3 +15,11 @@ export {
   type Navigation,
   type NavItem,
 } from "./navigation";
+export {
+  FeatureManifestSchema,
+  FeatureBlockSchema,
+  FeatureEditorPanelSchema,
+  type FeatureManifest,
+  type FeatureBlock,
+  type FeatureEditorPanel,
+} from "./feature-manifest";

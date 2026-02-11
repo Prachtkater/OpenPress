@@ -1,0 +1,17 @@
+/* OpenPress Tailwind Plus — Design Tokens */
+:root {
+  /* Section */
+  --op-section-transition: 200ms ease;
+
+  /* Slot */
+  --op-slot-min-height: 4rem;
+
+  /* Block */
+  --op-block-focus-ring: 0 0 0 2px var(--color-primary-500);
+
+  /* Glow Frame */
+  --op-glow-frame-z: 9999;
+
+  /* Prose */
+  --op-prose-max-width: 65ch;
+}

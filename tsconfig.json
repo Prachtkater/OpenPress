@@ -17,7 +17,8 @@
       "@openpress/schemas": ["./schemas/src"],
       "@openpress/core": ["./packages/core/src"],
       "@openpress/ui": ["./packages/ui/src"],
-      "@openpress/poc-storage": ["./packages/poc-storage/src"]
+      "@openpress/poc-storage": ["./packages/poc-storage/src"],
+      "@openpress/theme-tailwind-plus": ["./packages/theme-tailwind-plus/src"]
     }
   },
   "include": ["packages/*/src/**/*.ts", "schemas/src/**/*.ts"],

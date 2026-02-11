@@ -143,6 +143,9 @@
         "@openpress/schemas": "workspace:*",
         "@openpress/ui": "workspace:*",
       },
+      "devDependencies": {
+        "tailwindcss": "^4.1.18",
+      },
     },
     "packages/ui": {
       "name": "@openpress/ui",

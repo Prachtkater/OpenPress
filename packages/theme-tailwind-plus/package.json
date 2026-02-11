@@ -12,5 +12,8 @@
   "dependencies": {
     "@openpress/ui": "workspace:*",
     "@openpress/schemas": "workspace:*"
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.1.18"
   }
 }

@@ -1,5 +1,5 @@
 // Types
-export type { OpThemeConfig, OpComponentTheme } from './types'
+export type { OpThemeConfig, OpComponentTheme, OpCompoundVariant, ResolvedClasses } from './types'
 export type { OpSlotContext } from './runtime/keys'
 
 // Keys
@@ -18,6 +18,10 @@ export { provide, inject, revoke, clearContext } from './runtime/context'
 
 // Theme Resolution
 export { registerTheme, resolveTheme, loadTheme, clearThemeRegistry } from './runtime/theme/resolve'
+export { resolveComponentClasses } from './runtime/theme/resolve-classes'
+
+// Theme Defaults
+export { defaultTheme, sectionTheme, slotTheme } from './runtime/theme/defaults'
 
 // Block Resolution
 export {
@@ -35,6 +39,7 @@ export { useOpenPress, type UseOpenPressReturn } from './runtime/composables/use
 export { useOpMode, type UseOpModeReturn } from './runtime/composables/useOpMode'
 export { useOpSection, type UseOpSectionReturn } from './runtime/composables/useOpSection'
 export { useOpSlot, type UseOpSlotReturn } from './runtime/composables/useOpSlot'
+export { useOpThemeClasses, useOpBlockClasses } from './runtime/composables/useOpThemeClasses'
 
 // Component Setup Functions
 export { setupOpProvider, type OpProviderProps, type OpProviderState } from './runtime/components/OpProvider'

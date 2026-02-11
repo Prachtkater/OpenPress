@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@openpress/schemas": "workspace:*",
+    "tailwind-merge": "^3.4.0",
     "zod": "^3.24.0"
   }
 }

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@openpress/schemas": "workspace:*",
-    "ulid": "^2.3.0"
+    "ulid": "^2.3.0",
+    "zod": "^3.24.0"
   }
 }

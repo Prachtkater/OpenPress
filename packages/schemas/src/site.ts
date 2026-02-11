@@ -12,4 +12,4 @@ export const SiteConfigSchema = z.object({
   }),
 });
 
-export type SiteConfig = z.infer<typeof SiteConfigSchema>;
+export type SiteConfig = z.output<typeof SiteConfigSchema>;

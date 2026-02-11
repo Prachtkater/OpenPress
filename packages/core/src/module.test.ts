@@ -25,9 +25,9 @@ mock.module('@nuxt/kit', () => ({
   }),
 }))
 
-// Import after mocking
+// Import after mocking — defineNuxtModule mock returns raw config object
 const moduleConfig = await import('./module')
-const mod = moduleConfig.default
+const mod = moduleConfig.default as any
 
 function createMockNuxt(overrides: Record<string, any> = {}) {
   const hooks: Record<string, Function[]> = {}

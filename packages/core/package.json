@@ -28,6 +28,7 @@
     "nuxt": "^3.10.0"
   },
   "devDependencies": {
+    "@nuxt/schema": "^3.10.0",
     "@nuxt/test-utils": "^3.14.0",
     "nuxt": "^3.15.0",
     "ulid": "^2.3.0"

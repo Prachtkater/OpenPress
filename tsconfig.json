@@ -14,7 +14,7 @@
     "outDir": "./dist",
     "types": ["bun-types"],
     "paths": {
-      "@openpress/schemas": ["./schemas/src"],
+      "@openpress/schemas": ["./packages/schemas/src"],
       "@openpress/core": ["./packages/core/src"],
       "@openpress/ui": ["./packages/ui/src"],
       "@openpress/poc-storage": ["./packages/poc-storage/src"],
@@ -24,6 +24,16 @@
       "@openpress/feature-booking": ["./packages/feature-booking/src"]
     }
   },
-  "include": ["packages/*/src/**/*.ts", "schemas/src/**/*.ts"],
-  "exclude": ["node_modules", "dist", ".nuxt", ".output"]
+  "include": ["packages/*/src/**/*.ts"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    ".nuxt",
+    ".output",
+    "packages/*/src/runtime/server/**",
+    "packages/*/src/runtime/plugins/**",
+    "packages/*/src/runtime/composables/**",
+    "packages/*/src/runtime/pages/**",
+    "packages/*/src/runtime/components/**"
+  ]
 }

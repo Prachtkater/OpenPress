@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@nuxt/kit": "^3.10.0",
+    "@openpress/schemas": "workspace:*",
     "zod": "^3.24.0"
   },
   "peerDependencies": {

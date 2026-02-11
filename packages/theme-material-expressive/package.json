@@ -9,9 +9,7 @@
     "test": "bun test"
   },
   "dependencies": {
-    "@openpress/ui": "workspace:*"
-  },
-  "devDependencies": {
+    "@openpress/ui": "workspace:*",
     "@openpress/schemas": "workspace:*"
   }
 }

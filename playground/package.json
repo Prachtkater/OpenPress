@@ -10,6 +10,11 @@
   "devDependencies": {
     "nuxt": "^3.15.0",
     "@openpress/core": "workspace:*",
-    "@openpress/schemas": "workspace:*"
+    "@openpress/schemas": "workspace:*",
+    "@openpress/ui": "workspace:*",
+    "@openpress/theme-tailwind-plus": "workspace:*",
+    "@openpress/theme-material-expressive": "workspace:*",
+    "@openpress/feature-contact-form": "workspace:*",
+    "@openpress/feature-booking": "workspace:*"
   }
 }

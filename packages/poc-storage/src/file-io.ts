@@ -1,4 +1,4 @@
-import { type ZodSchema } from "zod";
+import { type ZodType } from "zod";
 import { join } from "path";
 
 export class FileIOError extends Error {
@@ -28,7 +28,7 @@ export class ValidationError extends Error {
  */
 export async function readJSON<T>(
   filePath: string,
-  schema: ZodSchema<T>
+  schema: ZodType<T, any, any>
 ): Promise<T> {
   const file = Bun.file(filePath);
   const exists = await file.exists();
@@ -62,7 +62,7 @@ export async function readJSON<T>(
 export async function writeJSON<T>(
   filePath: string,
   data: T,
-  schema: ZodSchema<T>
+  schema: ZodType<T, any, any>
 ): Promise<void> {
   const result = schema.safeParse(data);
   if (!result.success) {

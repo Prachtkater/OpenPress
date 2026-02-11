@@ -21,6 +21,7 @@
     "zod": "^3.24.0"
   },
   "devDependencies": {
+    "@nuxt/schema": "^3.10.0",
     "@types/nodemailer": "^6.4.0",
     "nuxt": "^3.10.0"
   },

@@ -16,7 +16,7 @@ export function localized<T extends z.ZodTypeAny>(schema: T) {
  * A localized string is a record of locale -> string
  */
 export const LocalizedStringSchema = localized(z.string().min(1));
-export type LocalizedString = z.infer<typeof LocalizedStringSchema>;
+export type LocalizedString = z.output<typeof LocalizedStringSchema>;
 
 export const GermanErrorMessages = {
   required: "Dieses Feld ist erforderlich",

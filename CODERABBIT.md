@@ -6,7 +6,7 @@ OpenPress nutzt [CodeRabbit](https://coderabbit.ai) fuer automatische AI-Code-Re
 
 ## Architektur
 
-```
+```text
 PR erstellt/aktualisiert
         |
         v
@@ -76,7 +76,7 @@ CodeRabbit reviewt automatisch jede PR gegen `main`. Kein GitHub Action noetig -
 
 Der CI Workflow laeuft parallel zu CodeRabbit:
 
-```
+```text
 PR erstellt
   |
   +-- CI: Typecheck (bun x tsc --noEmit)

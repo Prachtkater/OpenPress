@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import { PageSchema } from '@openpress/schemas'
 import type { Page } from '@openpress/schemas'
+import OpSection from './OpSection.vue'
 
 const props = defineProps<{
   page: Page

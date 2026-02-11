@@ -7,7 +7,7 @@ export const PageMetaSchema = z.object({
   ogImage: z.string().optional(),
 });
 
-export type PageMeta = z.infer<typeof PageMetaSchema>;
+export type PageMeta = z.output<typeof PageMetaSchema>;
 
 export const PageSchema = z.object({
   id: z.string().ulid(),
@@ -19,7 +19,7 @@ export const PageSchema = z.object({
   createdAt: z.string().datetime(),
 });
 
-export type Page = z.infer<typeof PageSchema>;
+export type Page = z.output<typeof PageSchema>;
 
 /** Lightweight page listing without full section data */
 export const PageListItemSchema = z.object({
@@ -29,7 +29,7 @@ export const PageListItemSchema = z.object({
   createdAt: z.string().datetime(),
 });
 
-export type PageListItem = z.infer<typeof PageListItemSchema>;
+export type PageListItem = z.output<typeof PageListItemSchema>;
 
 /** Input schema for creating a new page (server generates id, timestamps, etc.) */
 export const CreatePageInputSchema = z.object({
@@ -39,4 +39,4 @@ export const CreatePageInputSchema = z.object({
   sections: z.array(SectionSchema).optional(),
 });
 
-export type CreatePageInput = z.infer<typeof CreatePageInputSchema>;
+export type CreatePageInput = z.output<typeof CreatePageInputSchema>;

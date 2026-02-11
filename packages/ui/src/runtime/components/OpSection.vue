@@ -5,6 +5,7 @@ import type { Section, Block } from '@openpress/schemas'
 import { OP_SECTION_KEY } from '../keys'
 import { useOpMode } from '../composables/useOpMode'
 import { useOpThemeClasses } from '../composables/useOpThemeClasses'
+import OpSlot from './OpSlot.vue'
 
 export interface OpSectionUI {
   root?: string

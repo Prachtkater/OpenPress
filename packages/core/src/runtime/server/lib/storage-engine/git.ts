@@ -29,9 +29,11 @@ export class GitOps {
       });
       return stdout.trim();
     } catch (err: any) {
-      const stderr = err.stderr?.trim() ?? err.message;
+      const stderr = err.stderr?.trim();
+      const stdout = err.stdout?.trim();
+      const details = stderr || stdout || err.message;
       const code = err.code ?? 1;
-      throw new Error(`git ${args[0]} failed (${code}): ${stderr}`);
+      throw new Error(`git ${args[0]} failed (${code}): ${details}`);
     }
   }
 

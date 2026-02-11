@@ -45,12 +45,12 @@ export function usePageTree() {
   /**
    * Create a new page with the given slug and title.
    */
-  async function createPage(slug: string, title: string): Promise<boolean> {
+  async function createPage(slug: string, title: string, locale = 'en'): Promise<boolean> {
     error.value = null
 
     const input: CreatePageInput = {
       slug,
-      title: { en: title },
+      title: { [locale]: title },
     }
 
     try {
@@ -96,6 +96,7 @@ export function usePageTree() {
     oldSlug: string,
     newTitle: string,
     newSlug?: string,
+    locale = 'en',
   ): Promise<boolean> {
     error.value = null
 
@@ -105,7 +106,7 @@ export function usePageTree() {
 
       const updatedPage: Page = {
         ...page,
-        title: typeof page.title === 'object' ? { ...page.title, en: newTitle } : { en: newTitle },
+        title: typeof page.title === 'object' ? { ...page.title, [locale]: newTitle } : { [locale]: newTitle },
         slug: newSlug ?? page.slug,
         updatedAt: new Date().toISOString(),
       }

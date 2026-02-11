@@ -124,8 +124,10 @@ describe("StorageEngine", () => {
   });
 
   describe("Schema Validation", () => {
-    it("should reject page with missing title", async () => {
-      const page = makePage({ title: { en: "" } });
+    it("should reject page with invalid title structure", async () => {
+      const page = makePage();
+      // Title must be a LocalizedString object with required 'en' field
+      (page as any).title = "plain string";
       expect(engine.writePage("bad", page)).rejects.toBeInstanceOf(
         ValidationError
       );

@@ -6,6 +6,10 @@ on:
   push:
     branches: [main]
 
+permissions:
+  contents: read
+  pull-requests: write
+
 jobs:
   typecheck:
     name: Typecheck
@@ -26,5 +30,21 @@ jobs:
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
+      - name: Configure git for tests
+        run: |
+          git config --global user.name "CI"
+          git config --global user.email "ci@openpress.dev"
+          git config --global init.defaultBranch main
       - run: bun install --frozen-lockfile
       - run: bun test
+
+  validate-config:
+    name: Validate CodeRabbit Config
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate .coderabbit.yaml exists
+        run: test -f .coderabbit.yaml || (echo "::error::.coderabbit.yaml missing" && exit 1)
+      - name: Validate YAML syntax
+        run: python3 -c "import yaml; yaml.safe_load(open('.coderabbit.yaml'))"

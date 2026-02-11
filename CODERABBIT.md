@@ -1,161 +1,218 @@
-# CodeRabbit Setup
+# CodeRabbit Integration
 
-## Overview
+## Uebersicht
 
-This repository uses [CodeRabbit](https://coderabbit.ai) for AI-powered code reviews on pull requests. CodeRabbit is configured both as a GitHub App (automatic PR reviews) and via the CLI for local pre-commit reviews.
+OpenPress nutzt [CodeRabbit](https://coderabbit.ai) fuer automatische AI-Code-Reviews auf Pull Requests. Die Integration laeuft ueber die CodeRabbit GitHub App, die automatisch auf PR-Events reagiert.
 
-## GitHub Integration
+## Architektur
 
-CodeRabbit reviews PRs automatically when they are opened or updated. Configuration lives in `.coderabbit.yaml` at the repo root.
-
-### Configuration (`.coderabbit.yaml`)
-
-- **Language**: German (de-DE)
-- **Profile**: chill — less strict, focuses on real issues
-- **Auto-review**: Enabled for non-draft PRs
-- **High-level summary**: Enabled
-- **Request changes workflow**: Enabled
-- **Path-specific instructions**: Custom review focus per package (see file for details)
-
-## CLI Installation
-
-The CodeRabbit CLI (`coderabbit` / `cr`) enables local code reviews before pushing.
-
-### Install (Linux / macOS)
-
-```bash
-curl -fsSL https://cli.coderabbit.ai/install.sh | sh
+```
+PR erstellt/aktualisiert
+        |
+        v
+GitHub Webhook --> CodeRabbit App
+        |
+        v
+.coderabbit.yaml gelesen
+        |
+        v
+AI Review generiert
+        |
+        v
+PR-Kommentare erstellt
 ```
 
-If `unzip` is unavailable (e.g. minimal containers), install manually:
+## Konfiguration
 
-```bash
-# Get latest version
-VERSION=$(curl -fsSL https://cli.coderabbit.ai/releases/latest/VERSION)
+### `.coderabbit.yaml`
 
-# Download and extract with Python
-curl -fsSL -o /tmp/coderabbit.zip \
-  "https://cli.coderabbit.ai/releases/${VERSION}/coderabbit-linux-x64.zip"
-python3 -c "import zipfile; zipfile.ZipFile('/tmp/coderabbit.zip').extractall('/tmp')"
+Die zentrale Konfigurationsdatei im Repository-Root steuert das Review-Verhalten:
 
-# Install
-chmod +x /tmp/coderabbit
-mkdir -p ~/.local/bin
-mv /tmp/coderabbit ~/.local/bin/coderabbit
-ln -sf ~/.local/bin/coderabbit ~/.local/bin/cr
-```
+| Setting | Wert | Beschreibung |
+|---------|------|-------------|
+| `language` | `de-DE` | Reviews auf Deutsch |
+| `reviews.profile` | `chill` | Pragmatischer Review-Stil |
+| `reviews.auto_review.enabled` | `true` | Automatische Reviews aktiv |
+| `reviews.auto_review.drafts` | `false` | Draft-PRs werden uebersprungen |
+| `reviews.high_level_summary` | `true` | Zusammenfassung im Walkthrough |
+| `reviews.sequence_diagrams` | `true` | Sequenzdiagramme bei Bedarf |
+| `reviews.poem` | `false` | Keine Review-Gedichte |
 
-### macOS (Homebrew)
+### Pfad-spezifische Anweisungen
 
-```bash
-brew install coderabbit
-```
+CodeRabbit erhaelt kontextspezifische Anweisungen je nach Paket:
 
-### Verify
+- **`packages/core/**`** - Nuxt-Konventionen, TypeScript-Strenge, Module-Hooks
+- **`packages/schemas/**`** - Zod Best Practices, `z.output<>`, Type-Safety
+- **`packages/poc-*/**`** - Machbarkeit vor Code-Qualitaet
+- **`packages/theme-*/**`** - Strikte Logik/Visual-Trennung
+- **`packages/feature-*/**`** - Feature-Manifest Konventionen
+- **`packages/ui/**`** - Glow-Frame Konventionen, Theme-Engine
+- **`playground/**`** - Keine produktionsrelevanten Standards
 
-```bash
-coderabbit --version
-# or
-cr --version
-```
+### Ignorierte Pfade
 
-## Authentication
+Diese Dateien werden nicht reviewt:
+- `**/*.lock`, `**/bun.lockb` - Lock-Dateien
+- `**/dist/**`, `**/.nuxt/**`, `**/.output/**` - Build-Artefakte
+- `**/node_modules/**` - Abhaengigkeiten
 
-Link your CodeRabbit account for personalized, context-aware reviews:
+## GitHub App Setup
 
-```bash
-coderabbit auth login
-```
+### Voraussetzung
 
-This opens a browser for OAuth. Paste the token back into the terminal.
+CodeRabbit GitHub App muss auf dem Repository installiert sein:
+1. https://github.com/apps/coderabbitai aufrufen
+2. Fuer `Prachtkater/OpenPress` installieren
+3. Berechtigungen: Pull Requests (read/write), Contents (read)
 
-Check status:
+### Automatische Reviews
 
-```bash
-coderabbit auth status
-```
-
-## CLI Usage
-
-### Review all changes (staged + unstaged + committed)
-
-```bash
-cr review
-```
-
-### Review only uncommitted changes
-
-```bash
-cr review --type uncommitted
-```
-
-### Review committed changes against a branch
-
-```bash
-cr review --base main
-```
-
-### Plain text output (for CI or piping)
-
-```bash
-cr review --plain
-```
-
-### AI agent mode (minimal output for LLM consumption)
-
-```bash
-cr review --prompt-only
-```
-
-### Use project config files as additional context
-
-```bash
-cr review --config CLAUDE.md .coderabbit.yaml
-```
-
-## Project-Specific Review Rules
-
-Path-specific instructions are defined in `.coderabbit.yaml` under `reviews.path_instructions`. Current rules:
-
-| Path Pattern | Focus |
-|---|---|
-| `packages/core/**` | Nuxt conventions, TypeScript strictness |
-| `packages/poc-*/**` | Feasibility over polish |
-| `packages/schemas/**` | Zod best practices, type safety |
-| `packages/theme-*/**` | Logic/visual separation |
-| `packages/feature-*/**` | Feature manifest conventions |
-| `packages/ui/**` | Glow-Frame conventions, theme engine compatibility |
-| `playground/**` | Demo/test environment only |
-
-## Interaktion mit Reviews
-
-### Auf PR-Comments antworten
-CodeRabbit reagiert auf Antworten in PR-Kommentaren. Einfach auf einen Review-Kommentar antworten, um Rückfragen zu stellen oder Kontext zu liefern.
-
-### Spezielle Kommentare
-```
-@coderabbitai review     — Review erneut triggern
-@coderabbitai resolve    — Alle Kommentare als gelöst markieren
-@coderabbitai help       — Hilfe anzeigen
-```
-
-### WIP-PRs
-PRs mit "WIP" oder "DO NOT MERGE" im Titel werden **nicht** automatisch reviewt.
+CodeRabbit reviewt automatisch jede PR gegen `main`. Kein GitHub Action noetig - die App wird ueber Webhooks getriggert.
 
 ## CI Integration
 
-Die GitHub Actions CI-Pipeline (`.github/workflows/ci.yml`) läuft parallel zu CodeRabbit:
-- **Typecheck**: `bun x tsc --noEmit`
-- **Tests**: `bun test`
+### Workflow (`ci.yml`)
+
+Der CI Workflow laeuft parallel zu CodeRabbit:
+
+```
+PR erstellt
+  |
+  +-- CI: Typecheck (bun x tsc --noEmit)
+  +-- CI: Tests (bun test)
+  +-- CI: Validate CodeRabbit Config (.coderabbit.yaml)
+  +-- CodeRabbit: AI Review (via GitHub App)
+```
+
+Jobs:
+- **Typecheck** - TypeScript-Pruefung mit `bun x tsc --noEmit`
+- **Tests** - Testsuite mit `bun test` (Git-Config fuer Storage-Tests)
+- **Validate Config** - Stellt sicher, dass `.coderabbit.yaml` valides YAML ist (nur auf PRs)
 
 CodeRabbit sieht den CI-Status und kann darauf in Reviews verweisen.
+
+## CodeRabbit CLI (Lokal)
+
+### Installation
+
+```bash
+# Linux / macOS
+curl -fsSL https://cli.coderabbit.ai/install.sh | sh
+
+# Falls unzip fehlt (z.B. minimale Container)
+VERSION=$(curl -fsSL https://cli.coderabbit.ai/releases/latest/VERSION)
+curl -fsSL -o /tmp/coderabbit.zip \
+  "https://cli.coderabbit.ai/releases/${VERSION}/coderabbit-linux-x64.zip"
+python3 -c "import zipfile; zipfile.ZipFile('/tmp/coderabbit.zip').extractall('/tmp')"
+chmod +x /tmp/coderabbit && mv /tmp/coderabbit ~/.local/bin/
+
+# macOS (Homebrew)
+brew install coderabbit
+
+# Verify
+coderabbit --version
+```
+
+### Authentifizierung
+
+```bash
+coderabbit auth login   # OAuth im Browser
+coderabbit auth status  # Status pruefen
+```
+
+### Review-Befehle
+
+```bash
+# Alle Aenderungen reviewen
+coderabbit review
+
+# Nur committete Aenderungen
+coderabbit review --type committed
+
+# Nur uncommittete Aenderungen
+coderabbit review --type uncommitted
+
+# Vergleich mit main Branch
+coderabbit review --base main
+
+# Plain-Text Output (fuer CI/Scripting)
+coderabbit review --plain
+
+# AI Agent Modus (minimal, fuer LLM)
+coderabbit review --prompt-only
+
+# Mit Projekt-Config als Kontext
+coderabbit review --config CLAUDE.md .coderabbit.yaml
+```
+
+## Interaktion mit CodeRabbit
+
+### PR-Kommentare
+
+CodeRabbit erstellt automatisch:
+- **Walkthrough**: Zusammenfassung aller Aenderungen
+- **Datei-Reviews**: Inline-Kommentare mit Verbesserungsvorschlaegen
+- **Sequenzdiagramme**: Bei komplexen Aenderungsflows
+
+### Befehle in PR-Kommentaren
+
+In einem PR-Kommentar an `@coderabbitai`:
+
+| Befehl | Beschreibung |
+|--------|-------------|
+| `@coderabbitai review` | Manuell Review anfordern |
+| `@coderabbitai summary` | Zusammenfassung aktualisieren |
+| `@coderabbitai resolve` | Alle Kommentare als resolved markieren |
+| `@coderabbitai generate docstrings` | Docstrings generieren |
+| `@coderabbitai generate unit tests` | Unit Tests generieren |
+| `@coderabbitai configuration` | Aktuelle Config anzeigen |
+| `@coderabbitai help` | Hilfe anzeigen |
+
+Auf Review-Kommentare kann direkt geantwortet werden - CodeRabbit reagiert auf Rueckfragen.
+
+### Ignore-Keywords im PR-Titel
+
+PRs mit diesen Keywords im Titel werden nicht reviewt:
+- `WIP`
+- `DO NOT MERGE`
+
+## Analyse-Tools
+
+CodeRabbit nutzt diese Tools bei Reviews:
+- **ESLint, Biome** - Code-Linting
+- **markdownlint, yamllint** - Markup-Validierung
+- **ShellCheck** - Shell-Script-Analyse
+- **Gitleaks** - Secret Detection
+- **Semgrep** - Security Patterns
+- **actionlint** - GitHub Actions Validierung
 
 ## PR-Workflow
 
 1. Branch erstellen: `git checkout -b feat/mein-feature`
-2. Änderungen committen
-3. PR öffnen: `gh pr create --title "feat: ..." --body "..."`
-4. CodeRabbit reviewt automatisch
-5. CI läuft (Typecheck + Tests)
-6. Review-Kommentare bearbeiten
-7. PR mergen nach Approval
+2. Aenderungen committen (atomic commits)
+3. Optional: Lokal reviewen mit `coderabbit review --base main`
+4. PR oeffnen: `gh pr create --title "feat: ..." --body "..."`
+5. CodeRabbit reviewt automatisch
+6. CI laeuft (Typecheck + Tests + Config-Validierung)
+7. Review-Kommentare bearbeiten
+8. PR mergen nach Approval
+
+## Troubleshooting
+
+### CodeRabbit reviewt nicht
+
+1. Pruefen ob die GitHub App installiert ist (Repo Settings > Integrations)
+2. Pruefen ob der PR-Titel kein Ignore-Keyword enthaelt (`WIP`, `DO NOT MERGE`)
+3. Pruefen ob der PR kein Draft ist (`reviews.auto_review.drafts: false`)
+4. `.coderabbit.yaml` Syntax validieren:
+   ```bash
+   python3 -c "import yaml; yaml.safe_load(open('.coderabbit.yaml'))"
+   ```
+
+### Review ist zu streng/locker
+
+`reviews.profile` in `.coderabbit.yaml` anpassen:
+- `chill` - Pragmatisch, nur wichtige Issues (aktuell)
+- `assertive` - Strenger, mehr Vorschlaege
+- `default` - Ausgewogen

@@ -42,9 +42,9 @@ describe('buildPageTree', () => {
 
   it('creates flat list for pages without slashes', () => {
     const pages: PageListItem[] = [
-      { slug: 'about', title: 'About Us', updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
-      { slug: 'contact', title: 'Contact', updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
-      { slug: 'index', title: 'Home', updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
+      { slug: 'about', title: { en: 'About Us' }, updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
+      { slug: 'contact', title: { en: 'Contact' }, updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
+      { slug: 'index', title: { en: 'Home' }, updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
     ]
 
     const tree = buildPageTree(pages)
@@ -52,15 +52,15 @@ describe('buildPageTree', () => {
     expect(tree).toHaveLength(3)
     expect(tree[0].segment).toBe('about')
     expect(tree[0].slug).toBe('about')
-    expect(tree[0].title).toBe('About Us')
+    expect(tree[0].title).toEqual({ en: 'About Us' })
     expect(tree[0].isPage).toBe(true)
     expect(tree[0].children).toHaveLength(0)
   })
 
   it('creates nested tree for slugs with slashes', () => {
     const pages: PageListItem[] = [
-      { slug: 'blog/post-1', title: 'Post 1', updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
-      { slug: 'blog/post-2', title: 'Post 2', updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
+      { slug: 'blog/post-1', title: { en: 'Post 1' }, updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
+      { slug: 'blog/post-2', title: { en: 'Post 2' }, updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
     ]
 
     const tree = buildPageTree(pages)
@@ -73,16 +73,16 @@ describe('buildPageTree', () => {
     expect(tree[0].children).toHaveLength(2)
     expect(tree[0].children[0].segment).toBe('post-1')
     expect(tree[0].children[0].slug).toBe('blog/post-1')
-    expect(tree[0].children[0].title).toBe('Post 1')
+    expect(tree[0].children[0].title).toEqual({ en: 'Post 1' })
     expect(tree[0].children[0].isPage).toBe(true)
   })
 
   it('handles mixed flat and nested pages', () => {
     const pages: PageListItem[] = [
-      { slug: 'index', title: 'Home', updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
-      { slug: 'about', title: 'About', updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
-      { slug: 'blog/first', title: 'First', updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
-      { slug: 'blog/second', title: 'Second', updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
+      { slug: 'index', title: { en: 'Home' }, updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
+      { slug: 'about', title: { en: 'About' }, updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
+      { slug: 'blog/first', title: { en: 'First' }, updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
+      { slug: 'blog/second', title: { en: 'Second' }, updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
     ]
 
     const tree = buildPageTree(pages)
@@ -97,7 +97,7 @@ describe('buildPageTree', () => {
 
   it('handles deeply nested slugs', () => {
     const pages: PageListItem[] = [
-      { slug: 'a/b/c', title: 'Deep', updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
+      { slug: 'a/b/c', title: { en: 'Deep' }, updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
     ]
 
     const tree = buildPageTree(pages)
@@ -112,13 +112,13 @@ describe('buildPageTree', () => {
     expect(tree[0].children[0].children[0].segment).toBe('c')
     expect(tree[0].children[0].children[0].slug).toBe('a/b/c')
     expect(tree[0].children[0].children[0].isPage).toBe(true)
-    expect(tree[0].children[0].children[0].title).toBe('Deep')
+    expect(tree[0].children[0].children[0].title).toEqual({ en: 'Deep' })
   })
 
   it('marks virtual folders when parent slug is also a page', () => {
     const pages: PageListItem[] = [
-      { slug: 'blog', title: 'Blog Index', updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
-      { slug: 'blog/post-1', title: 'Post 1', updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
+      { slug: 'blog', title: { en: 'Blog Index' }, updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
+      { slug: 'blog/post-1', title: { en: 'Post 1' }, updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
     ]
 
     const tree = buildPageTree(pages)
@@ -126,16 +126,16 @@ describe('buildPageTree', () => {
     expect(tree).toHaveLength(1)
     expect(tree[0].segment).toBe('blog')
     expect(tree[0].isPage).toBe(true)
-    expect(tree[0].title).toBe('Blog Index')
+    expect(tree[0].title).toEqual({ en: 'Blog Index' })
     expect(tree[0].children).toHaveLength(1)
-    expect(tree[0].children[0].title).toBe('Post 1')
+    expect(tree[0].children[0].title).toEqual({ en: 'Post 1' })
   })
 
   it('sorts pages alphabetically by slug', () => {
     const pages: PageListItem[] = [
-      { slug: 'zebra', title: 'Zebra', updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
-      { slug: 'apple', title: 'Apple', updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
-      { slug: 'mango', title: 'Mango', updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
+      { slug: 'zebra', title: { en: 'Zebra' }, updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
+      { slug: 'apple', title: { en: 'Apple' }, updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
+      { slug: 'mango', title: { en: 'Mango' }, updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
     ]
 
     const tree = buildPageTree(pages)
@@ -147,7 +147,7 @@ describe('buildPageTree', () => {
 
   it('initializes nodes as expanded', () => {
     const pages: PageListItem[] = [
-      { slug: 'docs/intro', title: 'Intro', updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
+      { slug: 'docs/intro', title: { en: 'Intro' }, updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
     ]
 
     const tree = buildPageTree(pages)
@@ -157,8 +157,8 @@ describe('buildPageTree', () => {
 
   it('does not mutate the input array', () => {
     const pages: PageListItem[] = [
-      { slug: 'b', title: 'B', updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
-      { slug: 'a', title: 'A', updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
+      { slug: 'b', title: { en: 'B' }, updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
+      { slug: 'a', title: { en: 'A' }, updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
     ]
 
     const originalOrder = pages.map((p) => p.slug)
@@ -229,7 +229,7 @@ describe('usePageTree composable', () => {
           {
             segment: 'guide',
             slug: 'docs/guide',
-            title: 'Guide',
+            title: { en: 'Guide' },
             updatedAt: null,
             createdAt: null,
             isPage: true,
@@ -283,7 +283,7 @@ describe('usePageTree composable', () => {
 describe('buildPageTree edge cases', () => {
   it('handles single page', () => {
     const pages: PageListItem[] = [
-      { slug: 'index', title: 'Home', updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
+      { slug: 'index', title: { en: 'Home' }, updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
     ]
 
     const tree = buildPageTree(pages)
@@ -294,9 +294,9 @@ describe('buildPageTree edge cases', () => {
 
   it('handles multiple pages sharing deep folder structure', () => {
     const pages: PageListItem[] = [
-      { slug: 'docs/api/auth', title: 'Auth API', updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
-      { slug: 'docs/api/users', title: 'Users API', updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
-      { slug: 'docs/guide', title: 'Guide', updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
+      { slug: 'docs/api/auth', title: { en: 'Auth API' }, updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
+      { slug: 'docs/api/users', title: { en: 'Users API' }, updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
+      { slug: 'docs/guide', title: { en: 'Guide' }, updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
     ]
 
     const tree = buildPageTree(pages)
@@ -309,18 +309,18 @@ describe('buildPageTree edge cases', () => {
     expect(api.isPage).toBe(false)
     expect(api.children).toHaveLength(2)
     expect(api.children[0].segment).toBe('auth')
-    expect(api.children[0].title).toBe('Auth API')
+    expect(api.children[0].title).toEqual({ en: 'Auth API' })
     expect(api.children[1].segment).toBe('users')
-    expect(api.children[1].title).toBe('Users API')
+    expect(api.children[1].title).toEqual({ en: 'Users API' })
 
     const guide = tree[0].children.find((c) => c.segment === 'guide')!
     expect(guide.isPage).toBe(true)
-    expect(guide.title).toBe('Guide')
+    expect(guide.title).toEqual({ en: 'Guide' })
   })
 
   it('preserves timestamps on page nodes', () => {
     const pages: PageListItem[] = [
-      { slug: 'about', title: 'About', updatedAt: '2025-06-15T12:30:00Z', createdAt: '2025-01-01T08:00:00Z' },
+      { slug: 'about', title: { en: 'About' }, updatedAt: '2025-06-15T12:30:00Z', createdAt: '2025-01-01T08:00:00Z' },
     ]
 
     const tree = buildPageTree(pages)
@@ -330,7 +330,7 @@ describe('buildPageTree edge cases', () => {
 
   it('virtual folder nodes have null timestamps', () => {
     const pages: PageListItem[] = [
-      { slug: 'blog/post', title: 'Post', updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
+      { slug: 'blog/post', title: { en: 'Post' }, updatedAt: '2025-01-01T00:00:00Z', createdAt: '2025-01-01T00:00:00Z' },
     ]
 
     const tree = buildPageTree(pages)

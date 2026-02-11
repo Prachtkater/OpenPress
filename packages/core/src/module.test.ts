@@ -169,11 +169,11 @@ describe('@openpress/core module', () => {
       expect(pages[1].path).toBe('/admin/:slug(.*)*')
     })
 
-    it('registers all 12 server API handlers (11 core + 1 features)', async () => {
+    it('registers all 13 server API handlers (12 core + 1 features)', async () => {
       const nuxt = createMockNuxt()
       await mod.setup(mod.defaults, nuxt as any)
 
-      expect(addServerHandlerCalls.length).toBe(12)
+      expect(addServerHandlerCalls.length).toBe(13)
     })
 
     it('registers pages API routes', async () => {

@@ -331,7 +331,9 @@ describe("API Handler Logic", () => {
     });
 
     it("ValidationError should map to 422", async () => {
-      const page = makePage({ title: { en: "" } });
+      const page = makePage();
+      // Use structurally invalid title (plain string instead of LocalizedString)
+      (page as any).title = "plain string";
       try {
         await engine.writePage("bad", page);
         expect(true).toBe(false);

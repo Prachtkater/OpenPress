@@ -1,18 +1,24 @@
 {
-  "id": "01JAAAAAAAAAAAAAAAAAAAAAA1",
+  "id": "01JKQNP000000000000000HOME",
   "slug": "index",
-  "title": "Naturgarten Design & Planung",
+  "title": {
+    "en": "Naturgarten Berlin – Ecological Garden Design",
+    "de": "Naturgarten Berlin – Ökologische Gartengestaltung"
+  },
   "meta": {
-    "description": "Ihr Partner für ökologische Gartengestaltung in Berlin. Wir schaffen Lebensräume für Mensch und Natur."
+    "description": {
+      "en": "Naturgarten Berlin creates ecological gardens that provide habitats for people and nature. Planning, planting and care of natural gardens in Berlin and Brandenburg.",
+      "de": "Naturgarten Berlin gestaltet ökologische Gärten, die Lebensräume für Mensch und Natur schaffen. Planung, Bepflanzung und Pflege naturnaher Gärten in Berlin und Brandenburg."
+    }
   },
   "sections": [
     {
-      "id": "01J-HERO-01",
+      "id": "01JKQNP0000000000000S0101",
       "type": "hero",
       "slots": {
         "default": [
           {
-            "id": "01J-H1-01",
+            "id": "01JKQNP00000000000B010101",
             "type": "heading",
             "props": {
               "text": "Naturnah. Ästhetisch. Lebendig.",
@@ -20,16 +26,216 @@
             }
           },
           {
-            "id": "01J-P-01",
+            "id": "01JKQNP00000000000B010102",
             "type": "paragraph",
             "props": {
-              "text": "Gestalten Sie mit uns Ihren persönlichen Rückzugsort, der nicht nur schön aussieht, sondern auch Bienen, Schmetterlingen und Vögeln ein Zuhause bietet."
+              "text": "Wir gestalten Gärten, die nicht nur schön aussehen, sondern echte Ökosysteme sind – Lebensräume für Wildbienen, Schmetterlinge, Vögel und Sie selbst. Seit über 15 Jahren verwandeln wir Flächen in Berlin und Brandenburg in blühende Naturoasen."
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B010103",
+            "type": "button",
+            "props": {
+              "text": "Kostenloses Erstgespräch vereinbaren",
+              "href": "/kontakt",
+              "variant": "primary"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "01JKQNP0000000000000S0102",
+      "type": "features",
+      "slots": {
+        "default": [
+          {
+            "id": "01JKQNP00000000000B010201",
+            "type": "heading",
+            "props": {
+              "text": "Was wir für Sie tun",
+              "level": 2
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B010202",
+            "type": "paragraph",
+            "props": {
+              "text": "Von der ersten Idee bis zum fertigen Garten – wir begleiten Sie durch jeden Schritt der ökologischen Gartengestaltung."
+            }
+          }
+        ],
+        "items": [
+          {
+            "id": "01JKQNP00000000000B010203",
+            "type": "feature-card",
+            "props": {
+              "title": "Naturnahe Gartenplanung",
+              "description": "Individuelle Gestaltungskonzepte, die Ästhetik und Ökologie vereinen. Wir analysieren Ihren Standort, Bodenverhältnisse und Lichtverhältnisse für ein maßgeschneidertes Gartenkonzept.",
+              "icon": "leaf"
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B010204",
+            "type": "feature-card",
+            "props": {
+              "title": "Heimische Bepflanzung",
+              "description": "Pflanzkonzepte mit regionalen Wildstauden, Gehölzen und Kräutern. Unsere Pflanzpläne fördern die lokale Biodiversität und sind an das Berliner Klima perfekt angepasst.",
+              "icon": "flower"
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B010205",
+            "type": "feature-card",
+            "props": {
+              "title": "Wasser & Naturteiche",
+              "description": "Naturnahe Teiche, Bachläufe und Regenwassermanagement. Wir schaffen Wasserelemente, die Amphibien, Libellen und Vögel anziehen und Ihren Garten bereichern.",
+              "icon": "droplet"
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B010206",
+            "type": "feature-card",
+            "props": {
+              "title": "Ökologische Pflege",
+              "description": "Nachhaltige Gartenpflege ohne Pestizide und Kunstdünger. Wir arbeiten mit der Natur – nicht gegen sie – und schulen Sie im naturnahen Gärtnern.",
+              "icon": "recycle"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "01JKQNP0000000000000S0103",
+      "type": "content",
+      "slots": {
+        "default": [
+          {
+            "id": "01JKQNP00000000000B010301",
+            "type": "heading",
+            "props": {
+              "text": "Warum ein Naturgarten?",
+              "level": 2
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B010302",
+            "type": "paragraph",
+            "props": {
+              "text": "In Zeiten des Insektensterbens und der Klimakrise sind naturnahe Gärten mehr als ein Trend – sie sind eine Notwendigkeit. Ein ökologisch gestalteter Garten bietet Nahrung und Unterschlupf für hunderte Tierarten, bindet CO₂, verbessert das Mikroklima und spart langfristig Wasser und Pflegekosten."
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B010303",
+            "type": "paragraph",
+            "props": {
+              "text": "Unsere Naturgärten sind keine verwilderten Flächen, sondern durchdacht gestaltete Landschaften. Wir verbinden die Dynamik der Natur mit klaren Strukturen, hochwertigen Materialien und einem Gespür für Schönheit, das sich durch alle Jahreszeiten zieht."
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B010304",
+            "type": "list",
+            "props": {
+              "items": [
+                "Bis zu 300 heimische Pflanzenarten pro Garten",
+                "Ganzjährig blühende Staudenmischungen",
+                "Natürliche Schädlingsregulation ohne Chemie",
+                "Bis zu 50 % weniger Wasserverbrauch als konventionelle Gärten",
+                "Lebensraum für Wildbienen, Igel, Eidechsen und Vögel"
+              ],
+              "variant": "check"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "01JKQNP0000000000000S0104",
+      "type": "testimonials",
+      "slots": {
+        "default": [
+          {
+            "id": "01JKQNP00000000000B010401",
+            "type": "heading",
+            "props": {
+              "text": "Das sagen unsere Kunden",
+              "level": 2
+            }
+          }
+        ],
+        "items": [
+          {
+            "id": "01JKQNP00000000000B010402",
+            "type": "testimonial",
+            "props": {
+              "quote": "Unser Garten in Pankow ist ein kleines Paradies geworden. Die Kinder lieben die Wildblumenwiese und wir haben diesen Sommer über 20 verschiedene Schmetterlingsarten gezählt.",
+              "author": "Familie Richter",
+              "location": "Berlin-Pankow"
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B010403",
+            "type": "testimonial",
+            "props": {
+              "quote": "Professionell, kreativ und mit echtem Herzblut. Das Team hat unsere Vorstellungen übertroffen und einen pflegeleichten Garten geschaffen, der jedes Jahr schöner wird.",
+              "author": "Dr. Martina Schäfer",
+              "location": "Potsdam"
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B010404",
+            "type": "testimonial",
+            "props": {
+              "quote": "Vom Konzept bis zur Umsetzung – alles aus einer Hand. Besonders beeindruckt hat mich die Expertise bei der Pflanzenauswahl für unseren schwierigen Lehmboden.",
+              "author": "Thomas Bergmann",
+              "location": "Berlin-Steglitz"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "01JKQNP0000000000000S0105",
+      "type": "cta",
+      "slots": {
+        "default": [
+          {
+            "id": "01JKQNP00000000000B010501",
+            "type": "heading",
+            "props": {
+              "text": "Bereit für Ihren Naturgarten?",
+              "level": 2
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B010502",
+            "type": "paragraph",
+            "props": {
+              "text": "Vereinbaren Sie ein kostenloses Erstgespräch. Wir besuchen Sie vor Ort, analysieren die Gegebenheiten und entwickeln gemeinsam eine Vision für Ihren Traumgarten."
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B010503",
+            "type": "button",
+            "props": {
+              "text": "Jetzt Kontakt aufnehmen",
+              "href": "/kontakt",
+              "variant": "primary"
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B010504",
+            "type": "button",
+            "props": {
+              "text": "Unsere Projekte ansehen",
+              "href": "/portfolio",
+              "variant": "secondary"
             }
           }
         ]
       }
     }
   ],
-  "updatedAt": "2026-02-11T13:15:00.000Z",
-  "createdAt": "2026-02-11T13:15:00.000Z"
+  "updatedAt": "2026-02-11T14:00:00.000Z",
+  "createdAt": "2026-02-11T14:00:00.000Z"
 }

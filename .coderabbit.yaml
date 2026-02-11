@@ -1,21 +1,120 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+
 language: de-DE
+tone_instructions: "Konstruktiv und pragmatisch. Fokus auf Verbesserungen, nicht auf Kritik."
+early_access: false
+
 reviews:
   profile: chill
-  request_changes_workflow: false
+  request_changes_workflow: true
   high_level_summary: true
-  poem: false
+  high_level_summary_in_walkthrough: true
   review_status: true
+  commit_status: true
+  fail_commit_status: false
   collapse_walkthrough: false
+  changed_files_summary: true
+  sequence_diagrams: true
+  estimate_code_review_effort: true
+  assess_linked_issues: true
+  related_issues: true
+  related_prs: true
+  poem: false
+  suggested_labels: false
+  suggested_reviewers: false
+  enable_prompt_for_ai_agents: true
+
+  auto_review:
+    enabled: true
+    auto_incremental_review: true
+    drafts: false
+    ignore_title_keywords:
+      - "WIP"
+      - "DO NOT MERGE"
+
+  path_filters:
+    - "!**/*.lock"
+    - "!**/bun.lockb"
+    - "!**/dist/**"
+    - "!**/.nuxt/**"
+    - "!**/.output/**"
+    - "!**/node_modules/**"
+
   path_instructions:
     - path: "packages/core/**"
-      instructions: "Core module - achte auf Nuxt-Konventionen und TypeScript-Strenge"
+      instructions: >
+        Core Nuxt Module - achte auf Nuxt-Konventionen, TypeScript-Strenge,
+        korrekte Module-Hooks und Runtime-Server-Kompatibilitaet.
+    - path: "packages/schemas/**"
+      instructions: >
+        Schema-Definitionen - achte auf Zod Best Practices, z.output<> statt z.infer<>,
+        ZodType<T, any, any> fuer generische Parameter, und Type-Safety.
     - path: "packages/poc-*/**"
-      instructions: "POC Pakete - fokus auf Machbarkeit, Code-Qualitaet ist sekundaer"
-    - path: "schemas/**"
-      instructions: "Schema-Definitionen - achte auf Zod Best Practices und Type-Safety"
+      instructions: >
+        POC Pakete - Fokus auf Machbarkeit und Konzeptvalidierung.
+        Code-Qualitaet ist sekundaer, Funktionalitaet primaer.
     - path: "packages/theme-*/**"
-      instructions: "Themes - strikte Trennung von Logik und Visuals pruefen"
+      instructions: >
+        Themes - strikte Trennung von Logik und Visuals pruefen.
+        Themes duerfen keine Business-Logik enthalten.
     - path: "packages/feature-*/**"
-      instructions: "Features - Feature-Manifest Konventionen einhalten"
+      instructions: >
+        Features - Feature-Manifest Konventionen einhalten.
+        Jedes Feature muss ein manifest.ts exportieren.
+    - path: "packages/ui/**"
+      instructions: >
+        UI-Komponenten - Glow-Frame Konventionen, Theme-Engine Kompatibilitaet,
+        Slot-basierte Architektur pruefen.
+    - path: "playground/**"
+      instructions: >
+        Playground - Nuxt Dev-Umgebung fuer Demos und Tests.
+        Keine produktionsrelevanten Patterns hier erzwingen.
+
+  finishing_touches:
+    docstrings:
+      enabled: false
+    unit_tests:
+      enabled: true
+
+  tools:
+    eslint:
+      enabled: true
+    biome:
+      enabled: true
+    markdownlint:
+      enabled: true
+    yamllint:
+      enabled: true
+    shellcheck:
+      enabled: true
+    gitleaks:
+      enabled: true
+    semgrep:
+      enabled: true
+    actionlint:
+      enabled: true
+
 chat:
   auto_reply: true
+
+knowledge_base:
+  opt_out: false
+  web_search:
+    enabled: true
+  learnings:
+    scope: auto
+  issues:
+    scope: auto
+  pull_requests:
+    scope: auto
+
+code_generation:
+  docstrings:
+    language: de-DE
+  unit_tests:
+    path_instructions:
+      - path: "packages/**"
+        instructions: >
+          Tests mit Bun Test Runner (bun:test).
+          Verwende describe/it/expect Pattern.
+          Mock-Module mit mock.module() wenn noetig.

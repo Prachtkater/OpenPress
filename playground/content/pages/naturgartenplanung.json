@@ -1,0 +1,170 @@
+{
+  "id": "01JKQNP000000000000000PLAN",
+  "slug": "naturgartenplanung",
+  "title": {
+    "en": "Natural Garden Planning – Individual Garden Concepts",
+    "de": "Naturgartenplanung – Individuelle Gartenkonzepte"
+  },
+  "meta": {
+    "description": {
+      "en": "Professional natural garden planning in Berlin and Brandenburg. Site analysis, design planning and planting concepts for your individual ecological garden.",
+      "de": "Professionelle Naturgartenplanung in Berlin und Brandenburg. Standortanalyse, Entwurfsplanung und Pflanzkonzepte für Ihren individuellen, ökologischen Garten."
+    }
+  },
+  "sections": [
+    {
+      "id": "01JKQNP0000000000000S0401",
+      "type": "hero",
+      "slots": {
+        "default": [
+          {
+            "id": "01JKQNP00000000000B040101",
+            "type": "heading",
+            "props": {
+              "text": "Naturgartenplanung",
+              "level": 1
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B040102",
+            "type": "paragraph",
+            "props": {
+              "text": "Jeder Naturgarten beginnt mit einem durchdachten Plan. Ich analysiere Ihren Standort, verstehe Ihre Wünsche und entwickle ein ganzheitliches Konzept, das Ästhetik und Ökologie in Einklang bringt."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "01JKQNP0000000000000S0402",
+      "type": "content",
+      "slots": {
+        "default": [
+          {
+            "id": "01JKQNP00000000000B040201",
+            "type": "heading",
+            "props": {
+              "text": "Standortanalyse & Bestandsaufnahme",
+              "level": 2
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B040202",
+            "type": "paragraph",
+            "props": {
+              "text": "Der erste Schritt jeder Planung ist eine gründliche Analyse vor Ort. Ich untersuche Bodenbeschaffenheit, Lichtverhältnisse, vorhandene Vegetation, das lokale Mikroklima und die hydrologischen Gegebenheiten Ihres Grundstücks. Diese Daten bilden die Grundlage für ein Gartenkonzept, das perfekt auf Ihren Standort abgestimmt ist."
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B040203",
+            "type": "paragraph",
+            "props": {
+              "text": "Dabei berücksichtige ich auch die Umgebung: Nachbargärten, angrenzende Landschaften und bestehende ökologische Vernetzungen. So entsteht ein Garten, der sich nahtlos in seinen Kontext einfügt und zur Biotopvernetzung in Ihrer Nachbarschaft beiträgt."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "01JKQNP0000000000000S0403",
+      "type": "content",
+      "slots": {
+        "default": [
+          {
+            "id": "01JKQNP00000000000B040301",
+            "type": "heading",
+            "props": {
+              "text": "Entwurfsplanung & Pflanzkonzepte",
+              "level": 2
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B040302",
+            "type": "paragraph",
+            "props": {
+              "text": "Auf Basis der Standortanalyse entwickle ich einen detaillierten Entwurf für Ihren Naturgarten. Der Plan umfasst Raumaufteilung, Wegeführung, Pflanzflächen, Wasserelemente und Aufenthaltsbereiche – alles aufeinander abgestimmt und ökologisch durchdacht."
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B040303",
+            "type": "list",
+            "props": {
+              "items": [
+                "Bestandsaufnahme und Standortanalyse vor Ort",
+                "Entwurfsplanung mit maßstäblichen Zeichnungen",
+                "Detaillierte Pflanzpläne mit heimischen Artenlisten",
+                "Kostenermittlung und realistische Zeitplanung",
+                "Begleitung der Umsetzung durch Fachbetriebe"
+              ],
+              "variant": "check"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "01JKQNP0000000000000S0404",
+      "type": "content",
+      "slots": {
+        "default": [
+          {
+            "id": "01JKQNP00000000000B040401",
+            "type": "heading",
+            "props": {
+              "text": "Für jede Größe und jedes Budget",
+              "level": 2
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B040402",
+            "type": "paragraph",
+            "props": {
+              "text": "Ob kleiner Reihenhausgarten, Innenhof, Vorgarten oder weitläufiges Parkgelände – ich plane für jede Größe und jedes Budget. Meine Entwürfe berücksichtigen die natürliche Entwicklung der Pflanzen über Jahre hinweg, sodass Ihr Garten mit der Zeit immer schöner und artenreicher wird."
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B040403",
+            "type": "paragraph",
+            "props": {
+              "text": "Auch Teilprojekte sind möglich: eine Wildblumenwiese statt Rasen, ein Staudenbeet vor der Terrasse oder die ökologische Umgestaltung einer einzelnen Gartenecke. Jeder Quadratmeter naturnaher Garten zählt."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "01JKQNP0000000000000S0405",
+      "type": "cta",
+      "slots": {
+        "default": [
+          {
+            "id": "01JKQNP00000000000B040501",
+            "type": "heading",
+            "props": {
+              "text": "Ihr Naturgarten beginnt hier",
+              "level": 2
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B040502",
+            "type": "paragraph",
+            "props": {
+              "text": "Vereinbaren Sie ein kostenloses Erstgespräch. Ich besuche Sie vor Ort und wir entwickeln gemeinsam eine Vision für Ihren Traumgarten."
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B040503",
+            "type": "button",
+            "props": {
+              "text": "Erstgespräch vereinbaren",
+              "href": "/naturgartenberatung",
+              "variant": "primary"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "updatedAt": "2026-02-11T14:00:00.000Z",
+  "createdAt": "2026-02-11T14:00:00.000Z"
+}

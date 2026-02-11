@@ -1,0 +1,187 @@
+{
+  "id": "01JKQNP000000000000000KONT",
+  "slug": "kontakt",
+  "title": {
+    "en": "Contact – Get in Touch With Naturgarten Berlin",
+    "de": "Kontakt – Naturgarten Berlin erreichen"
+  },
+  "meta": {
+    "description": {
+      "en": "Contact Naturgarten Berlin for a free initial consultation. Ecological garden design, planning and care in Berlin and Brandenburg.",
+      "de": "Kontaktieren Sie Naturgarten Berlin für ein kostenloses Erstgespräch. Ökologische Gartengestaltung, Planung und Pflege in Berlin und Brandenburg."
+    }
+  },
+  "sections": [
+    {
+      "id": "01JKQNP0000000000000S0501",
+      "type": "hero",
+      "slots": {
+        "default": [
+          {
+            "id": "01JKQNP00000000000B050101",
+            "type": "heading",
+            "props": {
+              "text": "Kontakt",
+              "level": 1
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B050102",
+            "type": "paragraph",
+            "props": {
+              "text": "Sie haben Fragen, möchten ein Projekt besprechen oder einen Termin in unserem Schaugarten vereinbaren? Wir freuen uns auf Ihre Nachricht."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "01JKQNP0000000000000S0502",
+      "type": "content",
+      "slots": {
+        "default": [
+          {
+            "id": "01JKQNP00000000000B050201",
+            "type": "heading",
+            "props": {
+              "text": "So erreichen Sie uns",
+              "level": 2
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B050202",
+            "type": "paragraph",
+            "props": {
+              "text": "Naturgarten Berlin befindet sich im grünen Herzen von Pankow. Unser Büro und Schaugarten liegen direkt nebeneinander – so können Sie sich bei einem Besuch gleich inspirieren lassen."
+            }
+          }
+        ],
+        "details": [
+          {
+            "id": "01JKQNP00000000000B050203",
+            "type": "contact-detail",
+            "props": {
+              "label": "Adresse",
+              "value": "Naturgarten Berlin GmbH\nBreite Straße 28\n13187 Berlin-Pankow",
+              "icon": "map-pin"
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B050204",
+            "type": "contact-detail",
+            "props": {
+              "label": "Telefon",
+              "value": "+49 30 1234 5678",
+              "href": "tel:+493012345678",
+              "icon": "phone"
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B050205",
+            "type": "contact-detail",
+            "props": {
+              "label": "E-Mail",
+              "value": "hallo@naturgarten-berlin.de",
+              "href": "mailto:hallo@naturgarten-berlin.de",
+              "icon": "mail"
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B050206",
+            "type": "contact-detail",
+            "props": {
+              "label": "Öffnungszeiten",
+              "value": "Mo–Fr: 8:00–17:00 Uhr\nSchaugarten: Sa 10:00–14:00 Uhr (April–Oktober)",
+              "icon": "clock"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "01JKQNP0000000000000S0503",
+      "type": "content",
+      "slots": {
+        "default": [
+          {
+            "id": "01JKQNP00000000000B050301",
+            "type": "heading",
+            "props": {
+              "text": "Kostenloses Erstgespräch",
+              "level": 2
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B050302",
+            "type": "paragraph",
+            "props": {
+              "text": "Jedes Projekt beginnt mit einem persönlichen Gespräch. In einem kostenlosen und unverbindlichen Erstgespräch lernen wir Ihre Wünsche kennen, besprechen die Möglichkeiten und geben eine erste Einschätzung zu Umfang und Kosten."
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B050303",
+            "type": "paragraph",
+            "props": {
+              "text": "Das Erstgespräch findet wahlweise bei Ihnen vor Ort, in unserem Büro in Pankow oder als Videokonferenz statt. Bitte halten Sie – falls vorhanden – Fotos Ihres Gartens, einen Grundriss und Ihre wichtigsten Wünsche bereit."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "01JKQNP0000000000000S0504",
+      "type": "contact-form",
+      "slots": {
+        "default": [
+          {
+            "id": "01JKQNP00000000000B050401",
+            "type": "heading",
+            "props": {
+              "text": "Schreiben Sie uns",
+              "level": 2
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B050402",
+            "type": "paragraph",
+            "props": {
+              "text": "Füllen Sie das Kontaktformular aus und wir melden uns innerhalb von zwei Werktagen bei Ihnen. Alternativ erreichen Sie uns telefonisch oder per E-Mail."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "01JKQNP0000000000000S0505",
+      "type": "content",
+      "slots": {
+        "default": [
+          {
+            "id": "01JKQNP00000000000B050501",
+            "type": "heading",
+            "props": {
+              "text": "Anfahrt",
+              "level": 2
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B050502",
+            "type": "paragraph",
+            "props": {
+              "text": "Unser Büro und Schaugarten befinden sich in Berlin-Pankow, gut erreichbar mit öffentlichen Verkehrsmitteln. Die nächste S-Bahn-Station ist Pankow (S2, S8), von dort sind es etwa 10 Minuten zu Fuß. Parkplätze sind in der Breite Straße vorhanden."
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B050503",
+            "type": "paragraph",
+            "props": {
+              "text": "Unser Einzugsgebiet umfasst ganz Berlin und Brandenburg. Für Projekte außerhalb von Berlin berechnen wir eine Anfahrtspauschale. Sprechen Sie uns einfach an."
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "updatedAt": "2026-02-11T14:00:00.000Z",
+  "createdAt": "2026-02-11T14:00:00.000Z"
+}

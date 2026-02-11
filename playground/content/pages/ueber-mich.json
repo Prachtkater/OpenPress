@@ -1,0 +1,139 @@
+{
+  "id": "01JKQNP000000000000000UEBM",
+  "slug": "ueber-mich",
+  "title": {
+    "en": "About Me – Ecological Garden Designer",
+    "de": "Über mich – Ökologische Gartengestalterin"
+  },
+  "meta": {
+    "description": {
+      "en": "Learn more about me and my passion for ecological garden design. For over 15 years, I have been creating natural gardens in Berlin and Brandenburg.",
+      "de": "Erfahren Sie mehr über mich und meine Leidenschaft für ökologische Gartengestaltung. Seit über 15 Jahren gestalte ich naturnahe Gärten in Berlin und Brandenburg."
+    }
+  },
+  "sections": [
+    {
+      "id": "01JKQNP0000000000000S0301",
+      "type": "hero",
+      "slots": {
+        "default": [
+          {
+            "id": "01JKQNP00000000000B030101",
+            "type": "heading",
+            "props": {
+              "text": "Über mich",
+              "level": 1
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B030102",
+            "type": "paragraph",
+            "props": {
+              "text": "Mein Name ist Anna Lindgren. Seit über 15 Jahren gestalte ich naturnahe Gärten in Berlin und Brandenburg. Meine Leidenschaft gilt der Verbindung von Ästhetik und Ökologie – Gärten, die Menschen begeistern und gleichzeitig Lebensräume für die heimische Tier- und Pflanzenwelt schaffen."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "01JKQNP0000000000000S0302",
+      "type": "content",
+      "slots": {
+        "default": [
+          {
+            "id": "01JKQNP00000000000B030201",
+            "type": "heading",
+            "props": {
+              "text": "Mein Werdegang",
+              "level": 2
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B030202",
+            "type": "paragraph",
+            "props": {
+              "text": "Nach meinem Studium der Landschaftsarchitektur an der TU Berlin und einer Weiterbildung in ökologischer Gartengestaltung habe ich 2010 Naturgarten Berlin gegründet. Seitdem habe ich über 200 Gärten in naturnahe Oasen verwandelt."
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B030203",
+            "type": "paragraph",
+            "props": {
+              "text": "Meine Arbeit wurde mehrfach ausgezeichnet, unter anderem mit dem Berliner Umweltpreis und dem Deutschen Gartenbaupreis für nachhaltige Gartengestaltung. Ich bin Mitglied im Naturgarten e.V. und engagiere mich für die Förderung urbaner Biodiversität."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "01JKQNP0000000000000S0303",
+      "type": "content",
+      "slots": {
+        "default": [
+          {
+            "id": "01JKQNP00000000000B030301",
+            "type": "heading",
+            "props": {
+              "text": "Meine Philosophie",
+              "level": 2
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B030302",
+            "type": "paragraph",
+            "props": {
+              "text": "Ich glaube, dass jeder Garten – egal wie klein – einen Beitrag zur Erhaltung unserer Natur leisten kann. Ein Naturgarten ist kein Kompromiss zwischen Schönheit und Ökologie, sondern die perfekte Vereinigung beider. Die Natur ist die beste Gestalterin, und meine Aufgabe ist es, ihre Prinzipien in Ihren Garten zu übersetzen."
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B030303",
+            "type": "list",
+            "props": {
+              "items": [
+                "Arbeiten mit der Natur, nicht gegen sie",
+                "Heimische Pflanzen vor exotischen Arten",
+                "Langfristig denken – Gärten, die mit der Zeit schöner werden",
+                "Wissen teilen und zum naturnahen Gärtnern inspirieren"
+              ],
+              "variant": "check"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "01JKQNP0000000000000S0304",
+      "type": "cta",
+      "slots": {
+        "default": [
+          {
+            "id": "01JKQNP00000000000B030401",
+            "type": "heading",
+            "props": {
+              "text": "Lernen wir uns kennen",
+              "level": 2
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B030402",
+            "type": "paragraph",
+            "props": {
+              "text": "Ich freue mich darauf, Sie und Ihren Garten kennenzulernen. Vereinbaren Sie ein unverbindliches Erstgespräch."
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B030403",
+            "type": "button",
+            "props": {
+              "text": "Kontakt aufnehmen",
+              "href": "/naturgartenberatung",
+              "variant": "primary"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "updatedAt": "2026-02-11T14:00:00.000Z",
+  "createdAt": "2026-02-11T14:00:00.000Z"
+}

@@ -1,6 +1,6 @@
 import { FeatureManifestSchema, type FeatureManifest } from '@openpress/schemas'
 import { join } from 'node:path'
-import { existsSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 
 const MANIFEST_FILENAME = 'openpress.feature.json'
 
@@ -48,14 +48,12 @@ export function resolvePackageDir(moduleName: string, rootDir: string): string |
  * Returns the parsed manifest or throws with a descriptive error.
  */
 export async function readManifest(manifestPath: string): Promise<FeatureManifest> {
-  const file = Bun.file(manifestPath)
-  const exists = await file.exists()
-
-  if (!exists) {
+  if (!existsSync(manifestPath)) {
     throw new Error(`Manifest not found: ${manifestPath}`)
   }
 
-  const raw = await file.json()
+  const rawContent = readFileSync(manifestPath, 'utf-8')
+  const raw = JSON.parse(rawContent)
   const result = FeatureManifestSchema.safeParse(raw)
 
   if (!result.success) {
@@ -93,10 +91,8 @@ export async function discoverFeatures(
     }
 
     const manifestPath = join(packageDir, MANIFEST_FILENAME)
-    const file = Bun.file(manifestPath)
-    const exists = await file.exists()
 
-    if (!exists) {
+    if (!existsSync(manifestPath)) {
       // No manifest → not an OpenPress feature. Skip silently.
       continue
     }

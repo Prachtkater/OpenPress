@@ -7,17 +7,41 @@
       "children": []
     },
     {
-      "label": "Editor",
-      "href": "/_edit",
+      "label": "Über mich",
+      "href": "/ueber-mich",
+      "target": "_self",
+      "children": []
+    },
+    {
+      "label": "Leistungen",
+      "href": "/leistungen",
+      "target": "_self",
+      "children": []
+    },
+    {
+      "label": "Naturgartenplanung",
+      "href": "/naturgartenplanung",
+      "target": "_self",
+      "children": []
+    },
+    {
+      "label": "Naturgartenberatung",
+      "href": "/naturgartenberatung",
       "target": "_self",
       "children": []
     }
   ],
   "footer": [
     {
-      "label": "GitHub",
-      "href": "https://github.com/Prachtkater/OpenPress",
-      "target": "_blank",
+      "label": "Impressum",
+      "href": "/impressum",
+      "target": "_self",
+      "children": []
+    },
+    {
+      "label": "Datenschutz",
+      "href": "/datenschutz",
+      "target": "_self",
       "children": []
     }
   ]

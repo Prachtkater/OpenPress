@@ -1,0 +1,258 @@
+{
+  "id": "01JKQNP000000000000000UEBE",
+  "slug": "ueber-uns",
+  "title": {
+    "en": "About Us – The Team Behind Naturgarten Berlin",
+    "de": "Über uns – Das Team hinter Naturgarten Berlin"
+  },
+  "meta": {
+    "description": {
+      "en": "Learn about Naturgarten Berlin: our philosophy, our team and our passion for ecological garden design. Since 2010 in Berlin and Brandenburg.",
+      "de": "Erfahren Sie mehr über Naturgarten Berlin: unsere Philosophie, unser Team und unsere Leidenschaft für ökologische Gartengestaltung. Seit 2010 in Berlin und Brandenburg."
+    }
+  },
+  "sections": [
+    {
+      "id": "01JKQNP0000000000000S0401",
+      "type": "hero",
+      "slots": {
+        "default": [
+          {
+            "id": "01JKQNP00000000000B040101",
+            "type": "heading",
+            "props": {
+              "text": "Über uns",
+              "level": 1
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B040102",
+            "type": "paragraph",
+            "props": {
+              "text": "Wir sind ein Team aus Landschaftsarchitekten, Gärtnern und Ökologen, die eine gemeinsame Vision teilen: Gärten zu schaffen, die Mensch und Natur gleichermaßen bereichern."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "01JKQNP0000000000000S0402",
+      "type": "content",
+      "slots": {
+        "default": [
+          {
+            "id": "01JKQNP00000000000B040201",
+            "type": "heading",
+            "props": {
+              "text": "Unsere Geschichte",
+              "level": 2
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B040202",
+            "type": "paragraph",
+            "props": {
+              "text": "Naturgarten Berlin wurde 2010 von der Landschaftsarchitektin Clara Weißbach gegründet. Was als Ein-Frau-Betrieb mit einer Leidenschaft für heimische Wildpflanzen begann, ist heute ein zehnköpfiges Team, das jährlich über 30 Projekte in Berlin und Brandenburg realisiert."
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B040203",
+            "type": "paragraph",
+            "props": {
+              "text": "Der Auslöser war ein Erlebnis in Claras Kindheit: der verwilderte Garten ihrer Großmutter in der Uckermark, in dem es von Schmetterlingen, Fröschen und Glühwürmchen wimmelte. Dieses Naturerlebnis wollte sie zurück in die Stadt bringen – und damit den Grundstein für eine neue Art der Gartengestaltung legen."
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B040204",
+            "type": "paragraph",
+            "props": {
+              "text": "Heute ist Naturgarten Berlin einer der führenden Betriebe für ökologische Gartengestaltung in der Hauptstadtregion. Wir sind Mitglied im Naturgarten e.V., im BUND Berlin und arbeiten eng mit der Berliner Stiftung Naturschutz zusammen."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "01JKQNP0000000000000S0403",
+      "type": "content",
+      "slots": {
+        "default": [
+          {
+            "id": "01JKQNP00000000000B040301",
+            "type": "heading",
+            "props": {
+              "text": "Unsere Philosophie",
+              "level": 2
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B040302",
+            "type": "paragraph",
+            "props": {
+              "text": "Wir glauben, dass ein Garten mehr sein kann als eine dekorative Fläche. Er kann ein Ökosystem sein, das Nahrung produziert, Wasser reinigt, Luft filtert und hunderten Arten ein Zuhause bietet – und dabei wunderschön aussieht."
+            }
+          }
+        ],
+        "values": [
+          {
+            "id": "01JKQNP00000000000B040303",
+            "type": "value-card",
+            "props": {
+              "title": "Biodiversität fördern",
+              "description": "Jeder Garten ist ein potenzielles Biotop. Wir maximieren die Artenvielfalt durch gezielte Pflanzenauswahl, Totholzstrukturen, Steinhaufen und Wasserstellen – Mikrohabitate, die das Leben zurück in die Stadt bringen."
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B040304",
+            "type": "value-card",
+            "props": {
+              "title": "Regional denken",
+              "description": "Wir verwenden ausschließlich heimische Pflanzen aus regionaler Herkunft und arbeiten mit lokalen Handwerkern und Materiallieferanten. Kurze Wege, starke Wurzeln."
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B040305",
+            "type": "value-card",
+            "props": {
+              "title": "Langfristig gestalten",
+              "description": "Unsere Gärten sind für Jahrzehnte konzipiert. Wir denken in natürlichen Sukzessionsstufen und gestalten Räume, die mit der Zeit immer reicher und schöner werden."
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B040306",
+            "type": "value-card",
+            "props": {
+              "title": "Wissen teilen",
+              "description": "Wir geben unser Wissen weiter – in Workshops, Vorträgen und individuellen Beratungen. Denn je mehr Menschen naturnah gärtnern, desto größer wird der Effekt für unsere Umwelt."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "01JKQNP0000000000000S0404",
+      "type": "team",
+      "slots": {
+        "default": [
+          {
+            "id": "01JKQNP00000000000B040401",
+            "type": "heading",
+            "props": {
+              "text": "Unser Team",
+              "level": 2
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B040402",
+            "type": "paragraph",
+            "props": {
+              "text": "Hinter jedem Naturgarten stehen Menschen mit Fachwissen, Kreativität und einer tiefen Verbundenheit zur Natur."
+            }
+          }
+        ],
+        "members": [
+          {
+            "id": "01JKQNP00000000000B040403",
+            "type": "team-member",
+            "props": {
+              "name": "Clara Weißbach",
+              "role": "Gründerin & Landschaftsarchitektin",
+              "description": "Studium der Landschaftsarchitektur an der TU Berlin. Spezialisiert auf ökologische Freiraumplanung und Biodiversitätskonzepte. Zertifizierte Naturgarten-Planerin."
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B040404",
+            "type": "team-member",
+            "props": {
+              "name": "Jonas Erdmann",
+              "role": "Gärtnermeister & Teichbauer",
+              "description": "Ausgebildeter Landschaftsgärtner mit Meisterbrief. Experte für Naturteiche, Schwimmteiche und aquatische Ökosysteme. Seit 2014 im Team."
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B040405",
+            "type": "team-member",
+            "props": {
+              "name": "Dr. Lena Mohrbach",
+              "role": "Ökologin & Pflanzplanerin",
+              "description": "Promotion in Vegetationsökologie an der HU Berlin. Entwickelt Pflanzkonzepte auf Basis wissenschaftlicher Standortanalysen. Leidenschaftliche Wildbienenexpertin."
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B040406",
+            "type": "team-member",
+            "props": {
+              "name": "Mehmet Yılmaz",
+              "role": "Vorarbeiter & Landschaftsgärtner",
+              "description": "Über 20 Jahre Erfahrung im Garten- und Landschaftsbau. Spezialist für Natursteinarbeiten, Trockenmauern und Wegebau mit regionalen Materialien."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "01JKQNP0000000000000S0405",
+      "type": "content",
+      "slots": {
+        "default": [
+          {
+            "id": "01JKQNP00000000000B040501",
+            "type": "heading",
+            "props": {
+              "text": "Zertifizierungen & Mitgliedschaften",
+              "level": 2
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B040502",
+            "type": "list",
+            "props": {
+              "items": [
+                "Naturgarten e.V. – Zertifizierter Naturgarten-Fachbetrieb",
+                "BUND Berlin e.V. – Fördermitglied",
+                "Berliner Stiftung Naturschutz – Kooperationspartner",
+                "Deutsche Gesellschaft für Gartenkunst und Landschaftskultur (DGGL)",
+                "Handwerkskammer Berlin – Eingetragener Meisterbetrieb"
+              ],
+              "variant": "default"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "01JKQNP0000000000000S0406",
+      "type": "cta",
+      "slots": {
+        "default": [
+          {
+            "id": "01JKQNP00000000000B040601",
+            "type": "heading",
+            "props": {
+              "text": "Lernen Sie uns kennen",
+              "level": 2
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B040602",
+            "type": "paragraph",
+            "props": {
+              "text": "Besuchen Sie uns in unserem Schaugarten in Pankow oder vereinbaren Sie ein unverbindliches Gespräch. Wir freuen uns darauf, Sie und Ihren Garten kennenzulernen."
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B040603",
+            "type": "button",
+            "props": {
+              "text": "Kontakt aufnehmen",
+              "href": "/kontakt",
+              "variant": "primary"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "updatedAt": "2026-02-11T14:00:00.000Z",
+  "createdAt": "2026-02-11T14:00:00.000Z"
+}

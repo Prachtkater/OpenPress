@@ -1,5 +1,7 @@
 import { type ZodSchema } from "zod";
 import { join } from "path";
+import { readFile, writeFile, access } from "fs/promises";
+import { constants } from "fs";
 
 export class FileIOError extends Error {
   constructor(
@@ -30,16 +32,16 @@ export async function readJSON<T>(
   filePath: string,
   schema: ZodSchema<T>
 ): Promise<T> {
-  const file = Bun.file(filePath);
-  const exists = await file.exists();
-
-  if (!exists) {
+  try {
+    await access(filePath, constants.F_OK);
+  } catch {
     throw new FileIOError(`File not found: ${filePath}`, filePath);
   }
 
   let raw: unknown;
   try {
-    raw = await file.json();
+    const content = await readFile(filePath, "utf-8");
+    raw = JSON.parse(content);
   } catch (err) {
     throw new FileIOError(`Failed to parse JSON: ${filePath}`, filePath, err);
   }
@@ -76,7 +78,7 @@ export async function writeJSON<T>(
   const json = JSON.stringify(result.data, null, 2) + "\n";
 
   try {
-    await Bun.write(filePath, json);
+    await writeFile(filePath, json, "utf-8");
   } catch (err) {
     throw new FileIOError(`Failed to write file: ${filePath}`, filePath, err);
   }
@@ -86,7 +88,12 @@ export async function writeJSON<T>(
  * Check if a file exists.
  */
 export async function fileExists(filePath: string): Promise<boolean> {
-  return Bun.file(filePath).exists();
+  try {
+    await access(filePath, constants.F_OK);
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 /**

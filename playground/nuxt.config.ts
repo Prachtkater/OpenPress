@@ -3,7 +3,6 @@ export default defineNuxtConfig({
     '@openpress/core',
     '@openpress/feature-contact-form',
     '@openpress/feature-booking',
-    '../packages/feature-media/src/module',
   ],
 
   openpress: {

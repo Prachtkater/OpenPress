@@ -1,0 +1,176 @@
+{
+  "id": "01JKQNP00000000000000BERAT",
+  "slug": "naturgartenberatung",
+  "title": {
+    "en": "Natural Garden Consulting – Expert Advice for Natural Gardening",
+    "de": "Naturgartenberatung – Fachberatung für naturnahes Gärtnern"
+  },
+  "meta": {
+    "description": {
+      "en": "Individual natural garden consulting in Berlin and Brandenburg. Conversion consulting, planting advice and workshops for natural, ecological gardening.",
+      "de": "Individuelle Naturgartenberatung in Berlin und Brandenburg. Umstellungsberatung, Pflanzberatung und Workshops für naturnahes, ökologisches Gärtnern."
+    }
+  },
+  "sections": [
+    {
+      "id": "01JKQNP0000000000000S0501",
+      "type": "hero",
+      "slots": {
+        "default": [
+          {
+            "id": "01JKQNP00000000000B050101",
+            "type": "heading",
+            "props": {
+              "text": "Naturgartenberatung",
+              "level": 1
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B050102",
+            "type": "paragraph",
+            "props": {
+              "text": "Sie möchten Ihren Garten naturnah umgestalten, wissen aber nicht, wo Sie anfangen sollen? Ich berate Sie individuell – ob bei der Pflanzenauswahl, der ökologischen Umstellung oder der Pflege Ihres bestehenden Naturgartens."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "01JKQNP0000000000000S0502",
+      "type": "content",
+      "slots": {
+        "default": [
+          {
+            "id": "01JKQNP00000000000B050201",
+            "type": "heading",
+            "props": {
+              "text": "Gartenberatung vor Ort",
+              "level": 2
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B050202",
+            "type": "paragraph",
+            "props": {
+              "text": "Bei einem Vor-Ort-Termin in Ihrem Garten analysiere ich die aktuelle Situation und gebe Ihnen konkrete Empfehlungen für die naturnahe Umgestaltung. Sie erhalten praktische Tipps, die Sie sofort umsetzen können – Schritt für Schritt, in Ihrem eigenen Tempo."
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B050203",
+            "type": "list",
+            "props": {
+              "items": [
+                "Analyse Ihres Gartens: Boden, Licht, vorhandene Pflanzen",
+                "Konkrete Pflanzempfehlungen für Ihren Standort",
+                "Tipps für die Umstellung auf pestizidfreie Pflege",
+                "Anleitung zum Anlegen von Wildblumenwiesen und Staudenbeeten",
+                "Schriftliche Zusammenfassung mit Maßnahmenplan"
+              ],
+              "variant": "check"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "01JKQNP0000000000000S0503",
+      "type": "content",
+      "slots": {
+        "default": [
+          {
+            "id": "01JKQNP00000000000B050301",
+            "type": "heading",
+            "props": {
+              "text": "Umstellungsberatung",
+              "level": 2
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B050302",
+            "type": "paragraph",
+            "props": {
+              "text": "Die Umstellung von einem konventionellen auf einen naturnahen Garten muss nicht radikal sein. Ich zeige Ihnen, wie Sie Stück für Stück mehr Natur in Ihren Garten bringen – ohne auf Ästhetik und Funktionalität zu verzichten."
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B050303",
+            "type": "paragraph",
+            "props": {
+              "text": "Von der Umwandlung des Rasens in eine blühende Wiese bis zur Integration von Totholz und Steinhaufen als Lebensraum für Insekten und Eidechsen – jede Maßnahme ist ein Gewinn für die Natur und eine Bereicherung für Ihren Garten."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "01JKQNP0000000000000S0504",
+      "type": "content",
+      "slots": {
+        "default": [
+          {
+            "id": "01JKQNP00000000000B050401",
+            "type": "heading",
+            "props": {
+              "text": "Workshops & Kurse",
+              "level": 2
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B050402",
+            "type": "paragraph",
+            "props": {
+              "text": "In meinen Workshops lernen Sie die Grundlagen des naturnahen Gärtnerns direkt in der Praxis. Die Kurse finden in meinem Schaugarten in Berlin-Pankow statt und richten sich an Hobbygärtner aller Erfahrungsstufen."
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B050403",
+            "type": "list",
+            "props": {
+              "items": [
+                "Workshop: Wildblumenwiese anlegen (März–April)",
+                "Workshop: Naturteich planen und bauen (Mai–Juni)",
+                "Workshop: Ökologische Gartenpflege im Jahresverlauf (ganzjährig)",
+                "Individuelle Gartencoachings nach Vereinbarung"
+              ],
+              "variant": "check"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "01JKQNP0000000000000S0505",
+      "type": "cta",
+      "slots": {
+        "default": [
+          {
+            "id": "01JKQNP00000000000B050501",
+            "type": "heading",
+            "props": {
+              "text": "Lassen Sie sich beraten",
+              "level": 2
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B050502",
+            "type": "paragraph",
+            "props": {
+              "text": "Das Erstgespräch ist kostenlos und unverbindlich. Erzählen Sie mir von Ihrem Garten und Ihren Vorstellungen – gemeinsam finden wir den besten Weg zur naturnahen Gestaltung."
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B050503",
+            "type": "button",
+            "props": {
+              "text": "Kostenloses Erstgespräch anfragen",
+              "href": "mailto:info@naturgarten-berlin.de",
+              "variant": "primary"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "updatedAt": "2026-02-11T14:00:00.000Z",
+  "createdAt": "2026-02-11T14:00:00.000Z"
+}

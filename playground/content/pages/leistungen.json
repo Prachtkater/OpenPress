@@ -1,0 +1,235 @@
+{
+  "id": "01JKQNP000000000000000LEIS",
+  "slug": "leistungen",
+  "title": {
+    "en": "Services – Ecological Garden Design & Planning",
+    "de": "Leistungen – Ökologische Gartengestaltung & Planung"
+  },
+  "meta": {
+    "description": {
+      "en": "Our services: ecological garden planning, native planting, natural ponds, maintenance and consulting. Sustainable garden design in Berlin and Brandenburg.",
+      "de": "Unsere Leistungen: Ökologische Gartenplanung, heimische Bepflanzung, Naturteiche, Pflege und Beratung. Nachhaltige Gartengestaltung in Berlin und Brandenburg."
+    }
+  },
+  "sections": [
+    {
+      "id": "01JKQNP0000000000000S0201",
+      "type": "hero",
+      "slots": {
+        "default": [
+          {
+            "id": "01JKQNP00000000000B020101",
+            "type": "heading",
+            "props": {
+              "text": "Unsere Leistungen",
+              "level": 1
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B020102",
+            "type": "paragraph",
+            "props": {
+              "text": "Von der Standortanalyse über die Pflanzplanung bis zur langfristigen Pflege – wir bieten alle Leistungen rund um die naturnahe Gartengestaltung. Jedes Projekt ist so einzigartig wie der Ort, an dem es entsteht."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "01JKQNP0000000000000S0202",
+      "type": "content",
+      "slots": {
+        "default": [
+          {
+            "id": "01JKQNP00000000000B020201",
+            "type": "heading",
+            "props": {
+              "text": "Naturnahe Gartenplanung",
+              "level": 2
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B020202",
+            "type": "paragraph",
+            "props": {
+              "text": "Jeder Naturgarten beginnt mit einer sorgfältigen Analyse. Wir untersuchen Bodenbeschaffenheit, Lichtverhältnisse, vorhandene Vegetation und das lokale Mikroklima. Daraus entwickeln wir ein ganzheitliches Gestaltungskonzept, das Ihre Wünsche mit den ökologischen Gegebenheiten in Einklang bringt."
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B020203",
+            "type": "paragraph",
+            "props": {
+              "text": "Unsere Planungsleistungen umfassen Bestandsaufnahme und Standortanalyse, Entwurfsplanung mit 3D-Visualisierung, Pflanzpläne mit detaillierten Artenlisten, Kostenermittlung und Zeitplanung sowie Begleitung der Umsetzung durch Fachbetriebe."
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B020204",
+            "type": "paragraph",
+            "props": {
+              "text": "Ob kleiner Reihenhausgarten oder weitläufiges Parkgelände – wir planen für jede Größe und jedes Budget. Unsere Entwürfe berücksichtigen die natürliche Entwicklung der Pflanzen über Jahre hinweg, sodass Ihr Garten mit der Zeit immer schöner wird."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "01JKQNP0000000000000S0203",
+      "type": "content",
+      "slots": {
+        "default": [
+          {
+            "id": "01JKQNP00000000000B020301",
+            "type": "heading",
+            "props": {
+              "text": "Heimische Bepflanzung & Pflanzkonzepte",
+              "level": 2
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B020302",
+            "type": "paragraph",
+            "props": {
+              "text": "Das Herzstück jedes Naturgartens ist die Bepflanzung. Wir arbeiten ausschließlich mit heimischen und standortgerechten Pflanzen, die sich im Berliner Klima bewährt haben. Unsere Pflanzkonzepte orientieren sich an natürlichen Pflanzengemeinschaften und schaffen stabile, selbstregulierende Systeme."
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B020303",
+            "type": "list",
+            "props": {
+              "items": [
+                "Wildstaudenbeete mit ganzjähriger Blühabfolge von März bis November",
+                "Blumenwiesen und Kräuterrasen als pflegeleichte Alternative zum Einheitsrasen",
+                "Heimische Hecken und Gehölze als Sichtschutz und Vogelhabitat",
+                "Fassaden- und Dachbegrünung mit trockenheitsresistenten Arten",
+                "Essbare Landschaften mit Wildobst, Kräutern und Beerensträuchern"
+              ],
+              "variant": "check"
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B020304",
+            "type": "paragraph",
+            "props": {
+              "text": "Alle Pflanzen beziehen wir von zertifizierten Wildpflanzengärtnereien aus der Region. So stellen wir sicher, dass die genetische Herkunft stimmt und die Pflanzen an die lokalen Bedingungen angepasst sind."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "01JKQNP0000000000000S0204",
+      "type": "content",
+      "slots": {
+        "default": [
+          {
+            "id": "01JKQNP00000000000B020401",
+            "type": "heading",
+            "props": {
+              "text": "Naturteiche & Wasserlandschaften",
+              "level": 2
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B020402",
+            "type": "paragraph",
+            "props": {
+              "text": "Wasser bringt Leben in jeden Garten. Unsere Naturteiche kommen ohne Chemie und technische Filter aus – die Reinigung übernehmen Pflanzen und Mikroorganismen. Das Ergebnis: kristallklares Wasser, das Libellen, Frösche und Molche magisch anzieht."
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B020403",
+            "type": "paragraph",
+            "props": {
+              "text": "Wir planen und bauen Schwimmteiche zum Baden ohne Chlor, Zierteiche mit heimischen Wasserpflanzen und Seerosen, naturnahe Bachläufe und Quellsteine, Regenwasser-Versickerungsmulden als ökologisches Wassermanagement sowie Feuchtbiotope für Amphibien und Wasserinsekten."
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B020404",
+            "type": "paragraph",
+            "props": {
+              "text": "Jedes Wasserlement wird individuell auf Ihr Grundstück abgestimmt. Wir berücksichtigen Geländeform, Grundwasserstand und Sonneneinstrahlung, um ein stabiles aquatisches Ökosystem zu schaffen, das kaum Pflege benötigt."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "01JKQNP0000000000000S0205",
+      "type": "content",
+      "slots": {
+        "default": [
+          {
+            "id": "01JKQNP00000000000B020501",
+            "type": "heading",
+            "props": {
+              "text": "Ökologische Gartenpflege & Beratung",
+              "level": 2
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B020502",
+            "type": "paragraph",
+            "props": {
+              "text": "Ein Naturgarten entwickelt sich ständig weiter – und genau darin liegt sein Reiz. Unsere ökologische Gartenpflege unterstützt diese natürliche Dynamik, lenkt sie behutsam und bewahrt die gestalterische Intention."
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B020503",
+            "type": "paragraph",
+            "props": {
+              "text": "Unser Pflegekonzept umfasst saisonale Pflegedurchgänge, die den natürlichen Rhythmus respektieren. Wir verzichten konsequent auf Pestizide, synthetische Dünger und motorbetriebene Laubbläser. Stattdessen arbeiten wir mit Kompost, Mulch und biologischer Schädlingsregulation."
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B020504",
+            "type": "list",
+            "props": {
+              "items": [
+                "Regelmäßige Pflegegänge im Frühling, Sommer und Herbst",
+                "Fachgerechter Gehölzschnitt unter Beachtung der Vogelschutzzeiten",
+                "Kompostierung und Bodenverbesserung mit natürlichen Mitteln",
+                "Individuelle Gartenberatung und Workshops für Hobbygärtner",
+                "Umstellungsberatung: Vom konventionellen zum naturnahen Garten"
+              ],
+              "variant": "check"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "01JKQNP0000000000000S0206",
+      "type": "cta",
+      "slots": {
+        "default": [
+          {
+            "id": "01JKQNP00000000000B020601",
+            "type": "heading",
+            "props": {
+              "text": "Welche Leistung passt zu Ihrem Projekt?",
+              "level": 2
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B020602",
+            "type": "paragraph",
+            "props": {
+              "text": "Lassen Sie uns gemeinsam herausfinden, wie wir Ihren Garten in eine naturnahe Oase verwandeln können. Jedes Erstgespräch ist kostenlos und unverbindlich."
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B020603",
+            "type": "button",
+            "props": {
+              "text": "Beratungstermin anfragen",
+              "href": "/kontakt",
+              "variant": "primary"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "updatedAt": "2026-02-11T14:00:00.000Z",
+  "createdAt": "2026-02-11T14:00:00.000Z"
+}

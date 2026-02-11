@@ -1,0 +1,208 @@
+{
+  "id": "01JKQNP000000000000000PORT",
+  "slug": "portfolio",
+  "title": {
+    "en": "Portfolio – Our Ecological Garden Projects",
+    "de": "Portfolio – Unsere ökologischen Gartenprojekte"
+  },
+  "meta": {
+    "description": {
+      "en": "Discover our completed ecological garden projects in Berlin and Brandenburg. From natural gardens to swimming ponds – inspiration for your green oasis.",
+      "de": "Entdecken Sie unsere realisierten ökologischen Gartenprojekte in Berlin und Brandenburg. Vom Naturgarten bis zum Schwimmteich – Inspiration für Ihre grüne Oase."
+    }
+  },
+  "sections": [
+    {
+      "id": "01JKQNP0000000000000S0301",
+      "type": "hero",
+      "slots": {
+        "default": [
+          {
+            "id": "01JKQNP00000000000B030101",
+            "type": "heading",
+            "props": {
+              "text": "Unsere Projekte",
+              "level": 1
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B030102",
+            "type": "paragraph",
+            "props": {
+              "text": "Jeder Garten erzählt seine eigene Geschichte. Hier zeigen wir eine Auswahl unserer realisierten Projekte in Berlin und Brandenburg – vom kleinen Innenstadtgarten bis zum weitläufigen Naturgrundstück."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "01JKQNP0000000000000S0302",
+      "type": "gallery",
+      "slots": {
+        "default": [
+          {
+            "id": "01JKQNP00000000000B030201",
+            "type": "heading",
+            "props": {
+              "text": "Ausgewählte Referenzen",
+              "level": 2
+            }
+          }
+        ],
+        "items": [
+          {
+            "id": "01JKQNP00000000000B030202",
+            "type": "project-card",
+            "props": {
+              "title": "Wildblumenparadies Pankow",
+              "description": "Ein 400 m² großer Reihenhausgarten wurde von einer monotonen Rasenfläche in ein blühendes Wildblumenparadies verwandelt. Über 120 heimische Pflanzenarten bieten heute ganzjährig Nahrung für Bestäuber. Eine Trockenmauer aus Naturstein schafft Lebensraum für Eidechsen und Wildbienen.",
+              "location": "Berlin-Pankow",
+              "area": "400 m²",
+              "year": "2024",
+              "tags": ["Wildblumenwiese", "Trockenmauer", "Insektenhotel"]
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B030203",
+            "type": "project-card",
+            "props": {
+              "title": "Schwimmteich Villa Wannsee",
+              "description": "Für eine denkmalgeschützte Villa am Wannsee haben wir einen 80 m² großen Schwimmteich mit angrenzender Regenerationszone gestaltet. Das chemiefreie Badegewässer fügt sich harmonisch in den historischen Garten ein. Die Uferzone bietet Lebensraum für Libellen, Frösche und Ringelnattern.",
+              "location": "Berlin-Wannsee",
+              "area": "180 m²",
+              "year": "2024",
+              "tags": ["Schwimmteich", "Denkmalschutz", "Uferzone"]
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B030204",
+            "type": "project-card",
+            "props": {
+              "title": "Essbarer Waldgarten Potsdam",
+              "description": "Auf einem 2.000 m² großen Grundstück in Potsdam entstand ein essbarer Waldgarten nach dem Prinzip der Permakultur. Obstbäume, Beerensträucher, Kräuter und Gemüsebeete bilden ein mehrschichtiges Ökosystem. Regenwassermanagement und Kompostwirtschaft machen den Garten weitgehend autark.",
+              "location": "Potsdam-Babelsberg",
+              "area": "2.000 m²",
+              "year": "2023",
+              "tags": ["Permakultur", "Waldgarten", "Regenwasser"]
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B030205",
+            "type": "project-card",
+            "props": {
+              "title": "Dachgarten Kreuzberg",
+              "description": "Mitten in der Stadt, hoch über den Dächern von Kreuzberg: Ein 150 m² großer Dachgarten mit trockenheitsresistenten Wildstauden, Sedum-Flächen und einer Pergola mit Wildem Wein. Ein Biotop in luftiger Höhe, das Hummeln und Faltern eine Tankstelle im urbanen Raum bietet.",
+              "location": "Berlin-Kreuzberg",
+              "area": "150 m²",
+              "year": "2025",
+              "tags": ["Dachbegrünung", "Urban Gardening", "Trockenstauden"]
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B030206",
+            "type": "project-card",
+            "props": {
+              "title": "Naturspielplatz Kita Sonnenkäfer",
+              "description": "Für die Kita Sonnenkäfer in Friedrichshain haben wir einen Naturspielplatz gestaltet, der Spielen und Naturerleben verbindet. Weidentipi, Matschküche, Naschhecke und Barfußpfad laden zum Entdecken ein. Die Bepflanzung ist robust, ungiftig und bietet Kindern ein sinnliches Erlebnis mit allen Jahreszeiten.",
+              "location": "Berlin-Friedrichshain",
+              "area": "600 m²",
+              "year": "2025",
+              "tags": ["Naturspielplatz", "Kita", "Naschhecke"]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "01JKQNP0000000000000S0303",
+      "type": "content",
+      "slots": {
+        "default": [
+          {
+            "id": "01JKQNP00000000000B030301",
+            "type": "heading",
+            "props": {
+              "text": "Zahlen, die für sich sprechen",
+              "level": 2
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B030302",
+            "type": "paragraph",
+            "props": {
+              "text": "Seit unserer Gründung haben wir über 200 Gärten in Berlin und Brandenburg naturnah gestaltet. Zusammen umfassen diese Projekte eine Fläche von mehr als 50.000 m² – das entspricht etwa sieben Fußballfeldern neuer Lebensräume für Flora und Fauna."
+            }
+          }
+        ],
+        "stats": [
+          {
+            "id": "01JKQNP00000000000B030303",
+            "type": "stat",
+            "props": {
+              "value": "200+",
+              "label": "Realisierte Projekte"
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B030304",
+            "type": "stat",
+            "props": {
+              "value": "50.000 m²",
+              "label": "Naturnah gestaltete Fläche"
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B030305",
+            "type": "stat",
+            "props": {
+              "value": "15+",
+              "label": "Jahre Erfahrung"
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B030306",
+            "type": "stat",
+            "props": {
+              "value": "98 %",
+              "label": "Weiterempfehlungsrate"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "01JKQNP0000000000000S0304",
+      "type": "cta",
+      "slots": {
+        "default": [
+          {
+            "id": "01JKQNP00000000000B030401",
+            "type": "heading",
+            "props": {
+              "text": "Ihr Projekt könnte das nächste sein",
+              "level": 2
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B030402",
+            "type": "paragraph",
+            "props": {
+              "text": "Lassen Sie sich von unseren bisherigen Arbeiten inspirieren und erzählen Sie uns von Ihrem Traumgarten. Wir freuen uns auf Ihre Ideen."
+            }
+          },
+          {
+            "id": "01JKQNP00000000000B030403",
+            "type": "button",
+            "props": {
+              "text": "Projekt besprechen",
+              "href": "/kontakt",
+              "variant": "primary"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "updatedAt": "2026-02-11T14:00:00.000Z",
+  "createdAt": "2026-02-11T14:00:00.000Z"
+}

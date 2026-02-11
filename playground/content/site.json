@@ -1,10 +1,10 @@
 {
-  "name": "OpenPress Demo",
+  "name": "Naturgarten Berlin",
   "url": "http://localhost:3000",
   "locale": "de-DE",
   "theme": "tailwind-plus",
   "meta": {
-    "title": "OpenPress - Visual CMS for Nuxt",
-    "description": "Ein Nuxt-natives Visual CMS mit In-Context-Editing und Git-backed Storage."
+    "title": "Naturgarten Berlin – Ökologische Gartengestaltung & Naturnahe Gärten",
+    "description": "Naturgarten Berlin gestaltet ökologische Gärten, die Lebensräume für Mensch und Natur schaffen. Planung, Bepflanzung und Pflege naturnaher Gärten in Berlin und Brandenburg."
   }
 }

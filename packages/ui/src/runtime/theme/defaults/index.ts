@@ -1,4 +1,5 @@
 import type { OpThemeConfig } from '../../../types'
+import { providerTheme } from './provider'
 import { sectionTheme } from './section'
 import { slotTheme } from './slot'
 
@@ -6,9 +7,10 @@ import { slotTheme } from './slot'
 export const defaultTheme: OpThemeConfig = {
   name: 'default',
   components: {
+    provider: providerTheme,
     section: sectionTheme,
     slot: slotTheme,
   },
 }
 
-export { sectionTheme, slotTheme }
+export { providerTheme, sectionTheme, slotTheme }

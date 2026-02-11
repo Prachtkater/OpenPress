@@ -3,11 +3,18 @@ import type { Page, SiteConfig, Navigation, Section, Block } from '@openpress/sc
 import {
   // Context
   clearContext,
+  provide,
   // Theme
   registerTheme,
   resolveTheme,
   loadTheme,
   clearThemeRegistry,
+  resolveComponentClasses,
+  // Theme Defaults
+  defaultTheme,
+  providerTheme,
+  sectionTheme,
+  slotTheme,
   // Blocks
   registerBlock,
   resolveBlockComponent,
@@ -16,11 +23,15 @@ import {
   clearBlockRegistry,
   OpBlockFallback,
   type BlockComponentDef,
+  // Keys
+  OP_THEME_KEY,
   // Composables
   useOpenPress,
   useOpMode,
   useOpSection,
   useOpSlot,
+  useOpThemeClasses,
+  useOpBlockClasses,
   // Components
   setupOpProvider,
   setupOpSection,
@@ -681,6 +692,214 @@ describe('@openpress/ui', () => {
       })
 
       expect(result.success).toBe(false)
+    })
+  })
+
+  // ── Default Theme Struktur ──────────────────────────────────
+
+  describe('Default Theme', () => {
+    test('defaultTheme hat provider, section und slot Komponenten', () => {
+      expect(defaultTheme.name).toBe('default')
+      expect(defaultTheme.components.provider).toBeDefined()
+      expect(defaultTheme.components.section).toBeDefined()
+      expect(defaultTheme.components.slot).toBeDefined()
+    })
+
+    test('providerTheme hat root Slot', () => {
+      expect(providerTheme.slots.root).toContain('min-h-screen')
+      expect(providerTheme.slots.root).toContain('antialiased')
+    })
+
+    test('providerTheme hat mode Variants', () => {
+      expect(providerTheme.variants!.mode.edit.root).toContain('ring-1')
+    })
+  })
+
+  // ── Liquid Glass Section Variants ─────────────────────────────
+
+  describe('Liquid Glass Section Variants', () => {
+    test('glass Variant enthält backdrop-blur', () => {
+      const result = resolveComponentClasses(sectionTheme, { type: 'glass' })
+
+      expect(result.root).toContain('backdrop-blur-xl')
+      expect(result.root).toContain('bg-white/30')
+      expect(result.root).toContain('border-white/20')
+    })
+
+    test('glass-hero Variant enthält Gradient und Blur', () => {
+      const result = resolveComponentClasses(sectionTheme, { type: 'glass-hero' })
+
+      expect(result.root).toContain('backdrop-blur-2xl')
+      expect(result.root).toContain('bg-gradient-to-br')
+      expect(result.root).toContain('from-white/40')
+      expect(result.root).toContain('min-h-[60vh]')
+    })
+
+    test('glass-card Variant enthält Card-Styling', () => {
+      const result = resolveComponentClasses(sectionTheme, { type: 'glass-card' })
+
+      expect(result.root).toContain('backdrop-blur-lg')
+      expect(result.root).toContain('bg-white/50')
+      expect(result.root).toContain('rounded-2xl')
+      expect(result.root).toContain('shadow-xl')
+      expect(result.root).toContain('ring-1')
+    })
+
+    test('glass Variants haben Dark-Mode Klassen', () => {
+      const result = resolveComponentClasses(sectionTheme, { type: 'glass' })
+
+      expect(result.root).toContain('dark:bg-gray-900/30')
+      expect(result.root).toContain('dark:border-white/10')
+    })
+
+    test('glass Variant behält Base-Klassen bei (twMerge)', () => {
+      const result = resolveComponentClasses(sectionTheme, { type: 'glass' })
+
+      // Base: relative → wird beibehalten
+      expect(result.root).toContain('relative')
+      expect(result.inner).toContain('mx-auto')
+      expect(result.inner).toContain('max-w-7xl')
+    })
+  })
+
+  // ── Liquid Glass Slot Variants ────────────────────────────────
+
+  describe('Liquid Glass Slot Variants', () => {
+    test('glass Slot Variant enthält backdrop-blur und Ring', () => {
+      const result = resolveComponentClasses(slotTheme, { name: 'glass' })
+
+      expect(result.root).toContain('backdrop-blur-md')
+      expect(result.root).toContain('bg-white/20')
+      expect(result.root).toContain('rounded-xl')
+      expect(result.root).toContain('ring-1')
+      expect(result.root).toContain('ring-white/30')
+    })
+
+    test('glass Slot empty hat Glass-Styling', () => {
+      const result = resolveComponentClasses(slotTheme, { name: 'glass' })
+
+      expect(result.empty).toContain('border-white/40')
+      expect(result.empty).toContain('backdrop-blur-sm')
+    })
+
+    test('glass Slot hat Dark-Mode Klassen', () => {
+      const result = resolveComponentClasses(slotTheme, { name: 'glass' })
+
+      expect(result.root).toContain('dark:bg-gray-900/20')
+      expect(result.root).toContain('dark:ring-white/10')
+    })
+  })
+
+  // ── Glass Theme via Context ──────────────────────────────────
+
+  describe('Glass Theme via Context', () => {
+    test('useOpThemeClasses löst Glass-Section Klassen auf', () => {
+      const glassTheme: OpThemeConfig = {
+        name: 'glass-test',
+        components: {
+          section: sectionTheme,
+          slot: slotTheme,
+        },
+      }
+
+      provide(OP_THEME_KEY, Object.freeze(glassTheme) as Readonly<OpThemeConfig>)
+
+      const classes = useOpThemeClasses('section', { type: 'glass-hero' })
+
+      expect(classes.root).toContain('backdrop-blur-2xl')
+      expect(classes.root).toContain('bg-gradient-to-br')
+    })
+
+    test('useOpThemeClasses löst Glass-Slot Klassen auf', () => {
+      const glassTheme: OpThemeConfig = {
+        name: 'glass-test',
+        components: {
+          section: sectionTheme,
+          slot: slotTheme,
+        },
+      }
+
+      provide(OP_THEME_KEY, Object.freeze(glassTheme) as Readonly<OpThemeConfig>)
+
+      const classes = useOpThemeClasses('slot', { name: 'glass' })
+
+      expect(classes.root).toContain('backdrop-blur-md')
+      expect(classes.root).toContain('ring-white/30')
+    })
+
+    test('Glass-Section mit UI-Override: backdrop-blur wird überschrieben', () => {
+      const result = resolveComponentClasses(
+        sectionTheme,
+        { type: 'glass' },
+        undefined,
+        { root: 'backdrop-blur-3xl bg-white/60' },
+      )
+
+      expect(result.root).toContain('backdrop-blur-3xl')
+      expect(result.root).not.toContain('backdrop-blur-xl')
+      expect(result.root).toContain('bg-white/60')
+      expect(result.root).not.toContain('bg-white/30')
+    })
+
+    test('Glass-Section mit Config-Override', () => {
+      const result = resolveComponentClasses(
+        sectionTheme,
+        { type: 'glass-card' },
+        { root: 'rounded-xl', inner: 'max-w-5xl' },
+      )
+
+      expect(result.root).toContain('rounded-xl')
+      expect(result.root).not.toContain('rounded-2xl')
+      expect(result.inner).toContain('max-w-5xl')
+      expect(result.inner).not.toContain('max-w-7xl')
+    })
+  })
+
+  // ── Multiple Sections Komposition ────────────────────────────
+
+  describe('Multiple Sections Komposition', () => {
+    test('mehrere Sections können sequenziell aufgesetzt werden', () => {
+      const page = createTestPage()
+      setupOpProvider({ page, site: createTestSite() })
+
+      // Section 1: hero
+      const section1 = page.sections[0]
+      const state1 = setupOpSection({ section: section1 })
+      expect(state1.section.type).toBe('hero')
+
+      const slot1 = setupOpSlot({ name: 'default', blocks: section1.slots.default })
+      expect(slot1.resolvedBlocks).toHaveLength(2)
+
+      // Section 2: features
+      const section2 = page.sections[1]
+      const state2 = setupOpSection({ section: section2 })
+      expect(state2.section.type).toBe('features')
+
+      const slot2 = setupOpSlot({ name: 'default', blocks: section2.slots.default })
+      expect(slot2.isEmpty).toBe(true)
+    })
+
+    test('Section mit Glass-Type hat korrekte data-Attribute', () => {
+      setupOpProvider({
+        page: createTestPage(),
+        site: createTestSite(),
+      })
+
+      const glassSection: Section = {
+        id: '01ARZ3NDEKTSV4RRFFQ69G5FA6',
+        type: 'glass-hero',
+        slots: {
+          default: [
+            { id: '01ARZ3NDEKTSV4RRFFQ69G5FA7', type: 'heading', props: { level: 1, text: 'Glass Hero' } },
+          ],
+        },
+      }
+
+      const state = setupOpSection({ section: glassSection })
+
+      expect(state.dataAttributes['data-op-section']).toBe('glass-hero')
+      expect(state.dataAttributes['data-op-id']).toBe('01ARZ3NDEKTSV4RRFFQ69G5FA6')
+      expect(state.slots.default).toHaveLength(1)
     })
   })
 })

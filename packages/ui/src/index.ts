@@ -21,7 +21,7 @@ export { registerTheme, resolveTheme, loadTheme, clearThemeRegistry } from './ru
 export { resolveComponentClasses } from './runtime/theme/resolve-classes'
 
 // Theme Defaults
-export { defaultTheme, sectionTheme, slotTheme } from './runtime/theme/defaults'
+export { defaultTheme, providerTheme, sectionTheme, slotTheme } from './runtime/theme/defaults'
 
 // Block Resolution
 export {

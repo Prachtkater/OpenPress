@@ -613,3 +613,160 @@ describe('Tailwind Merge Korrektheit im Theme', () => {
     expect(result.inner).not.toContain('px-6')
   })
 })
+
+// ─── Liquid Glass Variants ───────────────────────────────────────
+
+describe('Liquid Glass Section Variants (Tailwind Plus)', () => {
+  test('glass Variant enthält backdrop-blur und semi-transparenten Hintergrund', () => {
+    const result = resolveComponentClasses(section, { type: 'glass' })
+
+    expect(result.root).toContain('backdrop-blur-xl')
+    expect(result.root).toContain('bg-white/30')
+    expect(result.root).toContain('border-white/20')
+    expect(result.root).toContain('shadow-lg')
+  })
+
+  test('glass-hero Variant enthält Gradient-Background', () => {
+    const result = resolveComponentClasses(section, { type: 'glass-hero' })
+
+    expect(result.root).toContain('backdrop-blur-2xl')
+    expect(result.root).toContain('bg-gradient-to-br')
+    expect(result.root).toContain('from-white/40')
+    expect(result.root).toContain('via-white/20')
+    expect(result.root).toContain('min-h-[70vh]')
+  })
+
+  test('glass-card Variant enthält Card-Styling mit Shadow und Ring', () => {
+    const result = resolveComponentClasses(section, { type: 'glass-card' })
+
+    expect(result.root).toContain('backdrop-blur-lg')
+    expect(result.root).toContain('bg-white/50')
+    expect(result.root).toContain('rounded-3xl')
+    expect(result.root).toContain('shadow-2xl')
+    expect(result.root).toContain('ring-1')
+    expect(result.root).toContain('ring-white/30')
+  })
+
+  test('glass-cta Variant enthält Gradient Primary-Farbe', () => {
+    const result = resolveComponentClasses(section, { type: 'glass-cta' })
+
+    expect(result.root).toContain('backdrop-blur-xl')
+    expect(result.root).toContain('bg-gradient-to-r')
+    expect(result.root).toContain('from-primary-600/80')
+    expect(result.root).toContain('shadow-primary-500/20')
+    expect(result.inner).toContain('text-center')
+    expect(result.inner).toContain('text-white')
+  })
+
+  test('alle Glass-Variants haben Dark-Mode Klassen', () => {
+    const glassResult = resolveComponentClasses(section, { type: 'glass' })
+    expect(glassResult.root).toContain('dark:bg-gray-900/30')
+
+    const heroResult = resolveComponentClasses(section, { type: 'glass-hero' })
+    expect(heroResult.root).toContain('dark:from-gray-900/50')
+
+    const cardResult = resolveComponentClasses(section, { type: 'glass-card' })
+    expect(cardResult.root).toContain('dark:bg-gray-900/50')
+    expect(cardResult.root).toContain('dark:ring-white/10')
+
+    const ctaResult = resolveComponentClasses(section, { type: 'glass-cta' })
+    expect(ctaResult.root).toContain('dark:from-primary-500/60')
+  })
+
+  test('Glass-Section Override via UI-Prop', () => {
+    const result = resolveComponentClasses(
+      section,
+      { type: 'glass' },
+      undefined,
+      { root: 'backdrop-blur-3xl bg-white/60' },
+    )
+
+    expect(result.root).toContain('backdrop-blur-3xl')
+    expect(result.root).not.toContain('backdrop-blur-xl')
+    expect(result.root).toContain('bg-white/60')
+  })
+})
+
+describe('Liquid Glass Slot Variants (Tailwind Plus)', () => {
+  test('glass Slot Variant enthält Glass-Effekte', () => {
+    const result = resolveComponentClasses(slot, { name: 'glass' })
+
+    expect(result.root).toContain('backdrop-blur-md')
+    expect(result.root).toContain('bg-white/15')
+    expect(result.root).toContain('rounded-2xl')
+    expect(result.root).toContain('ring-1')
+    expect(result.root).toContain('ring-white/25')
+    expect(result.root).toContain('shadow-lg')
+  })
+
+  test('glass Slot empty hat Glass-Borders', () => {
+    const result = resolveComponentClasses(slot, { name: 'glass' })
+
+    expect(result.empty).toContain('border-white/30')
+    expect(result.empty).toContain('backdrop-blur-sm')
+    expect(result.empty).toContain('rounded-xl')
+  })
+
+  test('glass-sidebar Slot Variant mit subtilerem Glass', () => {
+    const result = resolveComponentClasses(slot, { name: 'glass-sidebar' })
+
+    expect(result.root).toContain('backdrop-blur-sm')
+    expect(result.root).toContain('bg-white/10')
+    expect(result.root).toContain('rounded-xl')
+    expect(result.root).toContain('gap-4')
+  })
+
+  test('glass Slot Dark-Mode Klassen', () => {
+    const result = resolveComponentClasses(slot, { name: 'glass' })
+
+    expect(result.root).toContain('dark:bg-gray-900/15')
+    expect(result.root).toContain('dark:ring-white/10')
+  })
+})
+
+// ─── Theme vollständige Glass-Integration ──────────────────────
+
+describe('Theme Glass Integration (via Context)', () => {
+  beforeEach(() => {
+    clearContext()
+  })
+
+  test('useOpThemeClasses löst Glass-Section auf', () => {
+    provide(OP_THEME_KEY, Object.freeze(theme) as Readonly<OpThemeConfig>)
+
+    const classes = useOpThemeClasses('section', { type: 'glass-hero' })
+
+    expect(classes.root).toContain('backdrop-blur-2xl')
+    expect(classes.root).toContain('bg-gradient-to-br')
+    expect(classes.root).toContain('relative')
+  })
+
+  test('useOpThemeClasses löst Glass-Card Section auf', () => {
+    provide(OP_THEME_KEY, Object.freeze(theme) as Readonly<OpThemeConfig>)
+
+    const classes = useOpThemeClasses('section', { type: 'glass-card' })
+
+    expect(classes.root).toContain('backdrop-blur-lg')
+    expect(classes.root).toContain('rounded-3xl')
+    expect(classes.root).toContain('shadow-2xl')
+  })
+
+  test('useOpThemeClasses löst Glass-Slot auf', () => {
+    provide(OP_THEME_KEY, Object.freeze(theme) as Readonly<OpThemeConfig>)
+
+    const classes = useOpThemeClasses('slot', { name: 'glass' })
+
+    expect(classes.root).toContain('backdrop-blur-md')
+    expect(classes.root).toContain('ring-white/25')
+  })
+
+  test('useOpThemeClasses löst Glass-CTA auf', () => {
+    provide(OP_THEME_KEY, Object.freeze(theme) as Readonly<OpThemeConfig>)
+
+    const classes = useOpThemeClasses('section', { type: 'glass-cta' })
+
+    expect(classes.root).toContain('bg-gradient-to-r')
+    expect(classes.root).toContain('from-primary-600/80')
+    expect(classes.inner).toContain('text-white')
+  })
+})

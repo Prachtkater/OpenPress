@@ -20,8 +20,8 @@ function makePage(overrides?: Partial<Page>): Page {
   return {
     id: ulid(),
     slug: "test-page",
-    title: "Test Page",
-    meta: { description: "A test page" },
+    title: { en: "Test Page" },
+    meta: { description: { en: "A test page" } },
     sections: [
       {
         id: ulid(),
@@ -86,7 +86,7 @@ describe("API Handler Logic", () => {
     });
 
     it("PUT /pages/:slug - should validate body with PageSchema", async () => {
-      const invalidBody = { title: "no id or slug" };
+      const invalidBody = { title: { en: "no id or slug" } };
       const result = PageSchema.safeParse(invalidBody);
       expect(result.success).toBe(false);
     });
@@ -98,7 +98,7 @@ describe("API Handler Logic", () => {
 
       await engine.writePage("new-page", result.data!);
       const read = await engine.readPage("new-page");
-      expect(read.title).toBe("Test Page");
+      expect(read.title).toEqual({ en: "Test Page" });
     });
 
     it("PUT /pages/:slug - should reject invalid slug format", async () => {
@@ -124,7 +124,7 @@ describe("API Handler Logic", () => {
       await engine.writePage("about", page);
       const read = await engine.readPage("about");
       expect(read.slug).toBe("about");
-      expect(read.title).toBe("Test Page");
+      expect(read.title).toEqual({ en: "Test Page" });
       expect(read.sections).toHaveLength(1);
     });
 
@@ -267,7 +267,7 @@ describe("API Handler Logic", () => {
       await engine.writePage("test-page", page);
       await engine.commit("First");
 
-      await engine.writePage("test-page", { ...page, title: "Updated" });
+      await engine.writePage("test-page", { ...page, title: { en: "Updated" } });
       await engine.commit("Second");
 
       const history = await engine.getHistory();
@@ -331,7 +331,7 @@ describe("API Handler Logic", () => {
     });
 
     it("ValidationError should map to 422", async () => {
-      const page = makePage({ title: "" });
+      const page = makePage({ title: { en: "" } });
       try {
         await engine.writePage("bad", page);
         expect(true).toBe(false);

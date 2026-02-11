@@ -41,8 +41,8 @@ function createTestPage() {
   return {
     id: '01TEST00000000000000000001',
     slug: 'test-page',
-    title: 'Test Page',
-    meta: { description: '', ogImage: '' },
+    title: { en: 'Test Page' },
+    meta: { description: { en: '' }, ogImage: '' },
     sections: [
       {
         id: '01TEST00000000000000000002',

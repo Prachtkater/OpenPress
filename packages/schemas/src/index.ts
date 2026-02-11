@@ -19,8 +19,16 @@ export {
   FeatureManifestSchema,
   FeatureBlockSchema,
   FeatureEditorPanelSchema,
+  FeatureEditorRouteSchema,
   type FeatureManifest,
   type FeatureBlock,
   type FeatureEditorPanel,
+  type FeatureEditorRoute,
 } from "./feature-manifest";
-export { GermanZodErrorMap, GermanErrorMessages } from "./i18n";
+export {
+  GermanZodErrorMap,
+  GermanErrorMessages,
+  LocalizedStringSchema,
+  localized,
+  type LocalizedString,
+} from "./i18n";

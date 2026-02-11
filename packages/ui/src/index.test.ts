@@ -35,7 +35,7 @@ function createTestPage(): Page {
   return {
     id: '01ARZ3NDEKTSV4RRFFQ69G5FA0',
     slug: 'test-page',
-    title: 'Test Page',
+    title: { en: 'Test Page' },
     meta: {},
     sections: [
       {
@@ -621,7 +621,7 @@ describe('@openpress/ui', () => {
 
       // 2. Composable auf Provider-Ebene
       const openPress = useOpenPress()
-      expect(openPress.page.title).toBe('Test Page')
+      expect(openPress.page.title).toEqual({ en: 'Test Page' })
       expect(openPress.isEditing).toBe(true)
 
       // 3. Section

@@ -12,8 +12,8 @@ function makePage(overrides?: Partial<Page>): Page {
   return {
     id: ulid(),
     slug: "test-page",
-    title: "Test Page",
-    meta: { description: "A test page" },
+    title: { en: "Test Page" },
+    meta: { description: { en: "A test page" } },
     sections: [
       {
         id: ulid(),
@@ -61,8 +61,8 @@ describe("StorageEngine", () => {
     });
 
     it("should list pages", async () => {
-      const page1 = makePage({ slug: "page-1", title: "Page 1" });
-      const page2 = makePage({ slug: "page-2", title: "Page 2" });
+      const page1 = makePage({ slug: "page-1", title: { en: "Page 1" } });
+      const page2 = makePage({ slug: "page-2", title: { en: "Page 2" } });
       await engine.writePage("page-1", page1);
       await engine.writePage("page-2", page2);
 
@@ -80,6 +80,42 @@ describe("StorageEngine", () => {
       expect(await engine.pageExists("test-page")).toBe(false);
     });
 
+    it("should update an existing page and preserve history", async () => {
+      const page = makePage();
+      await engine.writePage("test-page", page);
+      await engine.commit("Add page");
+
+      const updated = makePage({
+        ...page,
+        title: { en: "Updated Title" },
+        sections: [
+          {
+            id: page.sections[0].id,
+            type: "hero",
+            slots: {
+              default: [
+                {
+                  id: ulid(),
+                  type: "rich-text",
+                  props: { content: "<p>Updated content</p>" },
+                },
+              ],
+            },
+          },
+        ],
+      });
+      await engine.writePage("test-page", updated);
+      await engine.commit("Update page content");
+
+      const read = await engine.readPage("test-page");
+      expect(read.title).toEqual({ en: "Updated Title" });
+
+      const history = await engine.getHistory("test-page");
+      expect(history).toHaveLength(2);
+      expect(history[0].message).toBe("Update page content");
+      expect(history[1].message).toBe("Add page");
+    });
+
     it("should throw FileIOError for non-existent page", async () => {
       expect(engine.readPage("nonexistent")).rejects.toBeInstanceOf(
         FileIOError
@@ -89,7 +125,7 @@ describe("StorageEngine", () => {
 
   describe("Schema Validation", () => {
     it("should reject page with missing title", async () => {
-      const page = makePage({ title: "" });
+      const page = makePage({ title: { en: "" } });
       expect(engine.writePage("bad", page)).rejects.toBeInstanceOf(
         ValidationError
       );
@@ -125,7 +161,7 @@ describe("StorageEngine", () => {
       await engine.writePage("test-page", page);
       await engine.commit("First commit");
 
-      const updated = { ...page, title: "Updated Title" };
+      const updated = { ...page, title: { en: "Updated Title" } };
       await engine.writePage("test-page", updated);
       await engine.commit("Update title");
 

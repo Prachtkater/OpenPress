@@ -126,3 +126,36 @@ Path-specific instructions are defined in `.coderabbit.yaml` under `reviews.path
 | `packages/feature-*/**` | Feature manifest conventions |
 | `packages/ui/**` | Glow-Frame conventions, theme engine compatibility |
 | `playground/**` | Demo/test environment only |
+
+## Interaktion mit Reviews
+
+### Auf PR-Comments antworten
+CodeRabbit reagiert auf Antworten in PR-Kommentaren. Einfach auf einen Review-Kommentar antworten, um Rückfragen zu stellen oder Kontext zu liefern.
+
+### Spezielle Kommentare
+```
+@coderabbitai review     — Review erneut triggern
+@coderabbitai resolve    — Alle Kommentare als gelöst markieren
+@coderabbitai help       — Hilfe anzeigen
+```
+
+### WIP-PRs
+PRs mit "WIP" oder "DO NOT MERGE" im Titel werden **nicht** automatisch reviewt.
+
+## CI Integration
+
+Die GitHub Actions CI-Pipeline (`.github/workflows/ci.yml`) läuft parallel zu CodeRabbit:
+- **Typecheck**: `bun x tsc --noEmit`
+- **Tests**: `bun test`
+
+CodeRabbit sieht den CI-Status und kann darauf in Reviews verweisen.
+
+## PR-Workflow
+
+1. Branch erstellen: `git checkout -b feat/mein-feature`
+2. Änderungen committen
+3. PR öffnen: `gh pr create --title "feat: ..." --body "..."`
+4. CodeRabbit reviewt automatisch
+5. CI läuft (Typecheck + Tests)
+6. Review-Kommentare bearbeiten
+7. PR mergen nach Approval

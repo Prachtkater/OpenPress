@@ -4,9 +4,11 @@ export {
   PageSchema,
   PageMetaSchema,
   PageListItemSchema,
+  CreatePageInputSchema,
   type Page,
   type PageMeta,
   type PageListItem,
+  type CreatePageInput,
 } from "./page";
 export { SiteConfigSchema, type SiteConfig } from "./site";
 export {

@@ -1,5 +1,5 @@
 {
-  "id": "01JKQNP000000000000000HOME",
+  "id": "01KH6Y31JN0FVRJJQK6ZDVMG7Y",
   "slug": "index",
   "title": {
     "en": "Naturgarten Berlin – Ecological Garden Design",
@@ -13,12 +13,12 @@
   },
   "sections": [
     {
-      "id": "01JKQNP0000000000000S0101",
+      "id": "01KH6Y31JT9W991Q8488VM45KS",
       "type": "hero",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B010101",
+            "id": "01KH6Y31JTHJ01N2NJVKWVFSAD",
             "type": "heading",
             "props": {
               "text": "Naturnah. Ästhetisch. Lebendig.",
@@ -26,14 +26,14 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B010102",
+            "id": "01KH6Y31JWMF3BGEC18VFSBNMQ",
             "type": "paragraph",
             "props": {
               "text": "Wir gestalten Gärten, die nicht nur schön aussehen, sondern echte Ökosysteme sind – Lebensräume für Wildbienen, Schmetterlinge, Vögel und Sie selbst. Seit über 15 Jahren verwandeln wir Flächen in Berlin und Brandenburg in blühende Naturoasen."
             }
           },
           {
-            "id": "01JKQNP00000000000B010103",
+            "id": "01KH6Y31JWB17BK9CCG76E67YZ",
             "type": "button",
             "props": {
               "text": "Kostenloses Erstgespräch vereinbaren",
@@ -45,12 +45,12 @@
       }
     },
     {
-      "id": "01JKQNP0000000000000S0102",
+      "id": "01KH6Y31JWEPZ199G3APYF924Z",
       "type": "features",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B010201",
+            "id": "01KH6Y31JW6B1DRR7K5CP0Z51A",
             "type": "heading",
             "props": {
               "text": "Was wir für Sie tun",
@@ -58,7 +58,7 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B010202",
+            "id": "01KH6Y31JWTS6BHQ65SBBT606D",
             "type": "paragraph",
             "props": {
               "text": "Von der ersten Idee bis zum fertigen Garten – wir begleiten Sie durch jeden Schritt der ökologischen Gartengestaltung."
@@ -67,7 +67,7 @@
         ],
         "items": [
           {
-            "id": "01JKQNP00000000000B010203",
+            "id": "01KH6Y31JWH7BDM1D9F7X2PFES",
             "type": "feature-card",
             "props": {
               "title": "Naturnahe Gartenplanung",
@@ -76,7 +76,7 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B010204",
+            "id": "01KH6Y31JW0QKHY6CMT8E5HG1Y",
             "type": "feature-card",
             "props": {
               "title": "Heimische Bepflanzung",
@@ -85,7 +85,7 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B010205",
+            "id": "01KH6Y31JXCG95JNQPD3JQ1A7V",
             "type": "feature-card",
             "props": {
               "title": "Wasser & Naturteiche",
@@ -94,7 +94,7 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B010206",
+            "id": "01KH6Y31JXE33HATY7G9H2JPK2",
             "type": "feature-card",
             "props": {
               "title": "Ökologische Pflege",
@@ -106,12 +106,12 @@
       }
     },
     {
-      "id": "01JKQNP0000000000000S0103",
+      "id": "01KH6Y31JXEE6AJVXV5CBGFNAZ",
       "type": "content",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B010301",
+            "id": "01KH6Y31JXXQXKJR4NYJVT5QHZ",
             "type": "heading",
             "props": {
               "text": "Warum ein Naturgarten?",
@@ -119,21 +119,21 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B010302",
+            "id": "01KH6Y31JXNX18RV3K4J5Y9A1X",
             "type": "paragraph",
             "props": {
               "text": "In Zeiten des Insektensterbens und der Klimakrise sind naturnahe Gärten mehr als ein Trend – sie sind eine Notwendigkeit. Ein ökologisch gestalteter Garten bietet Nahrung und Unterschlupf für hunderte Tierarten, bindet CO₂, verbessert das Mikroklima und spart langfristig Wasser und Pflegekosten."
             }
           },
           {
-            "id": "01JKQNP00000000000B010303",
+            "id": "01KH6Y31JXCRTMP54AWM90YMZX",
             "type": "paragraph",
             "props": {
               "text": "Unsere Naturgärten sind keine verwilderten Flächen, sondern durchdacht gestaltete Landschaften. Wir verbinden die Dynamik der Natur mit klaren Strukturen, hochwertigen Materialien und einem Gespür für Schönheit, das sich durch alle Jahreszeiten zieht."
             }
           },
           {
-            "id": "01JKQNP00000000000B010304",
+            "id": "01KH6Y31JX9SWMSFPYMNAGFG8Q",
             "type": "list",
             "props": {
               "items": [
@@ -150,12 +150,12 @@
       }
     },
     {
-      "id": "01JKQNP0000000000000S0104",
+      "id": "01KH6Y31JZJZ5WC7YYW21QV1GY",
       "type": "testimonials",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B010401",
+            "id": "01KH6Y31JZR5V8VGKYVNPYH4V1",
             "type": "heading",
             "props": {
               "text": "Das sagen unsere Kunden",
@@ -165,7 +165,7 @@
         ],
         "items": [
           {
-            "id": "01JKQNP00000000000B010402",
+            "id": "01KH6Y31JZ15MME1ST5C81ET4S",
             "type": "testimonial",
             "props": {
               "quote": "Unser Garten in Pankow ist ein kleines Paradies geworden. Die Kinder lieben die Wildblumenwiese und wir haben diesen Sommer über 20 verschiedene Schmetterlingsarten gezählt.",
@@ -174,7 +174,7 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B010403",
+            "id": "01KH6Y31JZ0YGKQHV3E87J8MAJ",
             "type": "testimonial",
             "props": {
               "quote": "Professionell, kreativ und mit echtem Herzblut. Das Team hat unsere Vorstellungen übertroffen und einen pflegeleichten Garten geschaffen, der jedes Jahr schöner wird.",
@@ -183,7 +183,7 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B010404",
+            "id": "01KH6Y31JZXGCGWMSCDBFDAHM8",
             "type": "testimonial",
             "props": {
               "quote": "Vom Konzept bis zur Umsetzung – alles aus einer Hand. Besonders beeindruckt hat mich die Expertise bei der Pflanzenauswahl für unseren schwierigen Lehmboden.",
@@ -195,12 +195,12 @@
       }
     },
     {
-      "id": "01JKQNP0000000000000S0105",
+      "id": "01KH6Y31JZ3D83DBW6XBSQH4XQ",
       "type": "cta",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B010501",
+            "id": "01KH6Y31JZ42Z8X93NAR5BC1S9",
             "type": "heading",
             "props": {
               "text": "Bereit für Ihren Naturgarten?",
@@ -208,14 +208,14 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B010502",
+            "id": "01KH6Y31JZE3X02TSTZGD1T0YK",
             "type": "paragraph",
             "props": {
               "text": "Vereinbaren Sie ein kostenloses Erstgespräch. Wir besuchen Sie vor Ort, analysieren die Gegebenheiten und entwickeln gemeinsam eine Vision für Ihren Traumgarten."
             }
           },
           {
-            "id": "01JKQNP00000000000B010503",
+            "id": "01KH6Y31JZ6N3W9S54SY8ZXCN3",
             "type": "button",
             "props": {
               "text": "Jetzt Kontakt aufnehmen",
@@ -224,7 +224,7 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B010504",
+            "id": "01KH6Y31JZVKK3EKQ08NBMYY1W",
             "type": "button",
             "props": {
               "text": "Unsere Projekte ansehen",

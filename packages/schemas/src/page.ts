@@ -30,3 +30,13 @@ export const PageListItemSchema = z.object({
 });
 
 export type PageListItem = z.infer<typeof PageListItemSchema>;
+
+/** Input schema for creating a new page (server generates id, timestamps, etc.) */
+export const CreatePageInputSchema = z.object({
+  slug: z.string().regex(/^[a-z0-9][a-z0-9-]*$/),
+  title: LocalizedStringSchema,
+  meta: PageMetaSchema.optional(),
+  sections: z.array(SectionSchema).optional(),
+});
+
+export type CreatePageInput = z.infer<typeof CreatePageInputSchema>;

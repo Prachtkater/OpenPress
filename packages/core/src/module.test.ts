@@ -17,6 +17,12 @@ mock.module('@nuxt/kit', () => ({
   addImportsDir: (path: unknown) => { addImportsDirCalls.push(path) },
   addPlugin: (opts: unknown) => { addPluginCalls.push(opts) },
   addServerHandler: (opts: unknown) => { addServerHandlerCalls.push(opts) },
+  useLogger: (_tag: string) => ({
+    info: () => {},
+    warn: () => {},
+    error: () => {},
+    debug: () => {},
+  }),
 }))
 
 // Import after mocking
@@ -29,6 +35,7 @@ function createMockNuxt(overrides: Record<string, any> = {}) {
     options: {
       rootDir: '/test/project',
       dev: false,
+      modules: [],
       watch: [] as string[],
       runtimeConfig: {
         public: {} as Record<string, any>,
@@ -162,11 +169,11 @@ describe('@openpress/core module', () => {
       expect(pages[1].path).toBe('/admin/:slug(.*)*')
     })
 
-    it('registers all 11 server API handlers', async () => {
+    it('registers all 12 server API handlers (11 core + 1 features)', async () => {
       const nuxt = createMockNuxt()
       await mod.setup(mod.defaults, nuxt as any)
 
-      expect(addServerHandlerCalls.length).toBe(11)
+      expect(addServerHandlerCalls.length).toBe(12)
     })
 
     it('registers pages API routes', async () => {

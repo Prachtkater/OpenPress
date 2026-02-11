@@ -66,3 +66,38 @@ export { video } from './components/blocks/video'
 export { card } from './components/blocks/card'
 export { input } from './components/blocks/input'
 export { contactForm } from './components/blocks/contact-form'
+
+// ─── Nuxt Plugin ────────────────────────────────────────────────
+// Registers the Tailwind Plus theme in the @openpress/ui theme registry
+// so that OpProvider can resolve it by name.
+
+/**
+ * Creates a Nuxt plugin that registers the Tailwind Plus theme.
+ *
+ * Usage in nuxt.config.ts or as a plugin:
+ * ```ts
+ * import { createTailwindPlusPlugin } from '@openpress/theme-tailwind-plus'
+ * export default defineNuxtPlugin(createTailwindPlusPlugin())
+ * ```
+ *
+ * Or use the pre-built `plugin` export directly:
+ * ```ts
+ * // plugins/theme.ts
+ * export { plugin as default } from '@openpress/theme-tailwind-plus'
+ * ```
+ */
+export function createTailwindPlusPlugin() {
+  return async () => {
+    const { registerTheme, loadTheme } = await import('@openpress/ui')
+    registerTheme('tailwind-plus', async () => theme)
+    await loadTheme('tailwind-plus')
+  }
+}
+
+/**
+ * Pre-built Nuxt plugin for direct use.
+ *
+ * Registers and pre-loads the Tailwind Plus theme into the
+ * @openpress/ui theme registry, making it available to OpProvider.
+ */
+export const plugin = createTailwindPlusPlugin()

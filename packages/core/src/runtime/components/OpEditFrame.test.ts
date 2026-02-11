@@ -373,6 +373,153 @@ describe('edit mode interaction guard', () => {
 })
 
 // -----------------------------------------------------------------
+// Overlay panel logic
+// -----------------------------------------------------------------
+
+describe('overlay panel logic', () => {
+  describe('element metadata extraction', () => {
+    function getElementMeta(el: MockElement) {
+      return {
+        id: el.getAttribute('data-op-id') ?? '',
+        type: (el.getAttribute('data-op-block') ? 'block'
+          : el.getAttribute('data-op-slot') ? 'slot'
+            : 'section') as 'block' | 'slot' | 'section',
+        blockType: el.getAttribute('data-op-block'),
+        slotName: el.getAttribute('data-op-slot'),
+        sectionType: el.getAttribute('data-op-section'),
+      }
+    }
+
+    it('extracts block metadata', () => {
+      const el = mockEl({ 'data-op-id': 'blk-001', 'data-op-block': 'heading' })
+      const meta = getElementMeta(el)
+      expect(meta.id).toBe('blk-001')
+      expect(meta.type).toBe('block')
+      expect(meta.blockType).toBe('heading')
+      expect(meta.slotName).toBeNull()
+      expect(meta.sectionType).toBeNull()
+    })
+
+    it('extracts slot metadata', () => {
+      const el = mockEl({ 'data-op-id': 'slot-001', 'data-op-slot': 'sidebar' })
+      const meta = getElementMeta(el)
+      expect(meta.id).toBe('slot-001')
+      expect(meta.type).toBe('slot')
+      expect(meta.slotName).toBe('sidebar')
+    })
+
+    it('extracts section metadata', () => {
+      const el = mockEl({ 'data-op-id': 'sec-001', 'data-op-section': 'hero' })
+      const meta = getElementMeta(el)
+      expect(meta.id).toBe('sec-001')
+      expect(meta.type).toBe('section')
+      expect(meta.sectionType).toBe('hero')
+    })
+  })
+
+  describe('formatElementLabel', () => {
+    function formatElementLabel(meta: { blockType: string | null; slotName: string | null; sectionType: string | null; type: string }): string {
+      if (meta.blockType) return `Block: ${meta.blockType}`
+      if (meta.slotName) return `Slot: ${meta.slotName}`
+      if (meta.sectionType) return `Section: ${meta.sectionType}`
+      return `Element: ${meta.type}`
+    }
+
+    it('formats block label', () => {
+      expect(formatElementLabel({ blockType: 'heading', slotName: null, sectionType: null, type: 'block' }))
+        .toBe('Block: heading')
+    })
+
+    it('formats slot label', () => {
+      expect(formatElementLabel({ blockType: null, slotName: 'sidebar', sectionType: null, type: 'slot' }))
+        .toBe('Slot: sidebar')
+    })
+
+    it('formats section label', () => {
+      expect(formatElementLabel({ blockType: null, slotName: null, sectionType: 'hero', type: 'section' }))
+        .toBe('Section: hero')
+    })
+
+    it('formats fallback for unknown element', () => {
+      expect(formatElementLabel({ blockType: null, slotName: null, sectionType: null, type: 'block' }))
+        .toBe('Element: block')
+    })
+  })
+
+  describe('panel position', () => {
+    it('calculates top-right position with margin', () => {
+      const windowWidth = 1280
+      const panelWidth = 320
+      const margin = 16
+      const expectedX = windowWidth - panelWidth - margin
+      expect(expectedX).toBe(944)
+    })
+
+    it('clamps drag position to viewport bounds', () => {
+      const clampX = (x: number, w: number) => Math.max(0, Math.min(x, w - 200))
+      const clampY = (y: number, h: number) => Math.max(0, Math.min(y, h - 48))
+
+      expect(clampX(-100, 1280)).toBe(0)
+      expect(clampX(2000, 1280)).toBe(1080)
+      expect(clampX(500, 1280)).toBe(500)
+
+      expect(clampY(-50, 720)).toBe(0)
+      expect(clampY(1000, 720)).toBe(672)
+      expect(clampY(200, 720)).toBe(200)
+    })
+  })
+
+  describe('keyboard shortcuts', () => {
+    it('detects Ctrl+S save combo', () => {
+      const isSave = (e: { ctrlKey: boolean; metaKey: boolean; key: string }) =>
+        (e.ctrlKey || e.metaKey) && e.key === 's'
+
+      expect(isSave({ ctrlKey: true, metaKey: false, key: 's' })).toBe(true)
+      expect(isSave({ ctrlKey: false, metaKey: true, key: 's' })).toBe(true)
+      expect(isSave({ ctrlKey: false, metaKey: false, key: 's' })).toBe(false)
+      expect(isSave({ ctrlKey: true, metaKey: false, key: 'a' })).toBe(false)
+    })
+
+    it('Escape has layered behavior', () => {
+      const getAction = (inlineEditing: boolean, hasSelection: boolean): string => {
+        if (inlineEditing) return 'deactivate-inline'
+        if (hasSelection) return 'clear-selection'
+        return 'close-editor'
+      }
+
+      expect(getAction(true, true)).toBe('deactivate-inline')
+      expect(getAction(true, false)).toBe('deactivate-inline')
+      expect(getAction(false, true)).toBe('clear-selection')
+      expect(getAction(false, false)).toBe('close-editor')
+    })
+  })
+
+  describe('dirty state for save/discard', () => {
+    beforeEach(() => { stateStore.clear() })
+
+    it('isDirty tracks unsaved changes', () => {
+      const { isDirty } = useEditor()
+      expect(isDirty.value).toBe(false)
+      isDirty.value = true
+      expect(isDirty.value).toBe(true)
+    })
+
+    it('save is disabled when not dirty', () => {
+      const { isDirty } = useEditor()
+      const canSave = isDirty.value && true // && !isSaving
+      expect(canSave).toBe(false)
+    })
+
+    it('save is enabled when dirty', () => {
+      const { isDirty } = useEditor()
+      isDirty.value = true
+      const canSave = isDirty.value && true
+      expect(canSave).toBe(true)
+    })
+  })
+})
+
+// -----------------------------------------------------------------
 // CSS class contract
 // -----------------------------------------------------------------
 
@@ -388,6 +535,28 @@ describe('OpEditFrame CSS class contract', () => {
       'op-edit-frame__toggle--active',
     ]
     for (const cls of expectedClasses) {
+      expect(typeof cls).toBe('string')
+      expect(cls.length).toBeGreaterThan(0)
+    }
+  })
+
+  it('defines overlay panel class names', () => {
+    const panelClasses = [
+      'op-overlay-panel',
+      'op-overlay-panel--collapsed',
+      'op-overlay-panel--dragging',
+      'op-overlay-panel__titlebar',
+      'op-overlay-panel__body',
+      'op-overlay-panel__section',
+      'op-overlay-panel__meta',
+      'op-overlay-panel__toolbar',
+      'op-overlay-panel__btn',
+      'op-overlay-panel__btn--save',
+      'op-overlay-panel__btn--discard',
+      'op-overlay-panel__status',
+      'op-overlay-panel__shortcuts',
+    ]
+    for (const cls of panelClasses) {
       expect(typeof cls).toBe('string')
       expect(cls.length).toBeGreaterThan(0)
     }

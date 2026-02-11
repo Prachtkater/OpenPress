@@ -26,7 +26,7 @@ const emit = defineEmits<{
 
 const { editMode } = useOpenPress()
 const { selectedElement } = useEditor()
-const { context, visible, customActions, hide, getToolbarPosition } = useBlockToolbar()
+const { context, isVisible, customActions, hide, getToolbarPosition } = useBlockToolbar()
 
 const toolbarRef = ref<HTMLElement | null>(null)
 const position = ref<ToolbarPosition | null>(null)
@@ -35,7 +35,7 @@ const position = ref<ToolbarPosition | null>(null)
 const TOOLBAR_OFFSET = 8
 
 const toolbarStyle = computed(() => {
-  if (!position.value || !visible.value || !editMode.value) return null
+  if (!position.value || !isVisible() || !editMode.value) return null
   const p = position.value
   return {
     position: 'absolute' as const,

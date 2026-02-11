@@ -11,6 +11,7 @@ import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue'
 import { useOpenPress } from '../composables/useOpenPress'
 import { useEditor } from '../composables/useEditor'
 import { useTiptapBridge } from '../composables/useTiptapBridge'
+import { useBlockToolbar } from '../composables/useBlockToolbar'
 import { findOpElement } from '../utils/find-op-element'
 
 const { editMode } = useOpenPress()
@@ -25,6 +26,13 @@ const {
   setInlineEditing,
 } = useEditor()
 const { deactivateBlock } = useTiptapBridge()
+const { show: showToolbar, hide: hideToolbar } = useBlockToolbar()
+
+defineEmits<{
+  (e: 'block-move-up'): void
+  (e: 'block-move-down'): void
+  (e: 'block-delete'): void
+}>()
 
 const frameRef = ref<HTMLElement | null>(null)
 
@@ -91,9 +99,11 @@ function handleClick(e: MouseEvent) {
     e.stopPropagation()
     selectElement(found.id, found.type)
     selectGlow.value = getGlowRect(found.el)
+    showToolbar({ elementId: found.id, elementType: found.type, element: found.el })
   } else {
     clearSelection()
     selectGlow.value = null
+    hideToolbar()
   }
 }
 
@@ -115,6 +125,7 @@ function handleKeyDown(e: KeyboardEvent) {
     }
     clearSelection()
     selectGlow.value = null
+    hideToolbar()
   }
 }
 
@@ -129,6 +140,7 @@ function toggleEditMode() {
     clearHover()
     hoverGlow.value = null
     selectGlow.value = null
+    hideToolbar()
   }
 }
 
@@ -240,6 +252,15 @@ watch(editMode, (isEditing) => {
         data-op-glow="select"
       />
     </template>
+
+    <!-- Floating block toolbar (only in edit mode) -->
+    <OpBlockToolbar
+      v-if="editMode"
+      :container-el="frameRef"
+      @move-up="$emit('block-move-up')"
+      @move-down="$emit('block-move-down')"
+      @delete="$emit('block-delete')"
+    />
 
     <!-- Edit mode toggle button -->
     <button

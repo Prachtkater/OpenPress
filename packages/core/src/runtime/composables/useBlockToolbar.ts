@@ -1,4 +1,4 @@
-import { useState, computed } from '#imports'
+import { useState } from '#imports'
 import type { OpElementType } from '../utils/find-op-element'
 
 export interface ToolbarAction {
@@ -44,7 +44,12 @@ export function useBlockToolbar() {
     () => [],
   )
 
-  const visible = computed(() => context.value !== null)
+  /**
+   * Whether the toolbar is currently visible (has a context).
+   */
+  function isVisible(): boolean {
+    return context.value !== null
+  }
 
   /**
    * Show the toolbar for a given element.
@@ -86,7 +91,7 @@ export function useBlockToolbar() {
     customActions.value.push(...actions)
     return () => {
       for (const action of actions) {
-        const idx = customActions.value.findIndex((a) => a.id === action.id)
+        const idx = customActions.value.findIndex((a: ToolbarAction) => a.id === action.id)
         if (idx !== -1) {
           customActions.value.splice(idx, 1)
         }
@@ -123,7 +128,7 @@ export function useBlockToolbar() {
   return {
     context,
     customActions,
-    visible,
+    isVisible,
     show,
     hide,
     getToolbarPosition,

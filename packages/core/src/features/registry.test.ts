@@ -7,6 +7,7 @@ import {
   hasFeature,
   getComponentPickerEntries,
   getEditorPanels,
+  getEditorRoutes,
   clearFeatureRegistry,
 } from './registry'
 import type { DiscoveredFeature } from './discover'
@@ -191,6 +192,42 @@ describe('Feature Registry', () => {
       expect(panels).toHaveLength(2)
       expect(panels[0].featureName).toBe('@openpress/feature-forms')
       expect(panels[1].featureName).toBe('@openpress/feature-booking')
+    })
+  })
+
+  describe('getEditorRoutes', () => {
+    it('returns empty array when no features have routes', () => {
+      registerFeature(makeFeature({
+        name: '@openpress/feature-empty',
+        label: 'Empty',
+      }))
+
+      expect(getEditorRoutes()).toEqual([])
+    })
+
+    it('returns routes from all features', () => {
+      registerFeatures([
+        makeFeature({
+          name: '@openpress/feature-booking',
+          label: 'Booking',
+          editorRoutes: [
+            { path: '/_edit/bookings', label: 'Bookings', component: './BookingsDashboard.vue', icon: 'mdi:calendar' },
+          ],
+        }),
+        makeFeature({
+          name: '@openpress/feature-media',
+          label: 'Media',
+          editorRoutes: [
+            { path: '/_edit/media', label: 'Media', component: './MediaDashboard.vue' },
+          ],
+        }),
+      ])
+
+      const routes = getEditorRoutes()
+      expect(routes).toHaveLength(2)
+      expect(routes[0].featureName).toBe('@openpress/feature-booking')
+      expect(routes[0].path).toBe('/_edit/bookings')
+      expect(routes[1].featureName).toBe('@openpress/feature-media')
     })
   })
 

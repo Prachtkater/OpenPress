@@ -12,6 +12,9 @@ export function localized<T extends z.ZodTypeAny>(schema: T) {
   }).catchall(schema.optional());
 }
 
+/** Default locale used throughout the application */
+export const DEFAULT_LOCALE = "en";
+
 /**
  * A localized string is a record of locale -> string
  */

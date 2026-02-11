@@ -28,9 +28,11 @@ export {
   type FeatureEditorRoute,
 } from "./feature-manifest";
 export {
+  DEFAULT_LOCALE,
   GermanZodErrorMap,
   GermanErrorMessages,
   LocalizedStringSchema,
   localized,
   type LocalizedString,
 } from "./i18n";
+export { SLUG_PATTERN } from "./page";

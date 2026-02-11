@@ -1,4 +1,5 @@
 import { useState, useFetch, useAsyncData, navigateTo } from '#imports'
+import { DEFAULT_LOCALE } from '@openpress/schemas'
 import type { PageListItem, Page, CreatePageInput } from '@openpress/schemas'
 import { buildPageTree, type PageTreeNode } from './page-tree'
 import { transformToMindmap, flattenMindmap } from './mindmap'
@@ -45,7 +46,7 @@ export function usePageTree() {
   /**
    * Create a new page with the given slug and title.
    */
-  async function createPage(slug: string, title: string, locale = 'en'): Promise<boolean> {
+  async function createPage(slug: string, title: string, locale = DEFAULT_LOCALE): Promise<boolean> {
     error.value = null
 
     const input: CreatePageInput = {
@@ -96,7 +97,7 @@ export function usePageTree() {
     oldSlug: string,
     newTitle: string,
     newSlug?: string,
-    locale = 'en',
+    locale = DEFAULT_LOCALE,
   ): Promise<boolean> {
     error.value = null
 

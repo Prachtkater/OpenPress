@@ -1,4 +1,4 @@
-import type { FeatureManifest, FeatureBlock, FeatureEditorPanel } from '@openpress/schemas'
+import type { FeatureManifest, FeatureBlock, FeatureEditorPanel, FeatureEditorRoute } from '@openpress/schemas'
 import type { DiscoveredFeature } from './discover'
 
 export interface RegisteredFeature {
@@ -107,6 +107,21 @@ export function getEditorPanels(): (FeatureEditorPanel & { featureName: string }
   }
 
   return panels
+}
+
+/**
+ * Returns all editor routes from all registered features.
+ */
+export function getEditorRoutes(): (FeatureEditorRoute & { featureName: string })[] {
+  const routes: (FeatureEditorRoute & { featureName: string })[] = []
+
+  for (const { manifest } of featureStore.values()) {
+    for (const route of manifest.editorRoutes) {
+      routes.push({ ...route, featureName: manifest.name })
+    }
+  }
+
+  return routes
 }
 
 /**

@@ -26,11 +26,12 @@ export class GitOps {
       const { stdout } = await execFileAsync("git", args, {
         cwd: this.repoPath,
         maxBuffer: 10 * 1024 * 1024,
+        encoding: "utf8",
       });
       return stdout.trim();
     } catch (err: any) {
-      const stderr = err.stderr?.trim();
-      const stdout = err.stdout?.trim();
+      const stderr = err.stderr?.trim?.() ?? "";
+      const stdout = err.stdout?.trim?.() ?? "";
       const details = stderr || stdout || err.message;
       const code = err.code ?? 1;
       throw new Error(`git ${args[0]} failed (${code}): ${details}`);

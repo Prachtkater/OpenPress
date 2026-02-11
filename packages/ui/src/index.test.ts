@@ -202,6 +202,7 @@ describe('@openpress/ui', () => {
       expect(state.dataAttributes).toEqual({
         'data-op-mode': 'edit',
         'data-op-theme': 'tailwind-plus',
+        'data-op-locale': 'de-DE',
       })
     })
   })

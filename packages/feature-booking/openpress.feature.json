@@ -21,7 +21,7 @@
     {
       "id": "booking-settings",
       "label": "Booking Settings",
-      "component": "./runtime/components/BookingSettingsPanel.vue",
+      "component": "./src/runtime/components/BookingSettingsPanel.vue",
       "icon": "mdi:cog"
     }
   ],
@@ -29,7 +29,7 @@
     {
       "path": "/_edit/bookings",
       "label": "Bookings",
-      "component": "./runtime/pages/BookingsDashboard.vue",
+      "component": "./src/runtime/pages/BookingsDashboard.vue",
       "icon": "mdi:calendar-check"
     }
   ]

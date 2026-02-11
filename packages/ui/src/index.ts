@@ -9,6 +9,7 @@ export {
   OP_NAV_KEY,
   OP_MODE_KEY,
   OP_THEME_KEY,
+  OP_LOCALE_KEY,
   OP_SECTION_KEY,
   OP_SLOT_KEY,
 } from './runtime/keys'
@@ -35,6 +36,7 @@ export {
 } from './runtime/blocks/resolve'
 
 // Composables
+export { useOpProvider, type UseOpProviderReturn } from './runtime/composables/useOpProvider'
 export { useOpenPress, type UseOpenPressReturn } from './runtime/composables/useOpenPress'
 export { useOpMode, type UseOpModeReturn } from './runtime/composables/useOpMode'
 export { useOpSection, type UseOpSectionReturn } from './runtime/composables/useOpSection'

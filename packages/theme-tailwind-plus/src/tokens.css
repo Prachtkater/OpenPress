@@ -1,17 +1,162 @@
-/* OpenPress Tailwind Plus — Design Tokens */
+/*
+ * OpenPress Tailwind Plus — CSS Design Tokens
+ *
+ * Semantic color system with light/dark mode support.
+ * Override these CSS custom properties to customize the theme.
+ *
+ * Usage: Use arbitrary value syntax in Tailwind, e.g.:
+ *   bg-[var(--op-color-primary)]
+ *   text-[var(--op-color-on-surface)]
+ *
+ * Or reference tpColors from tokens.ts for type-safe access.
+ */
+
 :root {
-  /* Section */
+  /* ─── Primary (Indigo) ────────────────────── */
+  --op-color-primary: #4f46e5;
+  --op-color-primary-light: #818cf8;
+  --op-color-primary-dark: #3730a3;
+  --op-color-on-primary: #ffffff;
+
+  /* ─── Secondary (Slate) ───────────────────── */
+  --op-color-secondary: #334155;
+  --op-color-secondary-light: #64748b;
+  --op-color-secondary-dark: #1e293b;
+  --op-color-on-secondary: #ffffff;
+
+  /* ─── Accent (Amber) ──────────────────────── */
+  --op-color-accent: #f59e0b;
+  --op-color-accent-light: #fbbf24;
+  --op-color-accent-dark: #d97706;
+  --op-color-on-accent: #1c1917;
+
+  /* ─── Surface ─────────────────────────────── */
+  --op-color-surface: #ffffff;
+  --op-color-surface-muted: #f8fafc;
+  --op-color-surface-inverse: #0f172a;
+  --op-color-on-surface: #0f172a;
+  --op-color-on-surface-muted: #64748b;
+
+  /* ─── Border ──────────────────────────────── */
+  --op-color-border: #e2e8f0;
+  --op-color-border-muted: #f1f5f9;
+
+  /* ─── Feedback: Success ───────────────────── */
+  --op-color-success: #16a34a;
+  --op-color-success-light: #dcfce7;
+  --op-color-on-success: #ffffff;
+
+  /* ─── Feedback: Warning ───────────────────── */
+  --op-color-warning: #ca8a04;
+  --op-color-warning-light: #fef9c3;
+  --op-color-on-warning: #1c1917;
+
+  /* ─── Feedback: Error ─────────────────────── */
+  --op-color-error: #dc2626;
+  --op-color-error-light: #fee2e2;
+  --op-color-on-error: #ffffff;
+
+  /* ─── Component Tokens ────────────────────── */
   --op-section-transition: 200ms ease;
-
-  /* Slot */
   --op-slot-min-height: 4rem;
-
-  /* Block */
-  --op-block-focus-ring: 0 0 0 2px var(--color-primary-500);
-
-  /* Glow Frame */
+  --op-block-focus-ring: 0 0 0 2px var(--op-color-primary);
   --op-glow-frame-z: 9999;
-
-  /* Prose */
   --op-prose-max-width: 65ch;
+}
+
+/* ─── Dark Theme (class-based toggle) ────────── */
+.dark {
+  /* Primary (Lighter for dark backgrounds) */
+  --op-color-primary: #818cf8;
+  --op-color-primary-light: #a5b4fc;
+  --op-color-primary-dark: #6366f1;
+  --op-color-on-primary: #1e1b4b;
+
+  /* Secondary */
+  --op-color-secondary: #94a3b8;
+  --op-color-secondary-light: #cbd5e1;
+  --op-color-secondary-dark: #64748b;
+  --op-color-on-secondary: #0f172a;
+
+  /* Accent */
+  --op-color-accent: #fbbf24;
+  --op-color-accent-light: #fde68a;
+  --op-color-accent-dark: #f59e0b;
+  --op-color-on-accent: #1c1917;
+
+  /* Surface */
+  --op-color-surface: #0f172a;
+  --op-color-surface-muted: #1e293b;
+  --op-color-surface-inverse: #f8fafc;
+  --op-color-on-surface: #f1f5f9;
+  --op-color-on-surface-muted: #94a3b8;
+
+  /* Border */
+  --op-color-border: #334155;
+  --op-color-border-muted: #1e293b;
+
+  /* Success */
+  --op-color-success: #4ade80;
+  --op-color-success-light: #052e16;
+  --op-color-on-success: #052e16;
+
+  /* Warning */
+  --op-color-warning: #facc15;
+  --op-color-warning-light: #422006;
+  --op-color-on-warning: #422006;
+
+  /* Error */
+  --op-color-error: #f87171;
+  --op-color-error-light: #450a0a;
+  --op-color-on-error: #450a0a;
+}
+
+/* ─── Dark Theme (prefers-color-scheme) ──────── */
+/* Activates automatically when user's OS is in dark mode */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    /* Primary (Lighter for dark backgrounds) */
+    --op-color-primary: #818cf8;
+    --op-color-primary-light: #a5b4fc;
+    --op-color-primary-dark: #6366f1;
+    --op-color-on-primary: #1e1b4b;
+
+    /* Secondary */
+    --op-color-secondary: #94a3b8;
+    --op-color-secondary-light: #cbd5e1;
+    --op-color-secondary-dark: #64748b;
+    --op-color-on-secondary: #0f172a;
+
+    /* Accent */
+    --op-color-accent: #fbbf24;
+    --op-color-accent-light: #fde68a;
+    --op-color-accent-dark: #f59e0b;
+    --op-color-on-accent: #1c1917;
+
+    /* Surface */
+    --op-color-surface: #0f172a;
+    --op-color-surface-muted: #1e293b;
+    --op-color-surface-inverse: #f8fafc;
+    --op-color-on-surface: #f1f5f9;
+    --op-color-on-surface-muted: #94a3b8;
+
+    /* Border */
+    --op-color-border: #334155;
+    --op-color-border-muted: #1e293b;
+
+    /* Success */
+    --op-color-success: #4ade80;
+    --op-color-success-light: #052e16;
+    --op-color-on-success: #052e16;
+
+    /* Warning */
+    --op-color-warning: #facc15;
+    --op-color-warning-light: #422006;
+    --op-color-on-warning: #422006;
+
+    /* Error */
+    --op-color-error: #f87171;
+    --op-color-error-light: #450a0a;
+    --op-color-on-error: #450a0a;
+  }
 }

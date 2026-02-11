@@ -21,7 +21,9 @@
       "@openpress/theme-tailwind-plus": ["./packages/theme-tailwind-plus/src"],
       "@openpress/theme-material-expressive": ["./packages/theme-material-expressive/src"],
       "@openpress/feature-contact-form": ["./packages/feature-contact-form/src"],
-      "@openpress/feature-booking": ["./packages/feature-booking/src"]
+      "@openpress/feature-booking": ["./packages/feature-booking/src"],
+      "@openpress/feature-gallery": ["./packages/feature-gallery/src"],
+      "@openpress/feature-media": ["./packages/feature-media/src"]
     }
   },
   "include": ["packages/*/src/**/*.ts"],

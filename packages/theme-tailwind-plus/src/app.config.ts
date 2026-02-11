@@ -50,6 +50,20 @@ export const defaultAppConfig = {
         overlay: '',
         playButton: '',
       },
+      card: {
+        root: '',
+        header: '',
+        body: '',
+        footer: '',
+        media: '',
+      },
+      input: {
+        root: '',
+        label: '',
+        input: '',
+        helper: '',
+        error: '',
+      },
     },
   },
 } as const

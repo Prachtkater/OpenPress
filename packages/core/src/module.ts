@@ -11,7 +11,8 @@ import type { NuxtPage } from '@nuxt/schema'
 import { resolveContentType } from './hmr/resolve-content-type'
 import { createChangeDebouncer } from './hmr/debounce-changes'
 import type { ContentChangePayload } from './hmr/types'
-import { discoverFeatures, extractModuleNames, registerFeatures } from './features'
+import { join } from 'node:path'
+import { discoverFeatures, extractModuleNames, registerFeatures, getEditorRoutes, resolvePackageDir } from './features'
 import type { DiscoveredFeature } from './features'
 
 export interface OpenPressStorageOptions {
@@ -90,6 +91,7 @@ export default defineNuxtModule<OpenPressOptions>({
       { route: '/api/_openpress/git/commit', handler: './runtime/server/api/git/commit.post' },
       { route: '/api/_openpress/git/history', handler: './runtime/server/api/git/history.get' },
       { route: '/api/_openpress/git/status', handler: './runtime/server/api/git/status.get' },
+      { route: '/api/_openpress/git/undo', handler: './runtime/server/api/git/undo.post' },
     ]
 
     for (const { route, handler } of apiRoutes) {
@@ -170,6 +172,24 @@ export default defineNuxtModule<OpenPressOptions>({
     if (discoveryResult.features.length > 0) {
       const names = discoveryResult.features.map((f) => f.manifest.label).join(', ')
       logger.info(`Discovered ${discoveryResult.features.length} feature(s): ${names}`)
+    }
+
+    // Register feature editor routes dynamically from manifests
+    if (discoveryResult.features.length > 0) {
+      nuxt.hook('pages:extend', (pages: NuxtPage[]) => {
+        const editorRoutes = getEditorRoutes()
+        for (const route of editorRoutes) {
+          const resolvedComponent = join(
+            resolvePackageDir(route.featureName, nuxt.options.rootDir) ?? '',
+            route.component,
+          )
+          pages.push({
+            name: `openpress-feature-${route.featureName}-${route.path.replace(/\//g, '-')}`,
+            path: route.path,
+            file: resolvedComponent,
+          })
+        }
+      })
     }
 
     // Register feature API route for component picker

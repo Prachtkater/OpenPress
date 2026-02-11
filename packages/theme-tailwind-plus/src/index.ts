@@ -6,6 +6,7 @@ import { paragraph } from './components/blocks/paragraph'
 import { image } from './components/blocks/image'
 import { button } from './components/blocks/button'
 import { video } from './components/blocks/video'
+import { contactForm } from './components/blocks/contact-form'
 
 /**
  * Tailwind Plus Theme für OpenPress.
@@ -22,6 +23,7 @@ export const theme: OpThemeConfig = {
     'block:image': image,
     'block:button': button,
     'block:video': video,
+    'block:contact-form': contactForm,
   },
 }
 
@@ -33,3 +35,4 @@ export { paragraph } from './components/blocks/paragraph'
 export { image } from './components/blocks/image'
 export { button } from './components/blocks/button'
 export { video } from './components/blocks/video'
+export { contactForm } from './components/blocks/contact-form'

@@ -1,0 +1,34 @@
+{
+  "name": "@openpress/feature-contact-form",
+  "label": "Kontaktformular",
+  "version": "0.0.1",
+  "description": "Kontaktformular mit Zod-Validierung, Honeypot-Spamschutz und NodeMailer E-Mail-Versand.",
+  "blocks": [
+    {
+      "type": "contact-form",
+      "label": "Kontaktformular",
+      "description": "Konfigurierbares Kontaktformular mit E-Mail-Versand und Validierung.",
+      "icon": "mdi:email-outline",
+      "category": "Formulare",
+      "defaultProps": {
+        "fields": [
+          { "name": "name", "type": "text", "label": "Name", "required": true },
+          { "name": "email", "type": "email", "label": "E-Mail", "required": true },
+          { "name": "message", "type": "textarea", "label": "Nachricht", "required": true }
+        ],
+        "submitLabel": "Absenden",
+        "successMessage": "Vielen Dank! Ihre Nachricht wurde gesendet.",
+        "errorMessage": "Beim Senden ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
+      }
+    }
+  ],
+  "editorPanels": [
+    {
+      "id": "contact-form-settings",
+      "label": "Formular-Einstellungen",
+      "component": "./src/runtime/components/ContactFormSettings.vue",
+      "icon": "mdi:cog"
+    }
+  ],
+  "editorRoutes": []
+}

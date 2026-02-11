@@ -6,6 +6,7 @@ import { paragraph } from './components/blocks/paragraph'
 import { image } from './components/blocks/image'
 import { button } from './components/blocks/button'
 import { video } from './components/blocks/video'
+import { contactForm } from './components/blocks/contact-form'
 
 /**
  * Material Design 3 Expressive Theme for OpenPress
@@ -29,6 +30,7 @@ export const theme: OpThemeConfig = {
     'block:image': image,
     'block:button': button,
     'block:video': video,
+    'block:contact-form': contactForm,
   },
 }
 

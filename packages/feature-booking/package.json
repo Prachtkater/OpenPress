@@ -2,10 +2,26 @@
   "name": "@openpress/feature-booking",
   "version": "0.0.1",
   "private": true,
+  "type": "module",
   "description": "OpenPress Feature - Booking/Appointment scheduling system",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts"
+    }
+  },
   "main": "./src/index.ts",
   "scripts": {
     "build": "bun run build:feature",
     "test": "bun test"
+  },
+  "dependencies": {
+    "@nuxt/kit": "^3.10.0",
+    "zod": "^3.24.0"
+  },
+  "peerDependencies": {
+    "nuxt": "^3.10.0"
+  },
+  "devDependencies": {
+    "ulid": "^2.3.0"
   }
 }

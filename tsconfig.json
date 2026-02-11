@@ -18,7 +18,10 @@
       "@openpress/core": ["./packages/core/src"],
       "@openpress/ui": ["./packages/ui/src"],
       "@openpress/poc-storage": ["./packages/poc-storage/src"],
-      "@openpress/theme-tailwind-plus": ["./packages/theme-tailwind-plus/src"]
+      "@openpress/theme-tailwind-plus": ["./packages/theme-tailwind-plus/src"],
+      "@openpress/theme-material-expressive": ["./packages/theme-material-expressive/src"],
+      "@openpress/feature-contact-form": ["./packages/feature-contact-form/src"],
+      "@openpress/feature-booking": ["./packages/feature-booking/src"]
     }
   },
   "include": ["packages/*/src/**/*.ts", "schemas/src/**/*.ts"],

@@ -16,6 +16,7 @@ export {
   hasFeature,
   getComponentPickerEntries,
   getEditorPanels,
+  getEditorRoutes,
   clearFeatureRegistry,
   type RegisteredFeature,
   type ComponentPickerEntry,

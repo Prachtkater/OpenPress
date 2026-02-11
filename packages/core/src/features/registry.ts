@@ -110,6 +110,22 @@ export function getEditorPanels(): (FeatureEditorPanel & { featureName: string }
 }
 
 /**
+ * Returns all editor routes from all registered features,
+ * enriched with their source feature name.
+ */
+export function getEditorRoutes(): { path: string; label: string; component: string; icon?: string; featureName: string }[] {
+  const routes: { path: string; label: string; component: string; icon?: string; featureName: string }[] = []
+
+  for (const { manifest } of featureStore.values()) {
+    for (const route of manifest.editorRoutes) {
+      routes.push({ ...route, featureName: manifest.name })
+    }
+  }
+
+  return routes
+}
+
+/**
  * Clears the feature registry. Used in tests.
  */
 export function clearFeatureRegistry(): void {

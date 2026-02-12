@@ -4,6 +4,7 @@ import { PageSchema, SiteConfigSchema, NavigationSchema } from '@openpress/schem
 import type { Page, SiteConfig, Navigation } from '@openpress/schemas'
 import type { OpThemeConfig } from '../../types'
 import { OP_PAGE_KEY, OP_SITE_KEY, OP_NAV_KEY, OP_MODE_KEY, OP_THEME_KEY, OP_LOCALE_KEY } from '../keys'
+import { DEFAULT_DISPLAY_LOCALE, DEFAULT_THEME } from '../config'
 import { resolveTheme } from '../theme/resolve'
 
 const props = defineProps<{
@@ -48,9 +49,9 @@ const pageRef = toRef(props, 'page')
 const navigation = computed<Navigation>(() => props.navigation ?? { main: [], footer: [] })
 const mode = computed<'view' | 'edit'>(() => props.editing ? 'edit' : 'view')
 const isEditing = computed(() => mode.value === 'edit')
-const themeName = computed(() => props.theme ?? props.site.theme ?? 'tailwind-plus')
+const themeName = computed(() => props.theme ?? props.site.theme ?? DEFAULT_THEME)
 const resolvedTheme = computed(() => resolveTheme(themeName.value))
-const locale = computed(() => props.locale ?? props.site.locale ?? 'de-DE')
+const locale = computed(() => props.locale ?? props.site.locale ?? DEFAULT_DISPLAY_LOCALE)
 
 // Provide State für Child-Komponenten (Vue provide/inject)
 provide(OP_PAGE_KEY as symbol, pageRef)

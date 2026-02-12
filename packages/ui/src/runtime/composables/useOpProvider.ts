@@ -1,4 +1,4 @@
-import type { LocalizedString } from '@openpress/schemas'
+import { DEFAULT_LOCALE, type LocalizedString } from '@openpress/schemas'
 import type { OpThemeConfig } from '../../types'
 import { inject } from '../context'
 import { OP_MODE_KEY, OP_THEME_KEY, OP_LOCALE_KEY } from '../keys'
@@ -38,7 +38,7 @@ export function useOpProvider(): UseOpProviderReturn {
     mode,
     isEditing: mode === 'edit',
     resolve: (str: LocalizedString) => {
-      const value = str[lang] ?? str.en
+      const value = str[lang] ?? str[DEFAULT_LOCALE]
       return value ?? ''
     },
   }

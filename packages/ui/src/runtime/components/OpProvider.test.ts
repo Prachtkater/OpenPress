@@ -9,6 +9,8 @@ import {
   OpConfigSchema,
   SUPPORTED_THEMES,
   SUPPORTED_LOCALES,
+  DEFAULT_DISPLAY_LOCALE,
+  DEFAULT_THEME,
   type OpConfig,
 } from '../../index'
 
@@ -217,6 +219,23 @@ describe('OpProvider (dedicated)', () => {
       expect(SUPPORTED_LOCALES).toContain('de')
       expect(SUPPORTED_LOCALES).toContain('en-US')
       expect(SUPPORTED_LOCALES).toContain('de-DE')
+    })
+
+    test('DEFAULT_DISPLAY_LOCALE ist de-DE', () => {
+      expect(DEFAULT_DISPLAY_LOCALE).toBe('de-DE')
+    })
+
+    test('DEFAULT_THEME ist tailwind-plus', () => {
+      expect(DEFAULT_THEME).toBe('tailwind-plus')
+    })
+
+    test('OpConfigSchema defaults stimmen mit Konstanten überein', () => {
+      const result = OpConfigSchema.safeParse({})
+      expect(result.success).toBe(true)
+      if (result.success) {
+        expect(result.data.theme).toBe(DEFAULT_THEME)
+        expect(result.data.locale).toBe(DEFAULT_DISPLAY_LOCALE)
+      }
     })
   })
 

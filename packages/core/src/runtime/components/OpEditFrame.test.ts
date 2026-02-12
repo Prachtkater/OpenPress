@@ -378,12 +378,13 @@ describe('edit mode interaction guard', () => {
 
 describe('overlay panel logic', () => {
   describe('element metadata extraction', () => {
-    function getElementMeta(el: MockElement) {
+    function getElementMeta(el: MockElement, typeHint?: 'block' | 'slot' | 'section') {
       return {
         id: el.getAttribute('data-op-id') ?? '',
         type: (el.getAttribute('data-op-block') ? 'block'
           : el.getAttribute('data-op-slot') ? 'slot'
-            : 'section') as 'block' | 'slot' | 'section',
+            : el.getAttribute('data-op-section') ? 'section'
+              : typeHint ?? 'block') as 'block' | 'slot' | 'section',
         blockType: el.getAttribute('data-op-block'),
         slotName: el.getAttribute('data-op-slot'),
         sectionType: el.getAttribute('data-op-section'),
@@ -449,18 +450,20 @@ describe('overlay panel logic', () => {
   describe('panel position', () => {
     it('calculates top-right position with margin', () => {
       const windowWidth = 1280
-      const panelWidth = 320
+      const PANEL_WIDTH = 288
       const margin = 16
-      const expectedX = windowWidth - panelWidth - margin
-      expect(expectedX).toBe(944)
+      const expectedX = windowWidth - PANEL_WIDTH - margin
+      expect(expectedX).toBe(976)
     })
 
     it('clamps drag position to viewport bounds', () => {
-      const clampX = (x: number, w: number) => Math.max(0, Math.min(x, w - 200))
-      const clampY = (y: number, h: number) => Math.max(0, Math.min(y, h - 48))
+      const PANEL_WIDTH = 288
+      const PANEL_HEIGHT = 48
+      const clampX = (x: number, w: number) => Math.max(0, Math.min(x, w - PANEL_WIDTH))
+      const clampY = (y: number, h: number) => Math.max(0, Math.min(y, h - PANEL_HEIGHT))
 
       expect(clampX(-100, 1280)).toBe(0)
-      expect(clampX(2000, 1280)).toBe(1080)
+      expect(clampX(2000, 1280)).toBe(992)
       expect(clampX(500, 1280)).toBe(500)
 
       expect(clampY(-50, 720)).toBe(0)

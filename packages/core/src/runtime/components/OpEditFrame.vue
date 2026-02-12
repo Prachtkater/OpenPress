@@ -48,6 +48,11 @@ const frameRef = ref<HTMLElement | null>(null)
 
 // --- Overlay panel state ---
 
+const PANEL_WIDTH = 288
+const PANEL_WIDTH_COLLAPSED = 200
+const PANEL_HEIGHT = 48
+const getPanelWidth = () => (panelCollapsed.value ? PANEL_WIDTH_COLLAPSED : PANEL_WIDTH)
+
 const panelCollapsed = ref(false)
 const panelPosition = ref({ x: 0, y: 16 })
 const isDragging = ref(false)
@@ -56,7 +61,7 @@ const dragOffset = ref({ x: 0, y: 0 })
 function initPanelPosition() {
   // Position top-right with 16px margin
   panelPosition.value = {
-    x: window.innerWidth - 320 - 16,
+    x: window.innerWidth - getPanelWidth() - 16,
     y: 16,
   }
 }
@@ -79,9 +84,10 @@ function onDrag(e: MouseEvent) {
   const newX = e.clientX - dragOffset.value.x
   const newY = e.clientY - dragOffset.value.y
   // Clamp to viewport
+  const width = getPanelWidth()
   panelPosition.value = {
-    x: Math.max(0, Math.min(newX, window.innerWidth - 200)),
-    y: Math.max(0, Math.min(newY, window.innerHeight - 48)),
+    x: Math.max(0, Math.min(newX, window.innerWidth - width)),
+    y: Math.max(0, Math.min(newY, window.innerHeight - PANEL_HEIGHT)),
   }
 }
 
@@ -133,12 +139,13 @@ interface ElementMeta {
   sectionType: string | null
 }
 
-function getElementMeta(el: HTMLElement): ElementMeta {
+function getElementMeta(el: HTMLElement, typeHint?: OpElementType): ElementMeta {
   return {
     id: el.getAttribute('data-op-id') ?? '',
     type: (el.getAttribute('data-op-block') ? 'block'
       : el.getAttribute('data-op-slot') ? 'slot'
-        : 'section') as OpElementType,
+        : el.getAttribute('data-op-section') ? 'section'
+          : typeHint ?? 'block') as OpElementType,
     blockType: el.getAttribute('data-op-block'),
     slotName: el.getAttribute('data-op-slot'),
     sectionType: el.getAttribute('data-op-section'),
@@ -166,7 +173,7 @@ function handleMouseMove(e: MouseEvent) {
   if (found) {
     hoverElement(found.id, found.type)
     hoverGlow.value = getGlowRect(found.el)
-    hoveredMeta.value = getElementMeta(found.el)
+    hoveredMeta.value = getElementMeta(found.el, found.type)
   } else {
     clearHover()
     hoverGlow.value = null
@@ -198,7 +205,7 @@ function handleClick(e: MouseEvent) {
     e.stopPropagation()
     selectElement(found.id, found.type)
     selectGlow.value = getGlowRect(found.el)
-    selectedMeta.value = getElementMeta(found.el)
+    selectedMeta.value = getElementMeta(found.el, found.type)
     showToolbar({ elementId: found.id, elementType: found.type, element: found.el })
   } else {
     clearSelection()
@@ -441,7 +448,7 @@ watch(editMode, (isEditing) => {
           @mousedown="startDrag"
         >
           <span class="op-overlay-panel__title">OpenPress Editor</span>
-          <div class="op-overlay-panel__titlebar-actions">
+          <div class="op-overlay-panel__titlebar-actions" @mousedown.stop>
             <button
               class="op-overlay-panel__titlebar-btn"
               type="button"

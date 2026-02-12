@@ -43,11 +43,13 @@ export { useOpSection, type UseOpSectionReturn } from './runtime/composables/use
 export { useOpSlot, type UseOpSlotReturn } from './runtime/composables/useOpSlot'
 export { useOpThemeClasses, useOpBlockClasses } from './runtime/composables/useOpThemeClasses'
 
-// Config Schema
+// Config Schema & Constants
 export {
   OpConfigSchema,
   SUPPORTED_THEMES,
   SUPPORTED_LOCALES,
+  DEFAULT_DISPLAY_LOCALE,
+  DEFAULT_THEME,
   type OpConfig,
   type SupportedTheme,
   type SupportedLocale,

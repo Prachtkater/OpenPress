@@ -1,6 +1,7 @@
 import type { Page, SiteConfig, Navigation } from '@openpress/schemas'
 import type { OpThemeConfig } from '../../types'
 import { provide } from '../context'
+import { DEFAULT_DISPLAY_LOCALE, DEFAULT_THEME } from '../config'
 import { OP_PAGE_KEY, OP_SITE_KEY, OP_NAV_KEY, OP_MODE_KEY, OP_THEME_KEY, OP_LOCALE_KEY } from '../keys'
 import { resolveTheme } from '../theme/resolve'
 
@@ -37,9 +38,9 @@ export interface OpProviderState {
 export function setupOpProvider(props: OpProviderProps): OpProviderState {
   const navigation: Navigation = props.navigation ?? { main: [], footer: [] }
   const mode: 'view' | 'edit' = props.editing ? 'edit' : 'view'
-  const themeName = props.theme ?? props.site.theme ?? 'tailwind-plus'
+  const themeName = props.theme ?? props.site.theme ?? DEFAULT_THEME
   const resolvedTheme = resolveTheme(themeName)
-  const locale = props.locale ?? props.site.locale ?? 'de-DE'
+  const locale = props.locale ?? props.site.locale ?? DEFAULT_DISPLAY_LOCALE
 
   // Provide State für Child-Komponenten
   provide(OP_PAGE_KEY, props.page)

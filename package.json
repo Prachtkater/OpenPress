@@ -5,7 +5,8 @@
   "description": "OpenPress - Nuxt-native Visual CMS with Git-backed Storage",
   "workspaces": [
     "packages/*",
-    "playground"
+    "playground",
+    "docs"
   ],
   "scripts": {
     "dev": "bun run --filter '@openpress/playground' dev",

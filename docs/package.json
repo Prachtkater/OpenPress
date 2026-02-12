@@ -1,0 +1,14 @@
+{
+  "name": "@openpress/docs",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "nuxi dev",
+    "build": "nuxi build",
+    "generate": "nuxi generate",
+    "preview": "nuxi preview"
+  },
+  "dependencies": {
+    "docus": "^4.0.0"
+  }
+}

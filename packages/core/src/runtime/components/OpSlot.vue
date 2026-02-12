@@ -1,15 +1,16 @@
 <script setup lang="ts">
-import { provide, computed, inject } from 'vue'
+import { provide, computed, inject, type ComputedRef, type Ref } from 'vue'
 import { z } from 'zod'
 import type { Block, Section } from '@openpress/schemas'
 import { BlockSchema } from '@openpress/schemas'
+import type { OpThemeConfig, OpSlotContext } from '@openpress/ui'
 import {
   OP_SLOT_KEY,
   OP_SECTION_KEY,
-  type OpSlotContext,
-  useOpMode,
-  useOpThemeClasses,
+  OP_MODE_KEY,
+  OP_THEME_KEY,
   resolveBlockComponent,
+  resolveComponentClasses,
 } from '@openpress/ui'
 
 export interface OpSlotUI {
@@ -33,27 +34,31 @@ if (import.meta.dev) {
   }
 }
 
-const section = inject<Section>(OP_SECTION_KEY as symbol)
+const section = inject<Ref<Section>>(OP_SECTION_KEY as symbol)
 if (!section) {
   throw new Error(
     '[OpenPress] OpSlot must be used inside <OpSection>.',
   )
 }
 
-const { isEditing } = useOpMode()
+const mode = inject<ComputedRef<'view' | 'edit'>>(OP_MODE_KEY as symbol)
+const isEditing = computed(() => mode?.value === 'edit')
+const theme = inject<ComputedRef<Readonly<OpThemeConfig>>>(OP_THEME_KEY as symbol)
 
-const classes = computed(() =>
-  useOpThemeClasses(
-    'slot',
+const classes = computed(() => {
+  const componentTheme = theme?.value?.components?.slot
+  if (!componentTheme) return {}
+  return resolveComponentClasses(
+    componentTheme,
     { name: props.name },
     undefined,
     props.ui,
-  ),
-)
+  )
+})
 
 const slotContext = computed<OpSlotContext>(() => ({
   name: props.name,
-  sectionId: section.id,
+  sectionId: section.value?.id ?? section.id,
 }))
 provide(OP_SLOT_KEY as symbol, slotContext)
 </script>

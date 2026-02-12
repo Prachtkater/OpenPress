@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { provide, toRef, computed } from 'vue'
+import { provide, inject, toRef, computed, type ComputedRef } from 'vue'
 import { SectionSchema } from '@openpress/schemas'
 import type { Section } from '@openpress/schemas'
-import { OP_SECTION_KEY, useOpMode, useOpThemeClasses } from '@openpress/ui'
+import type { OpThemeConfig } from '@openpress/ui'
+import { OP_SECTION_KEY, OP_MODE_KEY, OP_THEME_KEY, resolveComponentClasses } from '@openpress/ui'
 import OpSlot from './OpSlot.vue'
 
 export interface OpSectionUI {
@@ -26,16 +27,20 @@ if (import.meta.dev) {
 }
 
 const sectionRef = toRef(props, 'section')
-const { isEditing } = useOpMode()
+const mode = inject<ComputedRef<'view' | 'edit'>>(OP_MODE_KEY as symbol)
+const isEditing = computed(() => mode?.value === 'edit')
+const theme = inject<ComputedRef<Readonly<OpThemeConfig>>>(OP_THEME_KEY as symbol)
 
-const classes = computed(() =>
-  useOpThemeClasses(
-    'section',
+const classes = computed(() => {
+  const componentTheme = theme?.value?.components?.section
+  if (!componentTheme) return {}
+  return resolveComponentClasses(
+    componentTheme,
     { type: props.section.type },
     undefined,
     props.ui,
-  ),
-)
+  )
+})
 
 provide(OP_SECTION_KEY as symbol, sectionRef)
 </script>

@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import { inject, computed, type ComputedRef } from 'vue'
 import { BlockSchema } from '@openpress/schemas'
 import type { Block } from '@openpress/schemas'
-import { useOpMode } from '../composables/useOpMode'
+import { OP_MODE_KEY } from '../keys'
 
 const props = defineProps<{ block: Block }>()
 
@@ -16,7 +17,8 @@ if (import.meta.dev) {
   }
 }
 
-const { isEditing } = useOpMode()
+const mode = inject<ComputedRef<'view' | 'edit'>>(OP_MODE_KEY as symbol)
+const isEditing = computed(() => mode?.value === 'edit')
 </script>
 
 <template>

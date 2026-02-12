@@ -1,8 +1,9 @@
 <script setup lang="ts">
 /**
- * OpenPress Site Map — /_edit
+ * OpenPress Pages Overview — /_edit
  *
- * Full-page tree view of all pages in the site.
+ * Full-page view of all pages in the site.
+ * Two view modes: List (tree) and Mindmap (radial SVG).
  * Provides CRUD actions: create, rename, delete.
  * Navigating to a specific page opens the page editor (/_edit/:slug).
  */
@@ -23,13 +24,19 @@ const {
   openPage,
 } = usePageTree()
 
+// --- View Mode ---
+type ViewMode = 'list' | 'mindmap'
+const viewMode = ref<ViewMode>('list')
+
 // --- New Page Form ---
 const newPageTitle = ref('')
 const newPageSlug = ref('')
+const newPageParentSlug = ref<string | null>(null)
 
-function openNewPageForm() {
+function openNewPageForm(parentSlug?: string) {
   newPageTitle.value = ''
   newPageSlug.value = ''
+  newPageParentSlug.value = parentSlug ?? null
   showNewPageForm.value = true
 }
 
@@ -37,6 +44,7 @@ function cancelNewPage() {
   showNewPageForm.value = false
   newPageTitle.value = ''
   newPageSlug.value = ''
+  newPageParentSlug.value = null
 }
 
 async function submitNewPage() {
@@ -44,10 +52,19 @@ async function submitNewPage() {
   const title = newPageTitle.value.trim()
   if (!slug || !title) return
 
-  const success = await createPage(slug, title)
+  const fullSlug = newPageParentSlug.value
+    ? `${newPageParentSlug.value}/${slug}`
+    : slug
+
+  const success = await createPage(fullSlug, title)
   if (success) {
     cancelNewPage()
   }
+}
+
+/** Handler for mindmap add-page button on links */
+function handleMindmapAddPage(parentSlug: string) {
+  openNewPageForm(parentSlug)
 }
 
 // --- Rename ---
@@ -102,84 +119,125 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="op-sitemap">
+  <div class="op-pages">
     <!-- Header -->
-    <header class="op-sitemap__header">
-      <h1 class="op-sitemap__title">Pages</h1>
-      <button
-        class="op-sitemap__btn op-sitemap__btn--primary"
-        @click="openNewPageForm"
-      >
-        + New Page
-      </button>
+    <header class="op-pages__header">
+      <h1 class="op-pages__title">Pages</h1>
+      <div class="op-pages__header-actions">
+        <!-- View Toggle -->
+        <div class="op-pages__toggle" role="radiogroup" aria-label="View mode">
+          <button
+            class="op-pages__toggle-btn"
+            :class="{ 'op-pages__toggle-btn--active': viewMode === 'list' }"
+            role="radio"
+            :aria-checked="viewMode === 'list'"
+            @click="viewMode = 'list'"
+          >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <rect x="1" y="2" width="14" height="2" rx="1" fill="currentColor" />
+              <rect x="1" y="7" width="14" height="2" rx="1" fill="currentColor" />
+              <rect x="1" y="12" width="14" height="2" rx="1" fill="currentColor" />
+            </svg>
+            List
+          </button>
+          <button
+            class="op-pages__toggle-btn"
+            :class="{ 'op-pages__toggle-btn--active': viewMode === 'mindmap' }"
+            role="radio"
+            :aria-checked="viewMode === 'mindmap'"
+            @click="viewMode = 'mindmap'"
+          >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <circle cx="8" cy="8" r="3" fill="currentColor" />
+              <circle cx="3" cy="3" r="1.5" fill="currentColor" />
+              <circle cx="13" cy="3" r="1.5" fill="currentColor" />
+              <circle cx="3" cy="13" r="1.5" fill="currentColor" />
+              <circle cx="13" cy="13" r="1.5" fill="currentColor" />
+              <line x1="6" y1="6" x2="4" y2="4" stroke="currentColor" stroke-width="1" />
+              <line x1="10" y1="6" x2="12" y2="4" stroke="currentColor" stroke-width="1" />
+              <line x1="6" y1="10" x2="4" y2="12" stroke="currentColor" stroke-width="1" />
+              <line x1="10" y1="10" x2="12" y2="12" stroke="currentColor" stroke-width="1" />
+            </svg>
+            Mindmap
+          </button>
+        </div>
+        <button
+          class="op-pages__btn op-pages__btn--primary"
+          @click="openNewPageForm()"
+        >
+          + New Page
+        </button>
+      </div>
     </header>
 
     <!-- Error Banner -->
-    <div v-if="error" class="op-sitemap__error" role="alert">
+    <div v-if="error" class="op-pages__error" role="alert">
       {{ error }}
-      <button class="op-sitemap__error-dismiss" @click="error = null">
+      <button class="op-pages__error-dismiss" @click="error = null">
         Dismiss
       </button>
     </div>
 
     <!-- New Page Form -->
-    <div v-if="showNewPageForm" class="op-sitemap__form">
-      <h2 class="op-sitemap__form-title">Create New Page</h2>
-      <div class="op-sitemap__form-fields">
-        <label class="op-sitemap__label">
+    <div v-if="showNewPageForm" class="op-pages__form">
+      <h2 class="op-pages__form-title">
+        {{ newPageParentSlug ? `New sub-page under /${newPageParentSlug}` : 'Create New Page' }}
+      </h2>
+      <div class="op-pages__form-fields">
+        <label class="op-pages__label">
           Title
           <input
             v-model="newPageTitle"
-            class="op-sitemap__input"
+            class="op-pages__input"
             type="text"
             placeholder="My New Page"
             @keydown.enter="submitNewPage"
           />
         </label>
-        <label class="op-sitemap__label">
+        <label class="op-pages__label">
           Slug
           <input
             v-model="newPageSlug"
-            class="op-sitemap__input"
+            class="op-pages__input"
             type="text"
             placeholder="my-new-page"
             @keydown.enter="submitNewPage"
           />
         </label>
       </div>
-      <div class="op-sitemap__form-actions">
+      <div class="op-pages__form-actions">
         <button
-          class="op-sitemap__btn op-sitemap__btn--primary"
+          class="op-pages__btn op-pages__btn--primary"
           :disabled="!newPageTitle.trim() || !newPageSlug.trim()"
           @click="submitNewPage"
         >
           Create
         </button>
-        <button class="op-sitemap__btn" @click="cancelNewPage">
+        <button class="op-pages__btn" @click="cancelNewPage">
           Cancel
         </button>
       </div>
     </div>
 
     <!-- Loading -->
-    <div v-if="isLoading" class="op-sitemap__loading">
+    <div v-if="isLoading" class="op-pages__loading">
       Loading pages...
     </div>
 
     <!-- Empty State -->
-    <div v-else-if="tree.length === 0 && !showNewPageForm" class="op-sitemap__empty">
+    <div v-else-if="tree.length === 0 && !showNewPageForm" class="op-pages__empty">
       <p>No pages yet.</p>
-      <button class="op-sitemap__btn op-sitemap__btn--primary" @click="openNewPageForm">
+      <button class="op-pages__btn op-pages__btn--primary" @click="openNewPageForm()">
         Create your first page
       </button>
     </div>
 
-    <!-- Tree -->
-    <ul v-else class="op-sitemap__tree" role="tree">
+    <!-- List View -->
+    <ul v-else-if="viewMode === 'list'" class="op-pages__tree" role="tree">
       <li
         v-for="node in tree"
         :key="node.slug"
-        class="op-sitemap__tree-root"
+        class="op-pages__tree-root"
         role="treeitem"
       >
         <op-tree-node
@@ -203,28 +261,36 @@ onMounted(() => {
       </li>
     </ul>
 
+    <!-- Mindmap View -->
+    <OpMindmap
+      v-else
+      :tree="tree"
+      @open-page="openPage"
+      @add-page="handleMindmapAddPage"
+    />
+
     <!-- Delete Confirmation Dialog -->
     <Teleport to="body">
       <div
         v-if="confirmDeleteSlug"
-        class="op-sitemap__overlay"
+        class="op-pages__overlay"
         @click.self="cancelDelete"
       >
-        <div class="op-sitemap__dialog" role="alertdialog">
+        <div class="op-pages__dialog" role="alertdialog">
           <h3>Delete Page</h3>
           <p>
             Are you sure you want to delete
             <strong>{{ confirmDeleteSlug }}</strong>?
             This action cannot be undone.
           </p>
-          <div class="op-sitemap__dialog-actions">
+          <div class="op-pages__dialog-actions">
             <button
-              class="op-sitemap__btn op-sitemap__btn--danger"
+              class="op-pages__btn op-pages__btn--danger"
               @click="confirmDelete"
             >
               Delete
             </button>
-            <button class="op-sitemap__btn" @click="cancelDelete">
+            <button class="op-pages__btn" @click="cancelDelete">
               Cancel
             </button>
           </div>
@@ -235,28 +301,71 @@ onMounted(() => {
 </template>
 
 <style>
-.op-sitemap {
-  max-width: 900px;
+.op-pages {
+  max-width: 960px;
   margin: 0 auto;
   padding: 2rem;
   font-family: system-ui, -apple-system, sans-serif;
   color: #1a1a2e;
 }
 
-.op-sitemap__header {
+.op-pages__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
-.op-sitemap__title {
+.op-pages__title {
   font-size: 1.5rem;
   font-weight: 700;
   margin: 0;
 }
 
-.op-sitemap__btn {
+.op-pages__header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* View Toggle */
+.op-pages__toggle {
+  display: inline-flex;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.op-pages__toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.75rem;
+  border: none;
+  background: #fff;
+  font-size: 0.8rem;
+  cursor: pointer;
+  color: #6b7280;
+  transition: background 0.15s, color 0.15s;
+}
+
+.op-pages__toggle-btn:not(:last-child) {
+  border-right: 1px solid #d1d5db;
+}
+
+.op-pages__toggle-btn--active {
+  background: #2563eb;
+  color: #fff;
+}
+
+.op-pages__toggle-btn:hover:not(.op-pages__toggle-btn--active) {
+  background: #f3f4f6;
+}
+
+/* Buttons */
+.op-pages__btn {
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
@@ -269,36 +378,37 @@ onMounted(() => {
   transition: background 0.15s, border-color 0.15s;
 }
 
-.op-sitemap__btn:hover {
+.op-pages__btn:hover {
   background: #f3f4f6;
 }
 
-.op-sitemap__btn:disabled {
+.op-pages__btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
-.op-sitemap__btn--primary {
+.op-pages__btn--primary {
   background: #2563eb;
   color: #fff;
   border-color: #2563eb;
 }
 
-.op-sitemap__btn--primary:hover {
+.op-pages__btn--primary:hover {
   background: #1d4ed8;
 }
 
-.op-sitemap__btn--danger {
+.op-pages__btn--danger {
   background: #dc2626;
   color: #fff;
   border-color: #dc2626;
 }
 
-.op-sitemap__btn--danger:hover {
+.op-pages__btn--danger:hover {
   background: #b91c1c;
 }
 
-.op-sitemap__error {
+/* Error banner */
+.op-pages__error {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -311,7 +421,7 @@ onMounted(() => {
   font-size: 0.875rem;
 }
 
-.op-sitemap__error-dismiss {
+.op-pages__error-dismiss {
   background: none;
   border: none;
   color: #991b1b;
@@ -320,7 +430,8 @@ onMounted(() => {
   font-size: 0.8rem;
 }
 
-.op-sitemap__form {
+/* New Page Form */
+.op-pages__form {
   padding: 1rem 1.25rem;
   margin-bottom: 1.5rem;
   background: #f8fafc;
@@ -328,19 +439,19 @@ onMounted(() => {
   border-radius: 8px;
 }
 
-.op-sitemap__form-title {
+.op-pages__form-title {
   font-size: 1rem;
   font-weight: 600;
   margin: 0 0 0.75rem;
 }
 
-.op-sitemap__form-fields {
+.op-pages__form-fields {
   display: flex;
   gap: 1rem;
   margin-bottom: 0.75rem;
 }
 
-.op-sitemap__label {
+.op-pages__label {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
@@ -349,7 +460,7 @@ onMounted(() => {
   flex: 1;
 }
 
-.op-sitemap__input {
+.op-pages__input {
   padding: 0.5rem 0.75rem;
   border: 1px solid #d1d5db;
   border-radius: 6px;
@@ -357,46 +468,48 @@ onMounted(() => {
   outline: none;
 }
 
-.op-sitemap__input:focus {
+.op-pages__input:focus {
   border-color: #2563eb;
   box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
 }
 
-.op-sitemap__form-actions {
+.op-pages__form-actions {
   display: flex;
   gap: 0.5rem;
 }
 
-.op-sitemap__loading {
+/* States */
+.op-pages__loading {
   padding: 2rem;
   text-align: center;
   color: #6b7280;
   font-size: 0.9rem;
 }
 
-.op-sitemap__empty {
+.op-pages__empty {
   padding: 3rem;
   text-align: center;
   color: #6b7280;
 }
 
-.op-sitemap__empty p {
+.op-pages__empty p {
   margin-bottom: 1rem;
   font-size: 1rem;
 }
 
-.op-sitemap__tree {
+/* List tree */
+.op-pages__tree {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.op-sitemap__tree-root {
+.op-pages__tree-root {
   list-style: none;
 }
 
 /* Delete confirmation overlay */
-.op-sitemap__overlay {
+.op-pages__overlay {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.4);
@@ -406,7 +519,7 @@ onMounted(() => {
   z-index: 9999;
 }
 
-.op-sitemap__dialog {
+.op-pages__dialog {
   background: #fff;
   border-radius: 8px;
   padding: 1.5rem;
@@ -415,20 +528,40 @@ onMounted(() => {
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
 }
 
-.op-sitemap__dialog h3 {
+.op-pages__dialog h3 {
   margin: 0 0 0.5rem;
   font-size: 1.1rem;
 }
 
-.op-sitemap__dialog p {
+.op-pages__dialog p {
   margin: 0 0 1rem;
   font-size: 0.9rem;
   color: #4b5563;
 }
 
-.op-sitemap__dialog-actions {
+.op-pages__dialog-actions {
   display: flex;
   gap: 0.5rem;
   justify-content: flex-end;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .op-pages {
+    padding: 1rem;
+  }
+
+  .op-pages__header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .op-pages__header-actions {
+    justify-content: space-between;
+  }
+
+  .op-pages__form-fields {
+    flex-direction: column;
+  }
 }
 </style>

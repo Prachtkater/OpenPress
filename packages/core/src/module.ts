@@ -79,11 +79,11 @@ export default defineNuxtModule<OpenPressOptions>({
 
     // 5. Register server API routes
     const apiRoutes = [
-      { route: '/api/_openpress/pages', handler: './runtime/server/api/pages/index.get', method: 'get' },
-      { route: '/api/_openpress/pages', handler: './runtime/server/api/pages/index.post', method: 'post' },
-      { route: '/api/_openpress/pages/:slug', handler: './runtime/server/api/pages/[slug].get', method: 'get' },
-      { route: '/api/_openpress/pages/:slug', handler: './runtime/server/api/pages/[slug].put', method: 'put' },
-      { route: '/api/_openpress/pages/:slug', handler: './runtime/server/api/pages/[slug].delete', method: 'delete' },
+      { route: '/api/_openpress/pages', handler: './runtime/server/api/pages/index.get', method: 'get' as const },
+      { route: '/api/_openpress/pages', handler: './runtime/server/api/pages/index.post', method: 'post' as const },
+      { route: '/api/_openpress/pages/:slug', handler: './runtime/server/api/pages/[slug].get', method: 'get' as const },
+      { route: '/api/_openpress/pages/:slug', handler: './runtime/server/api/pages/[slug].put', method: 'put' as const },
+      { route: '/api/_openpress/pages/:slug', handler: './runtime/server/api/pages/[slug].delete', method: 'delete' as const },
       { route: '/api/_openpress/site', handler: './runtime/server/api/site.get' },
       { route: '/api/_openpress/site', handler: './runtime/server/api/site.put' },
       { route: '/api/_openpress/navigation', handler: './runtime/server/api/navigation.get' },
@@ -91,13 +91,14 @@ export default defineNuxtModule<OpenPressOptions>({
       { route: '/api/_openpress/git/commit', handler: './runtime/server/api/git/commit.post' },
       { route: '/api/_openpress/git/history', handler: './runtime/server/api/git/history.get' },
       { route: '/api/_openpress/git/status', handler: './runtime/server/api/git/status.get' },
-      { route: '/api/_openpress/git/undo', handler: './runtime/server/api/git/undo.post' },
+      { route: '/api/_openpress/git/undo', handler: './runtime/server/api/git/undo.post', method: 'post' as const },
     ]
 
-    for (const { route, handler } of apiRoutes) {
+    for (const { route, handler, method } of apiRoutes) {
       addServerHandler({
         route,
         handler: resolver.resolve(handler),
+        ...(method && { method }),
       })
     }
 
@@ -179,10 +180,12 @@ export default defineNuxtModule<OpenPressOptions>({
       nuxt.hook('pages:extend', (pages: NuxtPage[]) => {
         const editorRoutes = getEditorRoutes()
         for (const route of editorRoutes) {
-          const resolvedComponent = join(
-            resolvePackageDir(route.featureName, nuxt.options.rootDir) ?? '',
-            route.component,
-          )
+          const packageDir = resolvePackageDir(route.featureName, nuxt.options.rootDir)
+          if (!packageDir) {
+            logger.warn(`Editor route skipped: package for feature "${route.featureName}" not found.`)
+            continue
+          }
+          const resolvedComponent = join(packageDir, route.component)
           pages.push({
             name: `openpress-feature-${route.featureName}-${route.path.replace(/\//g, '-')}`,
             path: route.path,

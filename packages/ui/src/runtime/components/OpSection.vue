@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { provide, toRef, computed } from 'vue'
+import { provide, inject, toRef, computed, type ComputedRef } from 'vue'
 import { SectionSchema } from '@openpress/schemas'
 import type { Section, Block } from '@openpress/schemas'
-import { OP_SECTION_KEY } from '../keys'
-import { useOpMode } from '../composables/useOpMode'
-import { useOpThemeClasses } from '../composables/useOpThemeClasses'
+import type { OpThemeConfig } from '../../types'
+import { OP_SECTION_KEY, OP_MODE_KEY, OP_THEME_KEY } from '../keys'
+import { resolveComponentClasses } from '../theme/resolve-classes'
 import OpSlot from './OpSlot.vue'
 
 export interface OpSectionUI {
@@ -29,35 +29,34 @@ if (import.meta.dev) {
 }
 
 const sectionRef = toRef(props, 'section')
-const { isEditing } = useOpMode()
+const mode = inject<ComputedRef<'view' | 'edit'>>(OP_MODE_KEY as symbol)
+const isEditing = computed(() => mode?.value === 'edit')
+const theme = inject<ComputedRef<Readonly<OpThemeConfig>>>(OP_THEME_KEY as symbol)
 
 // Theme-Klassen für diesen Section-Type auflösen
-const classes = computed(() =>
-  useOpThemeClasses(
-    'section',
+const classes = computed(() => {
+  const componentTheme = theme?.value?.components?.section
+  if (!componentTheme) return {}
+  return resolveComponentClasses(
+    componentTheme,
     { type: props.section.type },
     undefined,
     props.ui,
-  ),
-)
+  )
+})
 
 // Provide Section-Kontext für verschachtelte OpSlots
-provide(OP_SECTION_KEY, sectionRef)
+provide(OP_SECTION_KEY as symbol, sectionRef)
 </script>
 
 <template>
   <section
-    :class="[classes.root, ui?.root]"
+    :class="classes.root"
     :data-op-section="section.type"
     :data-op-id="section.id"
     :data-op-editing="isEditing ? '' : undefined"
   >
-    <div :class="[classes.inner, ui?.inner]">
-      <!--
-        Option A: Named Slots für Theme-Kontrolle (Scoped Slot Override)
-        Option B: Automatisches Rendering aller Section-Slots
-        → Default: Option B, mit Option A als Override via Scoped Slot
-      -->
+    <div :class="classes.inner">
       <slot :section="section" :slots="section.slots">
         <!-- Default: Rendere alle Slots der Section automatisch -->
         <OpSlot

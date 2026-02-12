@@ -5,9 +5,16 @@ import { DEFAULT_DISPLAY_LOCALE, DEFAULT_THEME } from '../config'
 import { OP_PAGE_KEY, OP_SITE_KEY, OP_NAV_KEY, OP_MODE_KEY, OP_THEME_KEY, OP_LOCALE_KEY } from '../keys'
 import { resolveTheme } from '../theme/resolve'
 
+const DEFAULT_SITE: SiteConfig = {
+  name: 'OpenPress',
+  locale: DEFAULT_DISPLAY_LOCALE,
+  theme: DEFAULT_THEME,
+  meta: { title: 'OpenPress', description: '' },
+}
+
 export interface OpProviderProps {
-  page: Page
-  site: SiteConfig
+  page?: Page
+  site?: SiteConfig
   navigation?: Navigation
   editing?: boolean
   theme?: string
@@ -15,7 +22,7 @@ export interface OpProviderProps {
 }
 
 export interface OpProviderState {
-  page: Page
+  page?: Page
   site: Readonly<SiteConfig>
   navigation: Readonly<Navigation>
   mode: 'view' | 'edit'
@@ -34,17 +41,22 @@ export interface OpProviderState {
  *
  * In einer Vue-Umgebung wird dies in <script setup> aufgerufen.
  * Hier als reine Funktion für Testbarkeit mit Bun.
+ *
+ * page und site sind optional — ohne page wird kein Page-Kontext
+ * bereitgestellt (geeignet für App-Level Provider).
  */
 export function setupOpProvider(props: OpProviderProps): OpProviderState {
+  const site = props.site ?? Object.freeze({ ...DEFAULT_SITE })
   const navigation: Navigation = props.navigation ?? { main: [], footer: [] }
   const mode: 'view' | 'edit' = props.editing ? 'edit' : 'view'
-  const themeName = props.theme ?? props.site.theme ?? DEFAULT_THEME
+  const themeName = props.theme ?? site.theme ?? DEFAULT_THEME
   const resolvedTheme = resolveTheme(themeName)
-  const locale = props.locale ?? props.site.locale ?? DEFAULT_DISPLAY_LOCALE
+  const locale = props.locale ?? site.locale ?? DEFAULT_DISPLAY_LOCALE
 
   // Provide State für Child-Komponenten
+  // Always provide page key so children can react when page becomes available
   provide(OP_PAGE_KEY, props.page)
-  provide(OP_SITE_KEY, Object.freeze({ ...props.site }) as Readonly<SiteConfig>)
+  provide(OP_SITE_KEY, Object.freeze({ ...site }) as Readonly<SiteConfig>)
   provide(OP_NAV_KEY, Object.freeze({ ...navigation }) as Readonly<Navigation>)
   provide(OP_MODE_KEY, mode)
   provide(OP_THEME_KEY, Object.freeze({ ...resolvedTheme }) as Readonly<OpThemeConfig>)
@@ -52,7 +64,7 @@ export function setupOpProvider(props: OpProviderProps): OpProviderState {
 
   return {
     page: props.page,
-    site: props.site,
+    site,
     navigation,
     mode,
     theme: resolvedTheme,

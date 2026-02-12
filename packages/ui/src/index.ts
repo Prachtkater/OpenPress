@@ -59,3 +59,10 @@ export {
 export { setupOpProvider, type OpProviderProps, type OpProviderState } from './runtime/components/OpProvider'
 export { setupOpSection, type OpSectionProps, type OpSectionState, type OpSectionUI } from './runtime/components/OpSection'
 export { setupOpSlot, type OpSlotProps, type OpSlotState, type OpSlotUI } from './runtime/components/OpSlot'
+
+// Vue Components
+export { default as OpProvider } from './runtime/components/OpProvider.vue'
+export { default as OpSection } from './runtime/components/OpSection.vue'
+export { default as OpSlot } from './runtime/components/OpSlot.vue'
+export { default as OpPage } from './runtime/components/OpPage.vue'
+export { default as OpBlockFallbackVue } from './runtime/components/OpBlockFallback.vue'

@@ -22,7 +22,7 @@ export { registerTheme, resolveTheme, loadTheme, clearThemeRegistry } from './ru
 export { resolveComponentClasses } from './runtime/theme/resolve-classes'
 
 // Theme Defaults
-export { defaultTheme, sectionTheme, slotTheme } from './runtime/theme/defaults'
+export { defaultTheme, providerTheme, sectionTheme, slotTheme } from './runtime/theme/defaults'
 
 // Block Resolution
 export {
@@ -42,6 +42,16 @@ export { useOpMode, type UseOpModeReturn } from './runtime/composables/useOpMode
 export { useOpSection, type UseOpSectionReturn } from './runtime/composables/useOpSection'
 export { useOpSlot, type UseOpSlotReturn } from './runtime/composables/useOpSlot'
 export { useOpThemeClasses, useOpBlockClasses } from './runtime/composables/useOpThemeClasses'
+
+// Config Schema
+export {
+  OpConfigSchema,
+  SUPPORTED_THEMES,
+  SUPPORTED_LOCALES,
+  type OpConfig,
+  type SupportedTheme,
+  type SupportedLocale,
+} from './runtime/config'
 
 // Component Setup Functions
 export { setupOpProvider, type OpProviderProps, type OpProviderState } from './runtime/components/OpProvider'

@@ -1,0 +1,7 @@
+pre-commit:
+  parallel: true
+  jobs:
+    - name: typecheck
+      run: bun x tsc --noEmit
+    - name: test
+      run: bun test --bail

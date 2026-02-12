@@ -1,5 +1,5 @@
 {
-  "id": "01JKQNP000000000000000UEBM",
+  "id": "01KH6Y31KKJSN09ZEDWTV9K9KC",
   "slug": "ueber-mich",
   "title": {
     "en": "About Me – Ecological Garden Designer",
@@ -13,12 +13,12 @@
   },
   "sections": [
     {
-      "id": "01JKQNP0000000000000S0301",
+      "id": "01KH6Y31KKR019V03SQJ9E2GF4",
       "type": "hero",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B030101",
+            "id": "01KH6Y31KKFRBNZF6PNY76B4CF",
             "type": "heading",
             "props": {
               "text": "Über mich",
@@ -26,7 +26,7 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B030102",
+            "id": "01KH6Y31KKGGJF9XRF1V94C5J8",
             "type": "paragraph",
             "props": {
               "text": "Mein Name ist Anna Lindgren. Seit über 15 Jahren gestalte ich naturnahe Gärten in Berlin und Brandenburg. Meine Leidenschaft gilt der Verbindung von Ästhetik und Ökologie – Gärten, die Menschen begeistern und gleichzeitig Lebensräume für die heimische Tier- und Pflanzenwelt schaffen."
@@ -36,12 +36,12 @@
       }
     },
     {
-      "id": "01JKQNP0000000000000S0302",
+      "id": "01KH6Y31KKGBBWBR2ZK628FXQD",
       "type": "content",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B030201",
+            "id": "01KH6Y31KK3Z8AZ47Q68NH7H5E",
             "type": "heading",
             "props": {
               "text": "Mein Werdegang",
@@ -49,14 +49,14 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B030202",
+            "id": "01KH6Y31KK0WVF4B6V0KAA22R3",
             "type": "paragraph",
             "props": {
               "text": "Nach meinem Studium der Landschaftsarchitektur an der TU Berlin und einer Weiterbildung in ökologischer Gartengestaltung habe ich 2010 Naturgarten Berlin gegründet. Seitdem habe ich über 200 Gärten in naturnahe Oasen verwandelt."
             }
           },
           {
-            "id": "01JKQNP00000000000B030203",
+            "id": "01KH6Y31KKE3AFSEA66KYWJYAA",
             "type": "paragraph",
             "props": {
               "text": "Meine Arbeit wurde mehrfach ausgezeichnet, unter anderem mit dem Berliner Umweltpreis und dem Deutschen Gartenbaupreis für nachhaltige Gartengestaltung. Ich bin Mitglied im Naturgarten e.V. und engagiere mich für die Förderung urbaner Biodiversität."
@@ -66,12 +66,12 @@
       }
     },
     {
-      "id": "01JKQNP0000000000000S0303",
+      "id": "01KH6Y31KKTH0EEPYG6MGH6J7A",
       "type": "content",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B030301",
+            "id": "01KH6Y31KKEACB2KET45XC3MZS",
             "type": "heading",
             "props": {
               "text": "Meine Philosophie",
@@ -79,14 +79,14 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B030302",
+            "id": "01KH6Y31KK542XT8EHM660H710",
             "type": "paragraph",
             "props": {
               "text": "Ich glaube, dass jeder Garten – egal wie klein – einen Beitrag zur Erhaltung unserer Natur leisten kann. Ein Naturgarten ist kein Kompromiss zwischen Schönheit und Ökologie, sondern die perfekte Vereinigung beider. Die Natur ist die beste Gestalterin, und meine Aufgabe ist es, ihre Prinzipien in Ihren Garten zu übersetzen."
             }
           },
           {
-            "id": "01JKQNP00000000000B030303",
+            "id": "01KH6Y31KK08M2ZS8PBCG5A1QV",
             "type": "list",
             "props": {
               "items": [
@@ -102,12 +102,12 @@
       }
     },
     {
-      "id": "01JKQNP0000000000000S0304",
+      "id": "01KH6Y31KKDNTEEA1GM40PJHZK",
       "type": "cta",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B030401",
+            "id": "01KH6Y31KK1NPWB1MB1H636WJE",
             "type": "heading",
             "props": {
               "text": "Lernen wir uns kennen",
@@ -115,14 +115,14 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B030402",
+            "id": "01KH6Y31KKD3ADXVBR06TNFF4N",
             "type": "paragraph",
             "props": {
               "text": "Ich freue mich darauf, Sie und Ihren Garten kennenzulernen. Vereinbaren Sie ein unverbindliches Erstgespräch."
             }
           },
           {
-            "id": "01JKQNP00000000000B030403",
+            "id": "01KH6Y31KK2Y26VZ9F9HQR1RAH",
             "type": "button",
             "props": {
               "text": "Kontakt aufnehmen",

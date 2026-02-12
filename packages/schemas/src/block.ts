@@ -7,9 +7,9 @@ export const BlockSchema = z.object({
   props: z.record(z.unknown()),
 });
 
-export type Block = z.infer<typeof BlockSchema>;
+export type Block = z.output<typeof BlockSchema>;
 
 /** A slot is an ordered array of blocks */
 export const SlotSchema = z.array(BlockSchema);
 
-export type Slot = z.infer<typeof SlotSchema>;
+export type Slot = z.output<typeof SlotSchema>;

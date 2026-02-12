@@ -1,10 +1,11 @@
 import { defineEventHandler, readBody, createError, setResponseStatus } from 'h3'
-import { PageSchema } from '@openpress/schemas'
+import { ulid } from 'ulid'
+import { CreatePageInputSchema, type Page } from '@openpress/schemas'
 import { useStorageEngine } from '../../utils/storage'
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
-  const result = PageSchema.safeParse(body)
+  const result = CreatePageInputSchema.safeParse(body)
   if (!result.success) {
     throw createError({
       statusCode: 422,
@@ -22,13 +23,24 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  await engine.writePage(result.data.slug, result.data)
+  const now = new Date().toISOString()
+  const page: Page = {
+    id: ulid(),
+    slug: result.data.slug,
+    title: result.data.title,
+    meta: result.data.meta ?? {},
+    sections: result.data.sections ?? [],
+    updatedAt: now,
+    createdAt: now,
+  }
+
+  await engine.writePage(page.slug, page)
 
   const config = useRuntimeConfig()
   if (config.openpress.autoCommit) {
-    await engine.commit(`content: create page '${result.data.slug}'`)
+    await engine.commit(`content: create page '${page.slug}'`)
   }
 
   setResponseStatus(event, 201)
-  return result.data
+  return page
 })

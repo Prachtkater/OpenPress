@@ -6,9 +6,13 @@ import {
   useOpBlockClasses,
   useOpThemeClasses,
   OP_THEME_KEY,
+  registerTheme,
+  loadTheme,
+  resolveTheme,
+  clearThemeRegistry,
 } from '@openpress/ui'
 import type { OpThemeConfig } from '@openpress/ui'
-import { theme } from './index'
+import { theme, css, createTailwindPlusPlugin, plugin } from './index'
 import { section } from './components/section'
 import { slot } from './components/slot'
 import { heading } from './components/blocks/heading'
@@ -16,6 +20,17 @@ import { paragraph } from './components/blocks/paragraph'
 import { image } from './components/blocks/image'
 import { button } from './components/blocks/button'
 import { video } from './components/blocks/video'
+import { card } from './components/blocks/card'
+import { input } from './components/blocks/input'
+import {
+  tpColors,
+  tpBreakpoints,
+  tpSpacing,
+  tpTypography,
+  tpElevation,
+  tpRadius,
+  tpTransition,
+} from './tokens'
 
 // ─── Theme Structure ────────────────────────────────────────────
 
@@ -34,12 +49,92 @@ describe('Tailwind Plus Theme Structure', () => {
     expect(keys).toContain('block:image')
     expect(keys).toContain('block:button')
     expect(keys).toContain('block:video')
+    expect(keys).toContain('block:card')
+    expect(keys).toContain('block:input')
+    expect(keys).toContain('block:contact-form')
   })
 
   test('alle Komponenten haben mindestens einen Slot', () => {
     for (const [key, comp] of Object.entries(theme.components)) {
       expect(Object.keys(comp.slots).length).toBeGreaterThan(0)
     }
+  })
+
+  test('exportiert css Pfad', () => {
+    expect(typeof css).toBe('string')
+    expect(css).toContain('tokens.css')
+  })
+})
+
+// ─── Design Tokens ──────────────────────────────────────────────
+
+describe('Tailwind Plus Design Tokens', () => {
+  test('tpColors enthält alle semantischen Farb-Rollen', () => {
+    expect(tpColors.primary).toContain('--op-color-primary')
+    expect(tpColors.onPrimary).toContain('--op-color-on-primary')
+    expect(tpColors.secondary).toContain('--op-color-secondary')
+    expect(tpColors.accent).toContain('--op-color-accent')
+    expect(tpColors.surface).toContain('--op-color-surface')
+    expect(tpColors.onSurface).toContain('--op-color-on-surface')
+  })
+
+  test('tpColors enthält Feedback-Farben', () => {
+    expect(tpColors.success).toContain('--op-color-success')
+    expect(tpColors.warning).toContain('--op-color-warning')
+    expect(tpColors.error).toContain('--op-color-error')
+    expect(tpColors.onError).toContain('--op-color-on-error')
+  })
+
+  test('tpColors enthält Border-Tokens', () => {
+    expect(tpColors.border).toContain('--op-color-border')
+    expect(tpColors.borderMuted).toContain('--op-color-border-muted')
+  })
+
+  test('tpBreakpoints enthält alle Standard-Breakpoints', () => {
+    expect(Object.keys(tpBreakpoints)).toHaveLength(5)
+    expect(tpBreakpoints.sm).toBe('640px')
+    expect(tpBreakpoints.md).toBe('768px')
+    expect(tpBreakpoints.lg).toBe('1024px')
+    expect(tpBreakpoints.xl).toBe('1280px')
+    expect(tpBreakpoints['2xl']).toBe('1536px')
+  })
+
+  test('tpSpacing enthält Section-Spacing Tokens', () => {
+    expect(tpSpacing.sectionY).toContain('py-16')
+    expect(tpSpacing.sectionY).toContain('lg:py-24')
+    expect(tpSpacing.containerMax).toContain('max-w-7xl')
+    expect(tpSpacing.containerNarrow).toContain('max-w-3xl')
+  })
+
+  test('tpTypography enthält responsive Type-Scale', () => {
+    expect(Object.keys(tpTypography)).toHaveLength(11)
+    expect(tpTypography.displayLarge).toContain('text-4xl')
+    expect(tpTypography.displayLarge).toContain('lg:text-6xl')
+    expect(tpTypography.bodyBase).toContain('text-base')
+    expect(tpTypography.bodyBase).toContain('leading-7')
+  })
+
+  test('tpElevation definiert 7 Elevation-Stufen', () => {
+    expect(Object.keys(tpElevation)).toHaveLength(7)
+    expect(tpElevation.none).toBe('')
+    expect(tpElevation.sm).toBe('shadow-sm')
+    expect(tpElevation['2xl']).toBe('shadow-2xl')
+  })
+
+  test('tpRadius definiert 9 Radius-Stufen', () => {
+    expect(Object.keys(tpRadius)).toHaveLength(9)
+    expect(tpRadius.none).toBe('rounded-none')
+    expect(tpRadius.lg).toBe('rounded-lg')
+    expect(tpRadius.full).toBe('rounded-full')
+  })
+
+  test('tpTransition enthält Übergangs-Presets', () => {
+    expect(Object.keys(tpTransition)).toHaveLength(5)
+    expect(tpTransition.fast).toContain('duration-150')
+    expect(tpTransition.base).toContain('duration-200')
+    expect(tpTransition.slow).toContain('duration-300')
+    expect(tpTransition.colors).toContain('transition-colors')
+    expect(tpTransition.transform).toContain('transition-transform')
   })
 })
 
@@ -611,5 +706,509 @@ describe('Tailwind Merge Korrektheit im Theme', () => {
     expect(result.inner).not.toContain('max-w-7xl')
     expect(result.inner).toContain('px-8')
     expect(result.inner).not.toContain('px-6')
+  })
+})
+
+// ─── Liquid Glass Variants ───────────────────────────────────────
+
+describe('Liquid Glass Section Variants (Tailwind Plus)', () => {
+  test('glass Variant enthält backdrop-blur und semi-transparenten Hintergrund', () => {
+    const result = resolveComponentClasses(section, { type: 'glass' })
+
+    expect(result.root).toContain('backdrop-blur-xl')
+    expect(result.root).toContain('bg-white/30')
+    expect(result.root).toContain('border-white/20')
+    expect(result.root).toContain('shadow-lg')
+  })
+
+  test('glass-hero Variant enthält Gradient-Background', () => {
+    const result = resolveComponentClasses(section, { type: 'glass-hero' })
+
+    expect(result.root).toContain('backdrop-blur-2xl')
+    expect(result.root).toContain('bg-gradient-to-br')
+    expect(result.root).toContain('from-white/40')
+    expect(result.root).toContain('via-white/20')
+    expect(result.root).toContain('min-h-[70vh]')
+  })
+
+  test('glass-card Variant enthält Card-Styling mit Shadow und Ring', () => {
+    const result = resolveComponentClasses(section, { type: 'glass-card' })
+
+    expect(result.root).toContain('backdrop-blur-lg')
+    expect(result.root).toContain('bg-white/50')
+    expect(result.root).toContain('rounded-3xl')
+    expect(result.root).toContain('shadow-2xl')
+    expect(result.root).toContain('ring-1')
+    expect(result.root).toContain('ring-white/30')
+  })
+
+  test('glass-cta Variant enthält Gradient Primary-Farbe', () => {
+    const result = resolveComponentClasses(section, { type: 'glass-cta' })
+
+    expect(result.root).toContain('backdrop-blur-xl')
+    expect(result.root).toContain('bg-gradient-to-r')
+    expect(result.root).toContain('from-primary-600/80')
+    expect(result.root).toContain('shadow-primary-500/20')
+    expect(result.inner).toContain('text-center')
+    expect(result.inner).toContain('text-white')
+  })
+
+  test('alle Glass-Variants haben Dark-Mode Klassen', () => {
+    const glassResult = resolveComponentClasses(section, { type: 'glass' })
+    expect(glassResult.root).toContain('dark:bg-gray-900/30')
+
+    const heroResult = resolveComponentClasses(section, { type: 'glass-hero' })
+    expect(heroResult.root).toContain('dark:from-gray-900/50')
+
+    const cardResult = resolveComponentClasses(section, { type: 'glass-card' })
+    expect(cardResult.root).toContain('dark:bg-gray-900/50')
+    expect(cardResult.root).toContain('dark:ring-white/10')
+
+    const ctaResult = resolveComponentClasses(section, { type: 'glass-cta' })
+    expect(ctaResult.root).toContain('dark:from-primary-500/60')
+  })
+
+  test('Glass-Section Override via UI-Prop', () => {
+    const result = resolveComponentClasses(
+      section,
+      { type: 'glass' },
+      undefined,
+      { root: 'backdrop-blur-3xl bg-white/60' },
+    )
+
+    expect(result.root).toContain('backdrop-blur-3xl')
+    expect(result.root).not.toContain('backdrop-blur-xl')
+    expect(result.root).toContain('bg-white/60')
+  })
+})
+
+describe('Liquid Glass Slot Variants (Tailwind Plus)', () => {
+  test('glass Slot Variant enthält Glass-Effekte', () => {
+    const result = resolveComponentClasses(slot, { name: 'glass' })
+
+    expect(result.root).toContain('backdrop-blur-md')
+    expect(result.root).toContain('bg-white/15')
+    expect(result.root).toContain('rounded-2xl')
+    expect(result.root).toContain('ring-1')
+    expect(result.root).toContain('ring-white/25')
+    expect(result.root).toContain('shadow-lg')
+  })
+
+  test('glass Slot empty hat Glass-Borders', () => {
+    const result = resolveComponentClasses(slot, { name: 'glass' })
+
+    expect(result.empty).toContain('border-white/30')
+    expect(result.empty).toContain('backdrop-blur-sm')
+    expect(result.empty).toContain('rounded-xl')
+  })
+
+  test('glass-sidebar Slot Variant mit subtilerem Glass', () => {
+    const result = resolveComponentClasses(slot, { name: 'glass-sidebar' })
+
+    expect(result.root).toContain('backdrop-blur-sm')
+    expect(result.root).toContain('bg-white/10')
+    expect(result.root).toContain('rounded-xl')
+    expect(result.root).toContain('gap-4')
+  })
+
+  test('glass Slot Dark-Mode Klassen', () => {
+    const result = resolveComponentClasses(slot, { name: 'glass' })
+
+    expect(result.root).toContain('dark:bg-gray-900/15')
+    expect(result.root).toContain('dark:ring-white/10')
+  })
+})
+
+// ─── Theme vollständige Glass-Integration ──────────────────────
+
+describe('Theme Glass Integration (via Context)', () => {
+  beforeEach(() => {
+    clearContext()
+  })
+
+  test('useOpThemeClasses löst Glass-Section auf', () => {
+    provide(OP_THEME_KEY, Object.freeze(theme) as Readonly<OpThemeConfig>)
+
+    const classes = useOpThemeClasses('section', { type: 'glass-hero' })
+
+    expect(classes.root).toContain('backdrop-blur-2xl')
+    expect(classes.root).toContain('bg-gradient-to-br')
+    expect(classes.root).toContain('relative')
+  })
+
+  test('useOpThemeClasses löst Glass-Card Section auf', () => {
+    provide(OP_THEME_KEY, Object.freeze(theme) as Readonly<OpThemeConfig>)
+
+    const classes = useOpThemeClasses('section', { type: 'glass-card' })
+
+    expect(classes.root).toContain('backdrop-blur-lg')
+    expect(classes.root).toContain('rounded-3xl')
+    expect(classes.root).toContain('shadow-2xl')
+  })
+
+  test('useOpThemeClasses löst Glass-Slot auf', () => {
+    provide(OP_THEME_KEY, Object.freeze(theme) as Readonly<OpThemeConfig>)
+
+    const classes = useOpThemeClasses('slot', { name: 'glass' })
+
+    expect(classes.root).toContain('backdrop-blur-md')
+    expect(classes.root).toContain('ring-white/25')
+  })
+
+  test('useOpThemeClasses löst Glass-CTA auf', () => {
+    provide(OP_THEME_KEY, Object.freeze(theme) as Readonly<OpThemeConfig>)
+
+    const classes = useOpThemeClasses('section', { type: 'glass-cta' })
+
+    expect(classes.root).toContain('bg-gradient-to-r')
+    expect(classes.root).toContain('from-primary-600/80')
+    expect(classes.inner).toContain('text-white')
+  })
+})
+
+// ─── Card Block ────────────────────────────────────────────────
+
+describe('Card Block Theme', () => {
+  test('hat root, header, body, footer, media Slots', () => {
+    expect(card.slots.root).toBeDefined()
+    expect(card.slots.header).toBeDefined()
+    expect(card.slots.body).toBeDefined()
+    expect(card.slots.footer).toBeDefined()
+    expect(card.slots.media).toBeDefined()
+  })
+
+  test('hat variant Variants (solid, outline, elevated, glass, glass-frosted)', () => {
+    const variants = Object.keys(card.variants!.variant)
+    expect(variants).toContain('solid')
+    expect(variants).toContain('outline')
+    expect(variants).toContain('elevated')
+    expect(variants).toContain('glass')
+    expect(variants).toContain('glass-frosted')
+  })
+
+  test('hat size Variants (sm, md, lg)', () => {
+    const sizes = Object.keys(card.variants!.size)
+    expect(sizes).toContain('sm')
+    expect(sizes).toContain('md')
+    expect(sizes).toContain('lg')
+  })
+
+  test('hat interactive Variants', () => {
+    const interactive = Object.keys(card.variants!.interactive)
+    expect(interactive).toContain('true')
+    expect(interactive).toContain('false')
+  })
+
+  test('Default-Variants: solid, md, nicht interaktiv', () => {
+    expect(card.defaultVariants!.variant).toBe('solid')
+    expect(card.defaultVariants!.size).toBe('md')
+    expect(card.defaultVariants!.interactive).toBe('false')
+  })
+
+  test('solid Variant erzeugt Shadow-Klassen', () => {
+    const result = resolveComponentClasses(card, { variant: 'solid' })
+    expect(result.root).toContain('shadow-sm')
+    expect(result.root).toContain('hover:shadow-md')
+  })
+
+  test('glass Variant enthält Liquid Glass Effekte', () => {
+    const result = resolveComponentClasses(card, { variant: 'glass' })
+    expect(result.root).toContain('backdrop-blur-xl')
+    expect(result.root).toContain('bg-white/30')
+    expect(result.root).toContain('ring-1')
+    expect(result.root).toContain('ring-white/25')
+  })
+
+  test('glass-frosted Variant enthält stärkeren Glass-Effekt', () => {
+    const result = resolveComponentClasses(card, { variant: 'glass-frosted' })
+    expect(result.root).toContain('backdrop-blur-2xl')
+    expect(result.root).toContain('bg-white/50')
+    expect(result.root).toContain('shadow-2xl')
+  })
+
+  test('glass Variants haben Dark-Mode Klassen', () => {
+    const glassResult = resolveComponentClasses(card, { variant: 'glass' })
+    expect(glassResult.root).toContain('dark:bg-gray-900/30')
+    expect(glassResult.root).toContain('dark:ring-white/10')
+
+    const frostedResult = resolveComponentClasses(card, { variant: 'glass-frosted' })
+    expect(frostedResult.root).toContain('dark:bg-gray-900/50')
+  })
+
+  test('interactive true fügt Hover-Scale hinzu', () => {
+    const result = resolveComponentClasses(card, { interactive: 'true' })
+    expect(result.root).toContain('cursor-pointer')
+    expect(result.root).toContain('hover:scale-[1.02]')
+    expect(result.root).toContain('active:scale-[0.98]')
+  })
+
+  test('Compound: glass + interactive erzeugt Hover-Effekte', () => {
+    const result = resolveComponentClasses(card, {
+      variant: 'glass',
+      interactive: 'true',
+      size: 'md',
+    })
+    expect(result.root).toContain('hover:bg-white/40')
+    expect(result.root).toContain('hover:shadow-xl')
+  })
+
+  test('size lg liefert größere Padding und Radius', () => {
+    const result = resolveComponentClasses(card, { size: 'lg' })
+    expect(result.root).toContain('rounded-2xl')
+    expect(result.header).toContain('px-8')
+    expect(result.body).toContain('px-8')
+    expect(result.footer).toContain('px-8')
+  })
+
+  test('size sm liefert kleinere Padding und Radius', () => {
+    const result = resolveComponentClasses(card, { size: 'sm' })
+    expect(result.root).toContain('rounded-lg')
+    expect(result.header).toContain('px-4')
+    expect(result.body).toContain('text-sm')
+  })
+})
+
+// ─── Card via Context ──────────────────────────────────────────
+
+describe('Card Block via Context', () => {
+  beforeEach(() => {
+    clearContext()
+  })
+
+  test('useOpBlockClasses löst Card-Block Klassen auf', () => {
+    provide(OP_THEME_KEY, Object.freeze(theme) as Readonly<OpThemeConfig>)
+
+    const classes = useOpBlockClasses('card', { variant: 'glass', size: 'md' })
+
+    expect(classes.root).toContain('backdrop-blur-xl')
+    expect(classes.root).toContain('ring-white/25')
+    expect(classes.body).toContain('text-gray-700')
+  })
+
+  test('useOpBlockClasses löst Card mit Compound auf', () => {
+    provide(OP_THEME_KEY, Object.freeze(theme) as Readonly<OpThemeConfig>)
+
+    const classes = useOpBlockClasses('card', {
+      variant: 'glass-frosted',
+      interactive: 'true',
+      size: 'lg',
+    })
+
+    expect(classes.root).toContain('backdrop-blur-2xl')
+    expect(classes.root).toContain('hover:bg-white/60')
+    expect(classes.root).toContain('rounded-2xl')
+  })
+})
+
+// ─── Input Block ───────────────────────────────────────────────
+
+describe('Input Block Theme', () => {
+  test('hat root, label, input, helper, error Slots', () => {
+    expect(input.slots.root).toBeDefined()
+    expect(input.slots.label).toBeDefined()
+    expect(input.slots.input).toBeDefined()
+    expect(input.slots.helper).toBeDefined()
+    expect(input.slots.error).toBeDefined()
+  })
+
+  test('input Slot enthält Focus-Klassen', () => {
+    expect(input.slots.input).toContain('focus:border-primary-500')
+    expect(input.slots.input).toContain('focus:ring-2')
+    expect(input.slots.input).toContain('focus:ring-primary-500/20')
+    expect(input.slots.input).toContain('transition-colors')
+  })
+
+  test('hat size Variants (sm, md, lg)', () => {
+    const sizes = Object.keys(input.variants!.size)
+    expect(sizes).toContain('sm')
+    expect(sizes).toContain('md')
+    expect(sizes).toContain('lg')
+  })
+
+  test('hat state Variants (default, error, success, disabled)', () => {
+    const states = Object.keys(input.variants!.state)
+    expect(states).toContain('default')
+    expect(states).toContain('error')
+    expect(states).toContain('success')
+    expect(states).toContain('disabled')
+  })
+
+  test('hat variant Variants (outline, filled, glass)', () => {
+    const variants = Object.keys(input.variants!.variant)
+    expect(variants).toContain('outline')
+    expect(variants).toContain('filled')
+    expect(variants).toContain('glass')
+  })
+
+  test('Default-Variants: md, default, outline', () => {
+    expect(input.defaultVariants!.size).toBe('md')
+    expect(input.defaultVariants!.state).toBe('default')
+    expect(input.defaultVariants!.variant).toBe('outline')
+  })
+
+  test('error State liefert rote Border-Klassen', () => {
+    const result = resolveComponentClasses(input, { state: 'error' })
+    expect(result.input).toContain('border-red-500')
+    expect(result.input).toContain('focus:border-red-500')
+    expect(result.input).toContain('focus:ring-red-500/20')
+  })
+
+  test('success State liefert grüne Border-Klassen', () => {
+    const result = resolveComponentClasses(input, { state: 'success' })
+    expect(result.input).toContain('border-green-500')
+    expect(result.input).toContain('focus:border-green-500')
+  })
+
+  test('disabled State liefert reduzierte Opacity', () => {
+    const result = resolveComponentClasses(input, { state: 'disabled' })
+    expect(result.input).toContain('opacity-50')
+    expect(result.input).toContain('cursor-not-allowed')
+  })
+
+  test('filled Variant liefert background ohne Border', () => {
+    const result = resolveComponentClasses(input, { variant: 'filled' })
+    expect(result.input).toContain('border-transparent')
+    expect(result.input).toContain('bg-gray-100')
+  })
+
+  test('glass Variant liefert backdrop-blur', () => {
+    const result = resolveComponentClasses(input, { variant: 'glass' })
+    expect(result.input).toContain('backdrop-blur-sm')
+    expect(result.input).toContain('bg-white/10')
+    expect(result.input).toContain('border-white/20')
+  })
+
+  test('size lg liefert größere Padding und Schrift', () => {
+    const result = resolveComponentClasses(input, { size: 'lg' })
+    expect(result.input).toContain('px-5')
+    expect(result.input).toContain('py-3')
+    expect(result.input).toContain('text-base')
+    expect(result.input).toContain('rounded-xl')
+  })
+
+  test('Dark-Mode Klassen in base input Slot', () => {
+    expect(input.slots.input).toContain('dark:border-gray-600')
+    expect(input.slots.input).toContain('dark:bg-gray-800')
+    expect(input.slots.input).toContain('dark:text-gray-100')
+    expect(input.slots.input).toContain('dark:focus:border-primary-400')
+  })
+})
+
+// ─── Input via Context ─────────────────────────────────────────
+
+describe('Input Block via Context', () => {
+  beforeEach(() => {
+    clearContext()
+  })
+
+  test('useOpBlockClasses löst Input-Block Klassen auf', () => {
+    provide(OP_THEME_KEY, Object.freeze(theme) as Readonly<OpThemeConfig>)
+
+    const classes = useOpBlockClasses('input', { state: 'error', size: 'md' })
+
+    expect(classes.input).toContain('border-red-500')
+    expect(classes.label).toContain('text-sm')
+    expect(classes.error).toContain('text-xs')
+    expect(classes.error).toContain('text-red-600')
+  })
+
+  test('useOpBlockClasses löst Input mit Glass-Variant auf', () => {
+    provide(OP_THEME_KEY, Object.freeze(theme) as Readonly<OpThemeConfig>)
+
+    const classes = useOpBlockClasses('input', { variant: 'glass', size: 'lg' })
+
+    expect(classes.input).toContain('backdrop-blur-sm')
+    expect(classes.input).toContain('px-5')
+    expect(classes.input).toContain('rounded-xl')
+  })
+})
+
+// ─── Tailwind Config ───────────────────────────────────────────
+
+describe('Tailwind Config', () => {
+  test('exportiert ein gültiges Config-Objekt', async () => {
+    const config = (await import('../tailwind.config')).default
+    expect(config).toBeDefined()
+    expect(config.darkMode).toBe('class')
+  })
+
+  test('enthält erweiterte Farben mit CSS-Variablen', async () => {
+    const config = (await import('../tailwind.config')).default
+    const colors = config.theme!.extend!.colors as Record<string, unknown>
+    expect(colors.primary).toBeDefined()
+    expect(colors.secondary).toBeDefined()
+    expect(colors.accent).toBeDefined()
+    expect(colors.surface).toBeDefined()
+    expect(colors.success).toBeDefined()
+    expect(colors.warning).toBeDefined()
+    expect(colors.error).toBeDefined()
+  })
+
+  test('enthält Section-Spacing Tokens', async () => {
+    const config = (await import('../tailwind.config')).default
+    const spacing = config.theme!.extend!.spacing as Record<string, string>
+    expect(spacing['section-sm']).toBe('2rem')
+    expect(spacing['section-md']).toBe('4rem')
+    expect(spacing['section-lg']).toBe('6rem')
+  })
+
+  test('enthält Glass-Morphism Utilities', async () => {
+    const config = (await import('../tailwind.config')).default
+    const boxShadow = config.theme!.extend!.boxShadow as Record<string, string>
+    expect(boxShadow.glass).toBeDefined()
+    expect(boxShadow['glass-lg']).toBeDefined()
+
+    const backdropBlur = config.theme!.extend!.backdropBlur as Record<string, string>
+    expect(backdropBlur.glass).toBeDefined()
+    expect(backdropBlur['glass-xl']).toBeDefined()
+  })
+
+  test('enthält Standard-Breakpoints', async () => {
+    const config = (await import('../tailwind.config')).default
+    const screens = config.theme!.extend!.screens as Record<string, string>
+    expect(screens.sm).toBe('640px')
+    expect(screens.md).toBe('768px')
+    expect(screens.lg).toBe('1024px')
+    expect(screens.xl).toBe('1280px')
+    expect(screens['2xl']).toBe('1536px')
+  })
+})
+
+// ─── Nuxt Plugin Export ────────────────────────────────────────
+
+describe('Nuxt Plugin Export', () => {
+  beforeEach(() => {
+    clearThemeRegistry()
+  })
+
+  test('createTailwindPlusPlugin gibt eine Funktion zurück', () => {
+    const pluginFn = createTailwindPlusPlugin()
+    expect(typeof pluginFn).toBe('function')
+  })
+
+  test('plugin Export ist eine Funktion', () => {
+    expect(typeof plugin).toBe('function')
+  })
+
+  test('Plugin registriert und lädt das Theme', async () => {
+    const pluginFn = createTailwindPlusPlugin()
+    await pluginFn()
+
+    const resolved = resolveTheme('tailwind-plus')
+    expect(resolved.name).toBe('tailwind-plus')
+    expect(Object.keys(resolved.components).length).toBeGreaterThan(0)
+    expect(resolved.components['block:heading']).toBeDefined()
+    expect(resolved.components['block:card']).toBeDefined()
+    expect(resolved.components['block:input']).toBeDefined()
+  })
+
+  test('Plugin macht Theme für OpProvider verfügbar', async () => {
+    const pluginFn = createTailwindPlusPlugin()
+    await pluginFn()
+
+    const resolved = resolveTheme('tailwind-plus')
+    expect(resolved.name).toBe('tailwind-plus')
+    expect(resolved.components.section).toBeDefined()
+    expect(resolved.components.slot).toBeDefined()
   })
 })

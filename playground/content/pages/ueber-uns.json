@@ -1,5 +1,5 @@
 {
-  "id": "01JKQNP000000000000000UEBE",
+  "id": "01KH6Y31KEKKBJ7863VEZKXACR",
   "slug": "ueber-uns",
   "title": {
     "en": "About Us – The Team Behind Naturgarten Berlin",
@@ -13,12 +13,12 @@
   },
   "sections": [
     {
-      "id": "01JKQNP0000000000000S0401",
+      "id": "01KH6Y31KFSFNW8RT70AJC4PHV",
       "type": "hero",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B040101",
+            "id": "01KH6Y31KFX7BN3N37SA54RCV4",
             "type": "heading",
             "props": {
               "text": "Über uns",
@@ -26,7 +26,7 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B040102",
+            "id": "01KH6Y31KF7XSC7E6MHPYY8777",
             "type": "paragraph",
             "props": {
               "text": "Wir sind ein Team aus Landschaftsarchitekten, Gärtnern und Ökologen, die eine gemeinsame Vision teilen: Gärten zu schaffen, die Mensch und Natur gleichermaßen bereichern."
@@ -36,12 +36,12 @@
       }
     },
     {
-      "id": "01JKQNP0000000000000S0402",
+      "id": "01KH6Y31KFPN3CE7N9B2F2VV3T",
       "type": "content",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B040201",
+            "id": "01KH6Y31KFMFMJQA8REQ6R5S1A",
             "type": "heading",
             "props": {
               "text": "Unsere Geschichte",
@@ -49,21 +49,21 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B040202",
+            "id": "01KH6Y31KFMJAVPXVD5DEG3NKM",
             "type": "paragraph",
             "props": {
               "text": "Naturgarten Berlin wurde 2010 von der Landschaftsarchitektin Clara Weißbach gegründet. Was als Ein-Frau-Betrieb mit einer Leidenschaft für heimische Wildpflanzen begann, ist heute ein zehnköpfiges Team, das jährlich über 30 Projekte in Berlin und Brandenburg realisiert."
             }
           },
           {
-            "id": "01JKQNP00000000000B040203",
+            "id": "01KH6Y31KF5XVZ0JE88AHXDXNC",
             "type": "paragraph",
             "props": {
               "text": "Der Auslöser war ein Erlebnis in Claras Kindheit: der verwilderte Garten ihrer Großmutter in der Uckermark, in dem es von Schmetterlingen, Fröschen und Glühwürmchen wimmelte. Dieses Naturerlebnis wollte sie zurück in die Stadt bringen – und damit den Grundstein für eine neue Art der Gartengestaltung legen."
             }
           },
           {
-            "id": "01JKQNP00000000000B040204",
+            "id": "01KH6Y31KFZSCKFBGZ814NA88Y",
             "type": "paragraph",
             "props": {
               "text": "Heute ist Naturgarten Berlin einer der führenden Betriebe für ökologische Gartengestaltung in der Hauptstadtregion. Wir sind Mitglied im Naturgarten e.V., im BUND Berlin und arbeiten eng mit der Berliner Stiftung Naturschutz zusammen."
@@ -73,12 +73,12 @@
       }
     },
     {
-      "id": "01JKQNP0000000000000S0403",
+      "id": "01KH6Y31KFT52TMXKAEZSQP48K",
       "type": "content",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B040301",
+            "id": "01KH6Y31KFMPTJF71H9E9VQ5S7",
             "type": "heading",
             "props": {
               "text": "Unsere Philosophie",
@@ -86,7 +86,7 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B040302",
+            "id": "01KH6Y31KFC5CGMXKJ8RAM2G7Y",
             "type": "paragraph",
             "props": {
               "text": "Wir glauben, dass ein Garten mehr sein kann als eine dekorative Fläche. Er kann ein Ökosystem sein, das Nahrung produziert, Wasser reinigt, Luft filtert und hunderten Arten ein Zuhause bietet – und dabei wunderschön aussieht."
@@ -95,7 +95,7 @@
         ],
         "values": [
           {
-            "id": "01JKQNP00000000000B040303",
+            "id": "01KH6Y31KG7ZHY1JXW49YQFJ1C",
             "type": "value-card",
             "props": {
               "title": "Biodiversität fördern",
@@ -103,7 +103,7 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B040304",
+            "id": "01KH6Y31KG0DW059KRA5P3T0AP",
             "type": "value-card",
             "props": {
               "title": "Regional denken",
@@ -111,7 +111,7 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B040305",
+            "id": "01KH6Y31KGK9KZSDDY8A1NQFQR",
             "type": "value-card",
             "props": {
               "title": "Langfristig gestalten",
@@ -119,7 +119,7 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B040306",
+            "id": "01KH6Y31KGV39YEBHW146NZN1J",
             "type": "value-card",
             "props": {
               "title": "Wissen teilen",
@@ -130,12 +130,12 @@
       }
     },
     {
-      "id": "01JKQNP0000000000000S0404",
+      "id": "01KH6Y31KG0J74Q2NKXBPG7HCY",
       "type": "team",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B040401",
+            "id": "01KH6Y31KG8ZPNFQD94VG6M3ZZ",
             "type": "heading",
             "props": {
               "text": "Unser Team",
@@ -143,7 +143,7 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B040402",
+            "id": "01KH6Y31KG4Q93MHKHY29F5XA8",
             "type": "paragraph",
             "props": {
               "text": "Hinter jedem Naturgarten stehen Menschen mit Fachwissen, Kreativität und einer tiefen Verbundenheit zur Natur."
@@ -152,7 +152,7 @@
         ],
         "members": [
           {
-            "id": "01JKQNP00000000000B040403",
+            "id": "01KH6Y31KG0QNPZCZ9NM8P47DZ",
             "type": "team-member",
             "props": {
               "name": "Clara Weißbach",
@@ -161,7 +161,7 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B040404",
+            "id": "01KH6Y31KGB167ZA8J3TW1GE6F",
             "type": "team-member",
             "props": {
               "name": "Jonas Erdmann",
@@ -170,7 +170,7 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B040405",
+            "id": "01KH6Y31KG6BBGHWAAWB9RSGY8",
             "type": "team-member",
             "props": {
               "name": "Dr. Lena Mohrbach",
@@ -179,7 +179,7 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B040406",
+            "id": "01KH6Y31KG9497P9HRJ3P5CF40",
             "type": "team-member",
             "props": {
               "name": "Mehmet Yılmaz",
@@ -191,12 +191,12 @@
       }
     },
     {
-      "id": "01JKQNP0000000000000S0405",
+      "id": "01KH6Y31KGHSQ12ATN55NDBG6W",
       "type": "content",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B040501",
+            "id": "01KH6Y31KGWE2N4D9QK8QCJ16R",
             "type": "heading",
             "props": {
               "text": "Zertifizierungen & Mitgliedschaften",
@@ -204,7 +204,7 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B040502",
+            "id": "01KH6Y31KGMRDAJ3KAAJ34HJBD",
             "type": "list",
             "props": {
               "items": [
@@ -221,12 +221,12 @@
       }
     },
     {
-      "id": "01JKQNP0000000000000S0406",
+      "id": "01KH6Y31KHYEG8G0T05D85NXQT",
       "type": "cta",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B040601",
+            "id": "01KH6Y31KH3R4YK0JXT7E6XYQY",
             "type": "heading",
             "props": {
               "text": "Lernen Sie uns kennen",
@@ -234,14 +234,14 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B040602",
+            "id": "01KH6Y31KH17AG5VZWTJPQ623Q",
             "type": "paragraph",
             "props": {
               "text": "Besuchen Sie uns in unserem Schaugarten in Pankow oder vereinbaren Sie ein unverbindliches Gespräch. Wir freuen uns darauf, Sie und Ihren Garten kennenzulernen."
             }
           },
           {
-            "id": "01JKQNP00000000000B040603",
+            "id": "01KH6Y31KH6MG29HBX87MY1ZXF",
             "type": "button",
             "props": {
               "text": "Kontakt aufnehmen",

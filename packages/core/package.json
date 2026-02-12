@@ -18,6 +18,7 @@
   "dependencies": {
     "@nuxt/kit": "^3.10.0",
     "@openpress/schemas": "workspace:*",
+    "@openpress/ui": "workspace:*",
     "@tiptap/core": "^3.19.0",
     "@tiptap/pm": "^3.19.0",
     "@tiptap/starter-kit": "^3.19.0",
@@ -31,6 +32,7 @@
     "@nuxt/schema": "^3.10.0",
     "@nuxt/test-utils": "^3.14.0",
     "nuxt": "^3.15.0",
-    "ulid": "^2.3.0"
+    "ulid": "^2.3.0",
+    "vue": "^3.5.28"
   }
 }

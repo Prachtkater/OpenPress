@@ -1,4 +1,4 @@
-import type { PageListItem } from '@openpress/schemas'
+import type { PageListItem, LocalizedString } from '@openpress/schemas'
 
 export interface PageTreeNode {
   /** Slug segment (e.g. "about" in "company/about") */
@@ -6,7 +6,7 @@ export interface PageTreeNode {
   /** Full slug path (e.g. "company/about") */
   slug: string
   /** Page title — only set for actual pages */
-  title: string | null
+  title: LocalizedString | null
   /** Timestamps — only set for actual pages */
   updatedAt: string | null
   createdAt: string | null

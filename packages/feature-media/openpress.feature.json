@@ -1,0 +1,23 @@
+{
+  "name": "@openpress/feature-media",
+  "label": "Media Library",
+  "version": "0.1.0",
+  "description": "Media management with image upload, processing, and library browser",
+  "blocks": [],
+  "editorPanels": [
+    {
+      "id": "media-library",
+      "label": "Media Library",
+      "component": "./src/runtime/components/MediaLibrary.vue",
+      "icon": "mdi:image-multiple"
+    }
+  ],
+  "editorRoutes": [
+    {
+      "path": "/_edit/media",
+      "label": "Media",
+      "component": "./src/runtime/pages/MediaDashboard.vue",
+      "icon": "mdi:folder-image"
+    }
+  ]
+}

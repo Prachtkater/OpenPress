@@ -11,27 +11,31 @@ export interface CommitLogEntry {
 }
 
 /**
- * Git operations using Bun.spawn for minimal dependencies.
+ * Git operations using child_process for Node.js/Nitro compatibility.
+ * (Bun.spawn is not available inside Nitro server runtime.)
  */
 export class GitOps {
   constructor(private readonly repoPath: string) {}
 
   private async exec(args: string[]): Promise<string> {
-    const proc = Bun.spawn(["git", ...args], {
-      cwd: this.repoPath,
-      stdout: "pipe",
-      stderr: "pipe",
-    });
+    const { execFile } = await import("node:child_process");
+    const { promisify } = await import("node:util");
+    const execFileAsync = promisify(execFile);
 
-    const stdout = await new Response(proc.stdout).text();
-    const stderr = await new Response(proc.stderr).text();
-    const exitCode = await proc.exited;
-
-    if (exitCode !== 0) {
-      throw new Error(`git ${args[0]} failed (${exitCode}): ${stderr.trim()}`);
+    try {
+      const { stdout } = await execFileAsync("git", args, {
+        cwd: this.repoPath,
+        maxBuffer: 10 * 1024 * 1024,
+        encoding: "utf8",
+      });
+      return stdout.trim();
+    } catch (err: any) {
+      const stderr = err.stderr?.trim?.() ?? "";
+      const stdout = err.stdout?.trim?.() ?? "";
+      const details = stderr || stdout || err.message;
+      const code = err.code ?? 1;
+      throw new Error(`git ${args[0]} failed (${code}): ${details}`);
     }
-
-    return stdout.trim();
   }
 
   /** Stage specific files */

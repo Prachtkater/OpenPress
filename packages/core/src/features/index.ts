@@ -3,6 +3,8 @@ export {
   readManifest,
   resolvePackageDir,
   extractModuleNames,
+  scanWorkspaceFeatures,
+  isOpenPressFeature,
   type DiscoveredFeature,
   type DiscoveryError,
   type DiscoveryResult,

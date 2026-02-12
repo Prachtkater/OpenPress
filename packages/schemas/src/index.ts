@@ -4,9 +4,11 @@ export {
   PageSchema,
   PageMetaSchema,
   PageListItemSchema,
+  CreatePageInputSchema,
   type Page,
   type PageMeta,
   type PageListItem,
+  type CreatePageInput,
 } from "./page";
 export { SiteConfigSchema, type SiteConfig } from "./site";
 export {
@@ -19,8 +21,18 @@ export {
   FeatureManifestSchema,
   FeatureBlockSchema,
   FeatureEditorPanelSchema,
+  FeatureEditorRouteSchema,
   type FeatureManifest,
   type FeatureBlock,
   type FeatureEditorPanel,
+  type FeatureEditorRoute,
 } from "./feature-manifest";
-export { GermanZodErrorMap, GermanErrorMessages } from "./i18n";
+export {
+  DEFAULT_LOCALE,
+  GermanZodErrorMap,
+  GermanErrorMessages,
+  LocalizedStringSchema,
+  localized,
+  type LocalizedString,
+} from "./i18n";
+export { SLUG_PATTERN } from "./page";

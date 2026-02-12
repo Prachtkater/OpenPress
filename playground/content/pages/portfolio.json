@@ -1,5 +1,5 @@
 {
-  "id": "01JKQNP000000000000000PORT",
+  "id": "01KH6Y31KV15AB6K0KCM4D35RH",
   "slug": "portfolio",
   "title": {
     "en": "Portfolio – Our Ecological Garden Projects",
@@ -13,12 +13,12 @@
   },
   "sections": [
     {
-      "id": "01JKQNP0000000000000S0301",
+      "id": "01KH6Y31KVZ6HY2FGN1VZGK2ME",
       "type": "hero",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B030101",
+            "id": "01KH6Y31KV1B76MZXF4DTZVWJW",
             "type": "heading",
             "props": {
               "text": "Unsere Projekte",
@@ -26,7 +26,7 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B030102",
+            "id": "01KH6Y31KVSYZZM5GT0R46C0ZA",
             "type": "paragraph",
             "props": {
               "text": "Jeder Garten erzählt seine eigene Geschichte. Hier zeigen wir eine Auswahl unserer realisierten Projekte in Berlin und Brandenburg – vom kleinen Innenstadtgarten bis zum weitläufigen Naturgrundstück."
@@ -36,12 +36,12 @@
       }
     },
     {
-      "id": "01JKQNP0000000000000S0302",
+      "id": "01KH6Y31KV05ZE0VDMZ2NDRA2G",
       "type": "gallery",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B030201",
+            "id": "01KH6Y31KVG4A5ZE6HQYAECGJN",
             "type": "heading",
             "props": {
               "text": "Ausgewählte Referenzen",
@@ -51,7 +51,7 @@
         ],
         "items": [
           {
-            "id": "01JKQNP00000000000B030202",
+            "id": "01KH6Y31KVE706G5QHXG6SB0VA",
             "type": "project-card",
             "props": {
               "title": "Wildblumenparadies Pankow",
@@ -59,11 +59,15 @@
               "location": "Berlin-Pankow",
               "area": "400 m²",
               "year": "2024",
-              "tags": ["Wildblumenwiese", "Trockenmauer", "Insektenhotel"]
+              "tags": [
+                "Wildblumenwiese",
+                "Trockenmauer",
+                "Insektenhotel"
+              ]
             }
           },
           {
-            "id": "01JKQNP00000000000B030203",
+            "id": "01KH6Y31KXE7TZGXKA8EQCQ5HX",
             "type": "project-card",
             "props": {
               "title": "Schwimmteich Villa Wannsee",
@@ -71,11 +75,15 @@
               "location": "Berlin-Wannsee",
               "area": "180 m²",
               "year": "2024",
-              "tags": ["Schwimmteich", "Denkmalschutz", "Uferzone"]
+              "tags": [
+                "Schwimmteich",
+                "Denkmalschutz",
+                "Uferzone"
+              ]
             }
           },
           {
-            "id": "01JKQNP00000000000B030204",
+            "id": "01KH6Y31KXZFZ0CCXYJPMZ6GQV",
             "type": "project-card",
             "props": {
               "title": "Essbarer Waldgarten Potsdam",
@@ -83,11 +91,15 @@
               "location": "Potsdam-Babelsberg",
               "area": "2.000 m²",
               "year": "2023",
-              "tags": ["Permakultur", "Waldgarten", "Regenwasser"]
+              "tags": [
+                "Permakultur",
+                "Waldgarten",
+                "Regenwasser"
+              ]
             }
           },
           {
-            "id": "01JKQNP00000000000B030205",
+            "id": "01KH6Y31KXKJBJPD9FMB87JC6Q",
             "type": "project-card",
             "props": {
               "title": "Dachgarten Kreuzberg",
@@ -95,11 +107,15 @@
               "location": "Berlin-Kreuzberg",
               "area": "150 m²",
               "year": "2025",
-              "tags": ["Dachbegrünung", "Urban Gardening", "Trockenstauden"]
+              "tags": [
+                "Dachbegrünung",
+                "Urban Gardening",
+                "Trockenstauden"
+              ]
             }
           },
           {
-            "id": "01JKQNP00000000000B030206",
+            "id": "01KH6Y31KXAAJVZBN4BYZA4V6B",
             "type": "project-card",
             "props": {
               "title": "Naturspielplatz Kita Sonnenkäfer",
@@ -107,19 +123,23 @@
               "location": "Berlin-Friedrichshain",
               "area": "600 m²",
               "year": "2025",
-              "tags": ["Naturspielplatz", "Kita", "Naschhecke"]
+              "tags": [
+                "Naturspielplatz",
+                "Kita",
+                "Naschhecke"
+              ]
             }
           }
         ]
       }
     },
     {
-      "id": "01JKQNP0000000000000S0303",
+      "id": "01KH6Y31KXKGSFPAVMNC48RE11",
       "type": "content",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B030301",
+            "id": "01KH6Y31KXNQ9T41KF4D7C6AJC",
             "type": "heading",
             "props": {
               "text": "Zahlen, die für sich sprechen",
@@ -127,7 +147,7 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B030302",
+            "id": "01KH6Y31KXEDYCZCQRF0KKTTC5",
             "type": "paragraph",
             "props": {
               "text": "Seit unserer Gründung haben wir über 200 Gärten in Berlin und Brandenburg naturnah gestaltet. Zusammen umfassen diese Projekte eine Fläche von mehr als 50.000 m² – das entspricht etwa sieben Fußballfeldern neuer Lebensräume für Flora und Fauna."
@@ -136,7 +156,7 @@
         ],
         "stats": [
           {
-            "id": "01JKQNP00000000000B030303",
+            "id": "01KH6Y31KX3VAV6P8CDWVBQXYK",
             "type": "stat",
             "props": {
               "value": "200+",
@@ -144,7 +164,7 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B030304",
+            "id": "01KH6Y31KXPH5R63R80MSKHS8G",
             "type": "stat",
             "props": {
               "value": "50.000 m²",
@@ -152,7 +172,7 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B030305",
+            "id": "01KH6Y31KXVMQA98FWPD9TTMQA",
             "type": "stat",
             "props": {
               "value": "15+",
@@ -160,7 +180,7 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B030306",
+            "id": "01KH6Y31KXJZJ86TJCCPV8T087",
             "type": "stat",
             "props": {
               "value": "98 %",
@@ -171,12 +191,12 @@
       }
     },
     {
-      "id": "01JKQNP0000000000000S0304",
+      "id": "01KH6Y31KXB690Z8416X72R4EX",
       "type": "cta",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B030401",
+            "id": "01KH6Y31KX4KADVB4SZJZD809A",
             "type": "heading",
             "props": {
               "text": "Ihr Projekt könnte das nächste sein",
@@ -184,14 +204,14 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B030402",
+            "id": "01KH6Y31KXZS710VTJN3JMKAJK",
             "type": "paragraph",
             "props": {
               "text": "Lassen Sie sich von unseren bisherigen Arbeiten inspirieren und erzählen Sie uns von Ihrem Traumgarten. Wir freuen uns auf Ihre Ideen."
             }
           },
           {
-            "id": "01JKQNP00000000000B030403",
+            "id": "01KH6Y31M0Z9ETW1HZ8N6MQ3MD",
             "type": "button",
             "props": {
               "text": "Projekt besprechen",

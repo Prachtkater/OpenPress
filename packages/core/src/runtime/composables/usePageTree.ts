@@ -1,11 +1,8 @@
 import { useState, useFetch, useAsyncData, navigateTo } from '#imports'
-import { ulid } from 'ulid'
-import type { PageListItem, Page } from '@openpress/schemas'
-import { buildPageTree } from './page-tree'
-import type { PageTreeNode } from './page-tree'
+import { DEFAULT_LOCALE } from '@openpress/schemas'
+import type { PageListItem, Page, CreatePageInput } from '@openpress/schemas'
+import { buildPageTree, type PageTreeNode } from './page-tree'
 import { transformToMindmap, flattenMindmap } from './mindmap'
-
-export { buildPageTree, type PageTreeNode }
 
 /**
  * usePageTree — Composable for the Site Map tree view.
@@ -49,24 +46,18 @@ export function usePageTree() {
   /**
    * Create a new page with the given slug and title.
    */
-  async function createPage(slug: string, title: string): Promise<boolean> {
+  async function createPage(slug: string, title: string, locale = DEFAULT_LOCALE): Promise<boolean> {
     error.value = null
 
-    const now = new Date().toISOString()
-    const newPage: Page = {
-      id: ulid(),
+    const input: CreatePageInput = {
       slug,
-      title,
-      meta: {},
-      sections: [],
-      updatedAt: now,
-      createdAt: now,
+      title: { [locale]: title },
     }
 
     try {
       await $fetch('/api/_openpress/pages', {
         method: 'POST',
-        body: newPage,
+        body: input,
       })
       await loadPages()
       return true
@@ -106,6 +97,7 @@ export function usePageTree() {
     oldSlug: string,
     newTitle: string,
     newSlug?: string,
+    locale = DEFAULT_LOCALE,
   ): Promise<boolean> {
     error.value = null
 
@@ -115,7 +107,7 @@ export function usePageTree() {
 
       const updatedPage: Page = {
         ...page,
-        title: newTitle,
+        title: typeof page.title === 'object' ? { ...page.title, [locale]: newTitle } : { [locale]: newTitle },
         slug: newSlug ?? page.slug,
         updatedAt: new Date().toISOString(),
       }

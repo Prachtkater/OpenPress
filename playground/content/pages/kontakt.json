@@ -1,5 +1,5 @@
 {
-  "id": "01JKQNP000000000000000KONT",
+  "id": "01KH6Y31KC9PW80D6DAD6XYVVQ",
   "slug": "kontakt",
   "title": {
     "en": "Contact – Get in Touch With Naturgarten Berlin",
@@ -13,12 +13,12 @@
   },
   "sections": [
     {
-      "id": "01JKQNP0000000000000S0501",
+      "id": "01KH6Y31KCEB19S8SQR0Y5HJ53",
       "type": "hero",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B050101",
+            "id": "01KH6Y31KCRJ94978G06FT2JRP",
             "type": "heading",
             "props": {
               "text": "Kontakt",
@@ -26,7 +26,7 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B050102",
+            "id": "01KH6Y31KCZJ0MYJ0183E2MVPV",
             "type": "paragraph",
             "props": {
               "text": "Sie haben Fragen, möchten ein Projekt besprechen oder einen Termin in unserem Schaugarten vereinbaren? Wir freuen uns auf Ihre Nachricht."
@@ -36,12 +36,12 @@
       }
     },
     {
-      "id": "01JKQNP0000000000000S0502",
+      "id": "01KH6Y31KC5Z95NPZ1TYNR2BMJ",
       "type": "content",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B050201",
+            "id": "01KH6Y31KCM664XH1PDX0T42ZS",
             "type": "heading",
             "props": {
               "text": "So erreichen Sie uns",
@@ -49,7 +49,7 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B050202",
+            "id": "01KH6Y31KCZ98FYMFAFX29BQJ0",
             "type": "paragraph",
             "props": {
               "text": "Naturgarten Berlin befindet sich im grünen Herzen von Pankow. Unser Büro und Schaugarten liegen direkt nebeneinander – so können Sie sich bei einem Besuch gleich inspirieren lassen."
@@ -58,7 +58,7 @@
         ],
         "details": [
           {
-            "id": "01JKQNP00000000000B050203",
+            "id": "01KH6Y31KCWPT4R2P0CRSHP1YD",
             "type": "contact-detail",
             "props": {
               "label": "Adresse",
@@ -67,7 +67,7 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B050204",
+            "id": "01KH6Y31KCMZEGKW03GMZ938Q7",
             "type": "contact-detail",
             "props": {
               "label": "Telefon",
@@ -77,7 +77,7 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B050205",
+            "id": "01KH6Y31KCSEN1E5B8BZ49J5GR",
             "type": "contact-detail",
             "props": {
               "label": "E-Mail",
@@ -87,7 +87,7 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B050206",
+            "id": "01KH6Y31KCSVZTRY141MJMTMCP",
             "type": "contact-detail",
             "props": {
               "label": "Öffnungszeiten",
@@ -99,12 +99,12 @@
       }
     },
     {
-      "id": "01JKQNP0000000000000S0503",
+      "id": "01KH6Y31KCNY96527EW1QFN8EP",
       "type": "content",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B050301",
+            "id": "01KH6Y31KCCKPSWPA4YKG18QDJ",
             "type": "heading",
             "props": {
               "text": "Kostenloses Erstgespräch",
@@ -112,14 +112,14 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B050302",
+            "id": "01KH6Y31KCH6Y3TK900J9GXKF9",
             "type": "paragraph",
             "props": {
               "text": "Jedes Projekt beginnt mit einem persönlichen Gespräch. In einem kostenlosen und unverbindlichen Erstgespräch lernen wir Ihre Wünsche kennen, besprechen die Möglichkeiten und geben eine erste Einschätzung zu Umfang und Kosten."
             }
           },
           {
-            "id": "01JKQNP00000000000B050303",
+            "id": "01KH6Y31KCTXJ9H1NN4EDZZZ0M",
             "type": "paragraph",
             "props": {
               "text": "Das Erstgespräch findet wahlweise bei Ihnen vor Ort, in unserem Büro in Pankow oder als Videokonferenz statt. Bitte halten Sie – falls vorhanden – Fotos Ihres Gartens, einen Grundriss und Ihre wichtigsten Wünsche bereit."
@@ -129,12 +129,12 @@
       }
     },
     {
-      "id": "01JKQNP0000000000000S0504",
+      "id": "01KH6Y31KD3KP9NPRVB94170XD",
       "type": "contact-form",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B050401",
+            "id": "01KH6Y31KDEPW1S789T9M761H8",
             "type": "heading",
             "props": {
               "text": "Schreiben Sie uns",
@@ -142,7 +142,7 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B050402",
+            "id": "01KH6Y31KDBVV14WGXDY3YWRF9",
             "type": "paragraph",
             "props": {
               "text": "Füllen Sie das Kontaktformular aus und wir melden uns innerhalb von zwei Werktagen bei Ihnen. Alternativ erreichen Sie uns telefonisch oder per E-Mail."
@@ -152,12 +152,12 @@
       }
     },
     {
-      "id": "01JKQNP0000000000000S0505",
+      "id": "01KH6Y31KD1A977P9CYNDM9JK6",
       "type": "content",
       "slots": {
         "default": [
           {
-            "id": "01JKQNP00000000000B050501",
+            "id": "01KH6Y31KDNSGPBH6G41YY7DKB",
             "type": "heading",
             "props": {
               "text": "Anfahrt",
@@ -165,14 +165,14 @@
             }
           },
           {
-            "id": "01JKQNP00000000000B050502",
+            "id": "01KH6Y31KDMEHN0NB4KGCV8R1B",
             "type": "paragraph",
             "props": {
               "text": "Unser Büro und Schaugarten befinden sich in Berlin-Pankow, gut erreichbar mit öffentlichen Verkehrsmitteln. Die nächste S-Bahn-Station ist Pankow (S2, S8), von dort sind es etwa 10 Minuten zu Fuß. Parkplätze sind in der Breite Straße vorhanden."
             }
           },
           {
-            "id": "01JKQNP00000000000B050503",
+            "id": "01KH6Y31KDQVZBZRDX50CQ5XJH",
             "type": "paragraph",
             "props": {
               "text": "Unser Einzugsgebiet umfasst ganz Berlin und Brandenburg. Für Projekte außerhalb von Berlin berechnen wir eine Anfahrtspauschale. Sprechen Sie uns einfach an."

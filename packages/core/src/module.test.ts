@@ -472,6 +472,7 @@ describe('@openpress/core module', () => {
         'git/commit.post.ts',
         'git/history.get.ts',
         'git/status.get.ts',
+        'git/undo.post.ts',
       ]
 
       for (const file of expectedFiles) {

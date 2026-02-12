@@ -1,0 +1,16 @@
+{
+  "$schema": "https://coolify.io/schema.json",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "."
+  },
+  "healthCheck": {
+    "path": "/api/_openpress/features",
+    "interval": 30,
+    "timeout": 5
+  },
+  "env": {
+    "NODE_ENV": "production",
+    "PORT": "3000"
+  }
+}

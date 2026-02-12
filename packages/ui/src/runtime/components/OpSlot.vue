@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { provide, computed, inject, type ComputedRef, type Ref } from 'vue'
+import { provide, computed, inject, isRef, ref, type ComputedRef, type Ref } from 'vue'
 import { z } from 'zod'
 import type { Block, Section } from '@openpress/schemas'
 import { BlockSchema } from '@openpress/schemas'
@@ -30,12 +30,13 @@ if (import.meta.dev) {
   }
 }
 
-const section = inject<Ref<Section>>(OP_SECTION_KEY as symbol)
-if (!section) {
+const rawSection = inject<Ref<Section> | Section>(OP_SECTION_KEY as symbol)
+if (!rawSection) {
   throw new Error(
     '[OpenPress] OpSlot muss innerhalb von <OpSection> verwendet werden.',
   )
 }
+const section: Ref<Section> = isRef(rawSection) ? rawSection : ref(rawSection) as Ref<Section>
 
 const mode = inject<ComputedRef<'view' | 'edit'>>(OP_MODE_KEY as symbol)
 const isEditing = computed(() => mode?.value === 'edit')
@@ -56,7 +57,7 @@ const classes = computed(() => {
 // Provide Slot-Kontext für verschachtelte Blocks
 const slotContext = computed<OpSlotContext>(() => ({
   name: props.name,
-  sectionId: section.value?.id ?? (section as unknown as Section).id,
+  sectionId: section.value?.id ?? '',
 }))
 provide(OP_SLOT_KEY as symbol, slotContext)
 </script>

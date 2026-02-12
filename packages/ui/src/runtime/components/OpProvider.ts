@@ -46,7 +46,7 @@ export interface OpProviderState {
  * bereitgestellt (geeignet für App-Level Provider).
  */
 export function setupOpProvider(props: OpProviderProps): OpProviderState {
-  const site = props.site ?? DEFAULT_SITE
+  const site = props.site ?? Object.freeze({ ...DEFAULT_SITE })
   const navigation: Navigation = props.navigation ?? { main: [], footer: [] }
   const mode: 'view' | 'edit' = props.editing ? 'edit' : 'view'
   const themeName = props.theme ?? site.theme ?? DEFAULT_THEME
@@ -54,10 +54,8 @@ export function setupOpProvider(props: OpProviderProps): OpProviderState {
   const locale = props.locale ?? site.locale ?? DEFAULT_DISPLAY_LOCALE
 
   // Provide State für Child-Komponenten
-  // Only provide page key if page data is available
-  if (props.page) {
-    provide(OP_PAGE_KEY, props.page)
-  }
+  // Always provide page key so children can react when page becomes available
+  provide(OP_PAGE_KEY, props.page)
   provide(OP_SITE_KEY, Object.freeze({ ...site }) as Readonly<SiteConfig>)
   provide(OP_NAV_KEY, Object.freeze({ ...navigation }) as Readonly<Navigation>)
   provide(OP_MODE_KEY, mode)

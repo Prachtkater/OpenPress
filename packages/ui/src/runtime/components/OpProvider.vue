@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { provide, toRef, computed, readonly } from 'vue'
+import { provide, toRef, computed } from 'vue'
 import { PageSchema, SiteConfigSchema, NavigationSchema } from '@openpress/schemas'
 import type { Page, SiteConfig, Navigation } from '@openpress/schemas'
 import type { OpThemeConfig } from '../../types'
@@ -65,10 +65,8 @@ const resolvedTheme = computed(() => resolveTheme(themeName.value))
 const locale = computed(() => props.locale ?? siteConfig.value.locale ?? DEFAULT_DISPLAY_LOCALE)
 
 // Provide State für Child-Komponenten (Vue provide/inject)
-// Only provide page key if page data is available
-if (props.page) {
-  provide(OP_PAGE_KEY as symbol, toRef(props, 'page'))
-}
+// Always provide page key as a reactive ref so children update when page changes
+provide(OP_PAGE_KEY as symbol, toRef(props, 'page'))
 provide(OP_SITE_KEY as symbol, computed(() => Object.freeze({ ...siteConfig.value })))
 provide(OP_NAV_KEY as symbol, computed(() => Object.freeze({ ...navigation.value })))
 provide(OP_MODE_KEY as symbol, mode)

@@ -70,10 +70,8 @@ const themeName = computed(() => props.theme ?? siteConfig.value.theme ?? DEFAUL
 const resolvedTheme = computed(() => resolveTheme(themeName.value))
 const locale = computed(() => props.locale ?? siteConfig.value.locale ?? DEFAULT_DISPLAY_LOCALE)
 
-// Only provide page key if page data is available
-if (props.page) {
-  provide(OP_PAGE_KEY as symbol, toRef(props, 'page'))
-}
+// Always provide page key as a reactive ref so children update when page changes
+provide(OP_PAGE_KEY as symbol, toRef(props, 'page'))
 provide(OP_SITE_KEY as symbol, computed(() => Object.freeze({ ...siteConfig.value })))
 provide(OP_NAV_KEY as symbol, computed(() => Object.freeze({ ...navigation.value })))
 provide(OP_MODE_KEY as symbol, mode)

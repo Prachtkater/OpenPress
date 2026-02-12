@@ -76,6 +76,11 @@ function bubbleRadius(node: LayoutNode): number {
 function truncateLabel(label: string, maxLen: number): string {
   return label.length > maxLen ? label.slice(0, maxLen - 1) + '\u2026' : label
 }
+
+function openNode(node: LayoutNode) {
+  if (!node.isPage) return
+  emit('open-page', node.slug)
+}
 </script>
 
 <template>
@@ -157,9 +162,10 @@ function truncateLabel(label: string, maxLen: number): string {
           :transform="`translate(${node.x}, ${node.y})`"
           role="button"
           :aria-label="`Open page: ${node.label}`"
-          tabindex="0"
-          @click="emit('open-page', node.slug)"
-          @keydown.enter="emit('open-page', node.slug)"
+          :aria-disabled="!node.isPage"
+          :tabindex="node.isPage ? 0 : -1"
+          @click="openNode(node)"
+          @keydown.enter="openNode(node)"
         >
           <circle
             :r="bubbleRadius(node)"

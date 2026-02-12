@@ -180,10 +180,12 @@ export default defineNuxtModule<OpenPressOptions>({
       nuxt.hook('pages:extend', (pages: NuxtPage[]) => {
         const editorRoutes = getEditorRoutes()
         for (const route of editorRoutes) {
-          const resolvedComponent = join(
-            resolvePackageDir(route.featureName, nuxt.options.rootDir) ?? '',
-            route.component,
-          )
+          const packageDir = resolvePackageDir(route.featureName, nuxt.options.rootDir)
+          if (!packageDir) {
+            logger.warn(`Editor route skipped: package for feature "${route.featureName}" not found.`)
+            continue
+          }
+          const resolvedComponent = join(packageDir, route.component)
           pages.push({
             name: `openpress-feature-${route.featureName}-${route.path.replace(/\//g, '-')}`,
             path: route.path,

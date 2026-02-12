@@ -16,13 +16,13 @@
   --op-color-primary: #4f46e5;
   --op-color-primary-light: #818cf8;
   --op-color-primary-dark: #3730a3;
-  --op-color-on-primary: #ffffff;
+  --op-color-on-primary: #fff;
 
   /* ─── Secondary (Slate) ───────────────────── */
   --op-color-secondary: #334155;
   --op-color-secondary-light: #64748b;
   --op-color-secondary-dark: #1e293b;
-  --op-color-on-secondary: #ffffff;
+  --op-color-on-secondary: #fff;
 
   /* ─── Accent (Amber) ──────────────────────── */
   --op-color-accent: #f59e0b;
@@ -31,7 +31,7 @@
   --op-color-on-accent: #1c1917;
 
   /* ─── Surface ─────────────────────────────── */
-  --op-color-surface: #ffffff;
+  --op-color-surface: #fff;
   --op-color-surface-muted: #f8fafc;
   --op-color-surface-inverse: #0f172a;
   --op-color-on-surface: #0f172a;
@@ -44,7 +44,7 @@
   /* ─── Feedback: Success ───────────────────── */
   --op-color-success: #16a34a;
   --op-color-success-light: #dcfce7;
-  --op-color-on-success: #ffffff;
+  --op-color-on-success: #fff;
 
   /* ─── Feedback: Warning ───────────────────── */
   --op-color-warning: #ca8a04;
@@ -54,7 +54,7 @@
   /* ─── Feedback: Error ─────────────────────── */
   --op-color-error: #dc2626;
   --op-color-error-light: #fee2e2;
-  --op-color-on-error: #ffffff;
+  --op-color-on-error: #fff;
 
   /* ─── Component Tokens ────────────────────── */
   --op-section-transition: 200ms ease;
